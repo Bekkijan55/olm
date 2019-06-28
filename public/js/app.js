@@ -48804,6 +48804,119 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/permission.js":
+/*!************************************!*\
+  !*** ./resources/js/permission.js ***!
+  \************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _js_src_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/src/router */ "./resources/js/src/router.js");
+/* harmony import */ var _js_src_store_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/src/store/store */ "./resources/js/src/store/store.js");
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/auth */ "./resources/utils/auth.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+function hasPermission(roles, permissionRoles) {
+  if (!permissionRoles) {
+    return true;
+  } else {
+    var Boolean = false;
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = roles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var item = _step.value;
+        permissionRoles = permissionRoles.filter(function (obj, pos, arr) {
+          return arr.map(function (val) {
+            if (item.name === val) {
+              Boolean = true;
+            }
+          });
+        });
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+          _iterator["return"]();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    return Boolean;
+  } // if (roles.indexOf('ROLE_USER') >= 0) return true // admin permission passed directly
+
+
+  return roles.some(function (role) {
+    return permissionRoles.indexOf(role) >= 0;
+  });
+}
+
+var whiteList = ['/login']; // no redirect whitelist
+
+_js_src_router__WEBPACK_IMPORTED_MODULE_0__["default"].beforeEach(function (to, from, next) {
+  if (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_2__["getToken"])()) {
+    // determine if there has token
+    if (to.path === '/login') {
+      next({
+        path: '/'
+      });
+    } else {
+      if (_js_src_store_store__WEBPACK_IMPORTED_MODULE_1__["default"].getters.roles.length === 0) {
+        _js_src_store_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('UserInfo').then(function (res) {
+          next(_objectSpread({}, to, {
+            replace: true
+          }));
+        })["catch"](function (err) {
+          _js_src_store_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('FedLogOut').then(function () {
+            next({
+              path: '/login'
+            });
+          });
+        });
+      } else {
+        if (hasPermission(_js_src_store_store__WEBPACK_IMPORTED_MODULE_1__["default"].getters.roles, to.meta.roles)) {
+          next(); //
+        } else {
+          next({
+            path: '/401',
+            replace: true,
+            query: {
+              noGoBack: true
+            }
+          });
+        }
+      }
+    }
+  } else {
+    /* has no token*/
+    if (whiteList.indexOf(to.path) !== -1) {
+      // In the log-in white list, enter directly
+      next();
+    } else {
+      next('/login'); // Otherwise all redirect to login page
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/src/App.vue":
 /*!**********************************!*\
   !*** ./resources/js/src/App.vue ***!
@@ -49535,12 +49648,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _themeConfig_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../themeConfig.js */ "./resources/js/themeConfig.js");
 /* harmony import */ var _globalComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./globalComponents.js */ "./resources/js/src/globalComponents.js");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./router */ "./resources/js/src/router.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store/store */ "./resources/js/src/store/store.js");
-/* harmony import */ var _filters_filters__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./filters/filters */ "./resources/js/src/filters/filters.js");
-/* harmony import */ var vue2_hammer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue2-hammer */ "./node_modules/vue2-hammer/index.min.js");
-/* harmony import */ var vue2_hammer__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue2_hammer__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! prismjs */ "./node_modules/prismjs/prism.js");
-/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(prismjs__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _permission__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../permission */ "./resources/js/permission.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store/store */ "./resources/js/src/store/store.js");
+/* harmony import */ var _filters_filters__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./filters/filters */ "./resources/js/src/filters/filters.js");
+/* harmony import */ var vue2_hammer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue2-hammer */ "./node_modules/vue2-hammer/index.min.js");
+/* harmony import */ var vue2_hammer__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue2_hammer__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! prismjs */ "./node_modules/prismjs/prism.js");
+/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(prismjs__WEBPACK_IMPORTED_MODULE_10__);
 /*=========================================================================================
   File Name: main.js
   Description: main vue(js) file
@@ -49559,6 +49673,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuesax__WEBPACK_IMPORTED_MODULE_2
 
  // Vue Router
 
+
  // Vuex Store
 
  // Vuesax Admin Filters
@@ -49566,14 +49681,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuesax__WEBPACK_IMPORTED_MODULE_2
  // Vuejs - Vue wrapper for hammerjs
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue2_hammer__WEBPACK_IMPORTED_MODULE_8__["VueHammer"]); // PrismJS
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue2_hammer__WEBPACK_IMPORTED_MODULE_9__["VueHammer"]); // PrismJS
 
  // import 'prismjs/themes/prism-tomorrow.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false;
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   router: _router__WEBPACK_IMPORTED_MODULE_5__["default"],
-  store: _store_store__WEBPACK_IMPORTED_MODULE_6__["default"],
+  store: _store_store__WEBPACK_IMPORTED_MODULE_7__["default"],
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
   }
@@ -49662,6 +49777,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'pageError404',
       component: function component() {
         return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
+      }
+    }, {
+      path: '/login',
+      name: 'login',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
       }
     }]
   }, // Redirect to 404 page, if no match found
@@ -50239,9 +50360,9 @@ service.interceptors.response.use(function (response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OSPanel\domains\vuesax\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\OSPanel\domains\vuesax\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\vuesax\resources\assets\css\main.css */"./resources/assets/css/main.css");
+__webpack_require__(/*! C:\OSPanel\domains\vuesax\newvuesax\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\OSPanel\domains\vuesax\newvuesax\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\vuesax\newvuesax\resources\assets\css\main.css */"./resources/assets/css/main.css");
 
 
 /***/ })

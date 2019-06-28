@@ -25,6 +25,8 @@ import './globalComponents.js'
 // Vue Router
 import router from './router'
 
+import '../permission'
+
 // Vuex Store
 import store from './store/store'
 
@@ -33,7 +35,9 @@ import './filters/filters'
 
 
 // Vuejs - Vue wrapper for hammerjs
-import { VueHammer } from 'vue2-hammer'
+import {
+    VueHammer
+} from 'vue2-hammer'
 Vue.use(VueHammer)
 
 // PrismJS

@@ -13,7 +13,12 @@ class AuthController extends Controller
 
     public $restful = true;
 
+    public function __construct() {
+        return auth()->shouldUse('api');
+    }
+
     public function login(Request $request) {
+        // return $request->all();
         $credentials = $request->only(['email','password']);
         if(!$token = auth()->attempt($credentials)) {
             http_response_code(404);
@@ -26,7 +31,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL()*60
+            'expires_in' => auth()->factory('api')->getTTL()*60
         ]);
     }
 
