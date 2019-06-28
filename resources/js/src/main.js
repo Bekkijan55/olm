@@ -31,6 +31,8 @@ import store from './store/store'
 // Vuesax Admin Filters
 import './filters/filters'
 
+import '../permission'
+
 
 // Vuejs - Vue wrapper for hammerjs
 import { VueHammer } from 'vue2-hammer'
