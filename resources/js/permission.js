@@ -30,13 +30,14 @@ function hasPermission(roles, permissionRoles) {
 const whiteList = ['/login']// no redirect whitelist
 
 router.beforeEach((to, from, next) => {
-    if (getToken()) { // determine if there has token
-        if (to.path === '/login') {
+    if (getToken()) { // determine if there has token      
+        if (to.path === '/login') {          
             next({path: '/'})
-        }else {
-          if (store.getters.roles.length === 0) {
+        }else {          
+          if (store.getters.roles.length === 0) {                     
             store.dispatch('UserInfo').then(res => {
-            next({...to, replace: true})
+                                     
+            next({...to, replace: true})           
           }).catch((err) => {
               store.dispatch('FedLogOut').then(() => {
                   next({path: '/login'})

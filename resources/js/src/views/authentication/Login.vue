@@ -1,17 +1,17 @@
 <template>
-     <div class="h-screen flex w-full bg-img" id="login-page">
+  <div class="h-screen flex w-full bg-img" id="login-page">
     <div class="vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 mx-auto self-center">
       <vx-card>
         <div slot="no-body" class="full-page-bg-color">
           <div class="vx-row">
             <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
-              <img src="@/assets/images/pages/login.png" alt="login" class="mx-auto">
+              <!-- <img src="@/assets/images/pages/login.png" alt="login" class="mx-auto"> -->
             </div>
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center bg-white pb-10">
               <div class="p-8">
                 <div class="vx-card__title mb-8">
-                  <h4 class="mb-4">{{$t('message.login')}}</h4>
-                  <p>{{$t('message.welcome_text')}}</p>
+                  <h4 class="mb-4">Login</h4>
+                  <p>Welcome</p>
                 </div>
                 <vs-input
                   type="email"
@@ -25,7 +25,7 @@
                   type="password"
                   icon="icon icon-lock"
                   icon-pack="feather"
-                  :label-placeholder="$t('message.password')"
+                  label-placeholder="Password"
                   v-model="user.password"
                   class="w-full mb-4 no-icon-border"
                 />
@@ -34,7 +34,7 @@
                   <!--<router-link to="/pages/forgot-password">Forgot Password?</router-link>-->
                 </div>
                 <!--<vs-button  type="border" to="/register">Register</vs-button>-->
-                <vs-button class="float-right" @click.prevent="submit">{{$t('message.login')}}</vs-button>
+                <vs-button class="float-right" @click.prevent="submit">Login</vs-button>
 
                 <!--<vs-divider position="center" class="my-8"></vs-divider>-->
 
@@ -55,41 +55,45 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 export default {
-    data() {
-        return {
-            user:{
-                email:null,
-                password:null
-            },
-            checkbox:false
-        };
-    },
-    mounted() {
-        var self = this;
-        window.addEventListener('keyup',function(event) {
-            if(event.keyCode === 13) {
-                self.submit();
-            }
+  data() {
+    return {
+      user: {
+        email: null,
+        password: null
+      },
+      checkbox: false
+    };
+  },
+  mounted() {
+    
+    var self = this;
+    window.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        self.submit();
+      }
+    });
+  },
+  methods: {
+    submit() {
+      this.$store
+        .dispatch("LoginUser", this.user)
+        .then(() => {          
+          this.$router.push({ path: "/" });
+          console.log('done')
+        })
+        .catch(err => {
+          this.$vs.notify({
+            color: "danger",
+            title: "Not LogIn",
+            text: "Incorrect email address and / or password"
+          });
         });
-    },
-    methods: {
-        submit() {
-            this.$store.dispatch("LoginUser",this.user).then(() => {
-                this.$router.push({path: '/'});
-            }).catch(err => {
-                this.$vs.notify({
-                    color: 'danger',
-                    title: 'Not LogIn',
-                    text: 'Incorrect email address and / or password'
-                })
-            })
-        }
     }
-}
+  }
+};
 </script>
 
 <style>
-
 </style>

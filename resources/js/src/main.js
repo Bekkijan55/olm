@@ -25,17 +25,33 @@ import './globalComponents.js'
 // Vue Router
 import router from './router'
 
+import '../permission'
+
 // Vuex Store
 import store from './store/store'
 
 // Vuesax Admin Filters
 import './filters/filters'
 
-import '../permission'
+Vue.config.productionTip = false;
+
+// router.beforeEach((to,from,next) => {
+//     if(store.getters.username === null) {
+//         next({
+//             path: '/login',
+//             query: {redirect: to.fullPath}
+//         })
+//     } else{
+//         next()
+//     }
+// })
+
 
 
 // Vuejs - Vue wrapper for hammerjs
-import { VueHammer } from 'vue2-hammer'
+import {
+    VueHammer
+} from 'vue2-hammer'
 Vue.use(VueHammer)
 
 // PrismJS

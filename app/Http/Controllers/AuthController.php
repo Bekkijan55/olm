@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illimunate\Support\Facades\Auth;
-use Illimunate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
@@ -13,7 +13,12 @@ class AuthController extends Controller
 
     public $restful = true;
 
+    public function __construct() {
+        return auth()->shouldUse('api');
+    }
+
     public function login(Request $request) {
+        // return $request->all();
         $credentials = $request->only(['email','password']);
         if(!$token = auth()->attempt($credentials)) {
             http_response_code(404);
@@ -26,7 +31,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL()*60
+            'expires_in' => auth()->factory('api')->getTTL()*60
         ]);
     }
 

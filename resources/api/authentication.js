@@ -4,7 +4,7 @@ import getToken from '../utils/auth'
 
 export function login(data) {
     return request({
-        url: 'api/login',
+        url: '/api/login',
         method: 'post',
         data
     }) 

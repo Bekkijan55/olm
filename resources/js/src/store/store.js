@@ -21,7 +21,7 @@ import actions from "./actions"
 Vue.use(Vuex)
 
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   modules: {
     user
   },
@@ -31,3 +31,6 @@ export default new Vuex.Store({
     actions,
     strict: process.env.NODE_ENV !== 'production'
 })
+
+
+export default store

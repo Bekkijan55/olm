@@ -506,6 +506,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    LoggingOut: function LoggingOut() {
+      var _this = this;
+
+      this.$store.dispatch('FedLogOut').then(function (res) {
+        _this.$router.push('/login');
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
     showSidebar: function showSidebar() {
       this.$store.commit('TOGGLE_IS_SIDEBAR_ACTIVE', true);
     },
@@ -2363,7 +2372,7 @@ var render = function() {
                                   "flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white",
                                 on: {
                                   click: function($event) {
-                                    return _vm.$router.push("/pages/login")
+                                    return _vm.LoggingOut()
                                   }
                                 }
                               },

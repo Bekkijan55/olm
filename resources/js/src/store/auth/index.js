@@ -44,17 +44,18 @@ const user = {
                         commit('SET_TOKEN', response.data.access_token)
                         setToken(response.data.access_token)
                     } else{
-                        reject(response.data.eror)
+                        reject(response.data.error)
                     }
                     resolve()
-                }).catch(err => {
+                }).catch(error => {
                     reject(error)
                 })
             })
         },
         UserInfo({commit}) {
             return userInfo().then(response => {
-                var name = response.data.data.firstname
+                console.log(response.data.data.name)
+                var name = response.data.data.name
 
                 if(response.data.data.lastname) {
                     name += ' ' + response.data.data.lastname
@@ -64,7 +65,7 @@ const user = {
                 commit('SET_ROLES', response.data.data.roles)
             })
         },
-        FedLogout({commit}) {
+        FedLogOut({commit}) {
             commit('SET_TOKEN','')
             commit('SET_NAME','')
             commit('SET_EMAIL','')
