@@ -42,15 +42,30 @@ const router = new Router({
                     name: 'home',
                     component: () => import('./views/Home.vue'),
                 },
-                {
-                    path: '/page2',
-                    name: 'page2',
-                    component: () => import('./views/Page2.vue'),
-                },
+                // {
+                //     path: '/page2',
+                //     name: 'page2',
+                //     component: () => import('./views/Page2.vue'),
+                // },
                 {
                     path: '/users',
                     name: 'users',
                     component: () => import('./views/pages/users/index.vue')
+                },
+                {
+                    path: '/contacts',
+                    name: 'contacts',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Contacts',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/contacts/index.vue')
                 }
 
             ],

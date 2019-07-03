@@ -84,6 +84,7 @@
           <vs-th>Email</vs-th>
           <vs-th>Roles</vs-th>
           <vs-th>created_at</vs-th>
+          <vs-th>Action</vs-th>
         </template>
         <template slot-scope="{data}">
           <vs-tr v-for="(val) in data" :key="val.id">
@@ -94,6 +95,9 @@
               <vs-chip color="success" v-for="item in val.roles" :key="item.id">{{item.role_name}}</vs-chip>
             </vs-td>
             <vs-td>{{val.created_at}}</vs-td>
+            <vs-td>
+              <vs-button color="warning" icon-pack="feather" icon="icon-edit" type="filled" @click="updateUser(val)">edit</vs-button>
+            </vs-td>
           </vs-tr>
         </template>
       </vs-table>
@@ -110,11 +114,13 @@ export default {
       users: [],
       roles: [],
       user: {
+        id:'',
         name: "",
         email: "",
         password: "",
         role: "",
-        selectedRole: []
+        selectedRole: [],
+        edit:false
       },
       popupActive2: false
     };
@@ -141,16 +147,26 @@ export default {
       // this.user.role = this.selectedRole.id;
       this.$validator.validateAll().then(result => {
         if (result) {
-          console.log(this.user);
+          
           newUser(this.user)
             .then(res => {
-              console.log(res);
+              this.users.unshift(res.data.data)
+              this.popupActive2 = false;            
             })
             .catch(err => {
               console.log(err);
             });
+        
+       
         }
       });
+    },
+
+    updateUser(v) {
+      this.edit = true;
+      Object.assign(this.user,v)
+      console.log(v);
+      
     }
   }
 };

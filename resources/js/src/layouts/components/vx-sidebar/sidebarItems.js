@@ -26,15 +26,15 @@ export default [{
         icon: "HomeIcon",
     },
     {
-        url: "/page2",
-        name: "Page 2",
-        slug: "page2",
-        icon: "FileIcon",
-    },
-    {
         url: "/users",
         name: 'users',
         slug: 'users',
         icon: 'UserIcon'
+    },
+    {
+        url : '/contacts',
+        name: 'contacts',
+        slug: 'contacts',
+        icon : 'VoicemailIcon'
     }
 ]

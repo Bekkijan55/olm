@@ -15,3 +15,11 @@ export function newUser(data) {
         data
     })
 }
+
+export function updateUser(data) {
+    return request({
+        url: '/api/add-user',
+        method: 'put',
+        data
+    })
+}

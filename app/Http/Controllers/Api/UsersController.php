@@ -13,7 +13,7 @@ use App\RoleUser;
 class UsersController extends Controller
 {
     public function getUsers() {
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->orderBy('id','desc')->get();
 
         $roles = Role::all();
 
@@ -22,18 +22,20 @@ class UsersController extends Controller
     public function addUser(Request $request) {
         // return $request->input('selectedRole');
         $user = new User;
-        $userrole = new RoleUser;
+       
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
 
         $user->save();
-
-       foreach($request->input('selectedRole') as $sr) {
+        if(!empty($request->input('selectedRole'))){
+       foreach($request->input('selectedRole') as $sr) {           
+        $userrole = new RoleUser;
         $userrole->user_id = $user->id;
-        $userrole->role_id = $sr->id;
+        $userrole->role_id = $sr['id'];
         $userrole->save();
        }
+    }
         
         return new UserResource($user);
 
