@@ -29,6 +29,9 @@ import '../permission'
 
 // Vuex Store
 import store from './store/store'
+import VeeValidate from 'vee-validate'
+
+Vue.use(VeeValidate)
 
 // Vuesax Admin Filters
 import './filters/filters'

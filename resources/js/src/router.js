@@ -47,6 +47,11 @@ const router = new Router({
                     name: 'page2',
                     component: () => import('./views/Page2.vue'),
                 },
+                {
+                    path: '/users',
+                    name: 'users',
+                    component: () => import('./views/pages/users/index.vue')
+                }
 
             ],
         },

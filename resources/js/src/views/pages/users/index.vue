@@ -1,0 +1,160 @@
+<template>
+  <div>
+    <vs-popup classContent="popup-example" title="Add User" :active.sync="popupActive2">
+      <div class="vx-col w-full mb-base">
+        <form @submit.prevent="addUser">
+          <div class="vx-row">
+            <div class="vx-col sm:w-1/1 w-full mb-2">
+              <vs-input
+                class="w-full"
+                v-validate="'required'"
+                label="Name"
+                placeholder="Name"
+                name="Name"
+                v-model="user.name"
+              />
+              <span class="text-danger text-sm">{{errors.first('Name')}}</span>
+            </div>
+          </div>
+          <div class="vx-row">
+            <div class="vx-col sm:w-1/1 w-full mb-2">
+              <vs-input
+                class="w-full"
+                v-validate="'required|email'"
+                label="Email"
+                placeholder="Email"
+                v-model="user.email"
+                name="email"
+              />
+              <span class="text-danger text-sm">{{errors.first('email')}}</span>
+            </div>
+          </div>
+          <div class="vx-row">
+            <div class="vx-col sm:w-1/1 w-full mb-2">
+              <vs-input
+                class="w-full"
+                v-validate="'required|min:4'"
+                label="Password"
+                placeholder="Password"
+                type="password"
+                v-model="user.password"
+                name="Password"
+              />
+              <span class="text-danger text-sm">{{errors.first('Password')}}</span>
+            </div>
+          </div>
+          <div class="vx-row">
+            <div class="vx-col sm:w-1/1 w-full mb-2">
+              <v-select multiple label="role_name" :options="roles" v-model="user.selectedRole"></v-select>
+            </div>
+          </div>
+
+          <div class="vx-row">
+            <div class="vx-col w-full">
+              <vs-row vs-type="flex" vs-justify="flex-end">
+                <div class="bx-row mb-10">
+                  <vs-button class="mr-3 mb-2">Add</vs-button>
+                </div>
+              </vs-row>
+            </div>
+          </div>
+        </form>
+      </div>
+    </vs-popup>
+
+    <vx-card class="mb-2">
+      <vs-row vs-type="flex" vs-justify="flex-end">
+        <div class="bx-row">
+          <vs-button
+            color="primary"
+            type="filled"
+            size="medium"
+            icon-pack="feather"
+            icon="icon-plus"
+            @click="popupActive2=true"
+          >Add</vs-button>
+        </div>
+      </vs-row>
+    </vx-card>
+    <vx-card>
+      <vs-table :data="users">
+        <template slot="thead">
+          <vs-th>ID</vs-th>
+          <vs-th>Name</vs-th>
+          <vs-th>Email</vs-th>
+          <vs-th>Roles</vs-th>
+          <vs-th>created_at</vs-th>
+        </template>
+        <template slot-scope="{data}">
+          <vs-tr v-for="(val) in data" :key="val.id">
+            <vs-td>{{val.id}}</vs-td>
+            <vs-td>{{val.name}}</vs-td>
+            <vs-td>{{val.email}}</vs-td>
+            <vs-td>
+              <vs-chip color="success" v-for="item in val.roles" :key="item.id">{{item.role_name}}</vs-chip>
+            </vs-td>
+            <vs-td>{{val.created_at}}</vs-td>
+          </vs-tr>
+        </template>
+      </vs-table>
+    </vx-card>
+  </div>
+</template>
+
+<script>
+import { getUsers, newUser } from "../../../../../api/users";
+import vSelect from "vue-select";
+export default {
+  data() {
+    return {
+      users: [],
+      roles: [],
+      user: {
+        name: "",
+        email: "",
+        password: "",
+        role: "",
+        selectedRole: []
+      },
+      popupActive2: false
+    };
+  },
+
+  mounted() {
+    this.fetchUsers();
+  },
+  components: {
+    "v-select": vSelect
+  },
+
+  methods: {
+    fetchUsers() {
+      getUsers()
+        .then(res => {
+          this.users = res.data[0];
+          this.roles = res.data[1];
+        })
+        .catch(err => console.log(err));
+    },
+    addUser() {
+      console.log(this.selectedRole);
+      // this.user.role = this.selectedRole.id;
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          console.log(this.user);
+          newUser(this.user)
+            .then(res => {
+              console.log(res);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
+      });
+    }
+  }
+};
+</script>
+
+<style>
+</style>

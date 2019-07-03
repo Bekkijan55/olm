@@ -67,7 +67,6 @@ export default {
     };
   },
   mounted() {
-    
     var self = this;
     window.addEventListener("keyup", function(event) {
       if (event.keyCode === 13) {
@@ -79,9 +78,8 @@ export default {
     submit() {
       this.$store
         .dispatch("LoginUser", this.user)
-        .then(() => {          
+        .then(() => {
           this.$router.push({ path: "/" });
-          console.log('done')
         })
         .catch(err => {
           this.$vs.notify({
