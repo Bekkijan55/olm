@@ -205,7 +205,9 @@ export default {
         if (result) {
           addContact(this.contact)
            .then(res => {
-               console.log(res.data.data)
+               console.log(res.data.data),
+               this.contacts.unshift(res.data.data);
+               this.popupActive = false;
            })
              .catch(err => console.log(err))
         }

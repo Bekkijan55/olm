@@ -73,4 +73,8 @@ class ContactController extends Controller
 
         return ContactResource::collection($cons);
     }
+
+    public function updateContact(Request $request) {
+      
+    }
 }

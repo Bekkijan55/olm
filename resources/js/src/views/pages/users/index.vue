@@ -33,14 +33,13 @@
             <div class="vx-col sm:w-1/1 w-full mb-2">
               <vs-input
                 class="w-full"
-                v-validate="'required|min:4'"
                 label="Password"
                 placeholder="Password"
                 type="password"
                 v-model="user.password"
                 name="Password"
               />
-              <span class="text-danger text-sm">{{errors.first('Password')}}</span>
+              <!-- <span class="text-danger text-sm">{{errors.first('Password')}}</span> -->
             </div>
           </div>
           <div class="vx-row">
@@ -71,7 +70,7 @@
             size="medium"
             icon-pack="feather"
             icon="icon-plus"
-            @click="popupActive2=true"
+            @click="popupActive2=true;edit=false;clearData()"
           >Add</vs-button>
         </div>
       </vs-row>
@@ -96,7 +95,13 @@
             </vs-td>
             <vs-td>{{val.created_at}}</vs-td>
             <vs-td>
-              <vs-button color="warning" icon-pack="feather" icon="icon-edit" type="filled" @click="updateUser(val)">edit</vs-button>
+              <vs-button
+                color="warning"
+                icon-pack="feather"
+                icon="icon-edit"
+                type="filled"
+                @click="updateUser(val);popupActive2=true"
+              >edit</vs-button>
             </vs-td>
           </vs-tr>
         </template>
@@ -106,7 +111,7 @@
 </template>
 
 <script>
-import { getUsers, newUser } from "../../../../../api/users";
+import { getUsers, newUser, updateUser } from "../../../../../api/users";
 import vSelect from "vue-select";
 export default {
   data() {
@@ -114,14 +119,14 @@ export default {
       users: [],
       roles: [],
       user: {
-        id:'',
+        id: "",
         name: "",
         email: "",
         password: "",
         role: "",
-        selectedRole: [],
-        edit:false
+        selectedRole: []
       },
+      edit: false,
       popupActive2: false
     };
   },
@@ -147,26 +152,46 @@ export default {
       // this.user.role = this.selectedRole.id;
       this.$validator.validateAll().then(result => {
         if (result) {
-          
-          newUser(this.user)
-            .then(res => {
-              this.users.unshift(res.data.data)
-              this.popupActive2 = false;            
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        
-       
+          if (this.edit === false) {
+            newUser(this.user)
+              .then(res => {
+                this.users.unshift(res.data.data);
+                this.popupActive2 = false;
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          } else {
+            updateUser(this.user)
+              .then(res => {
+                console.log(res.data.data);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          }
         }
       });
     },
 
     updateUser(v) {
       this.edit = true;
-      Object.assign(this.user,v)
-      console.log(v);
-      
+      // Object.assign(this.user, v);
+      // console.log(v);
+      this.user.id = v.id;
+      this.user.name = v.name;
+      this.user.email = v.email;
+      this.user.password = v.password;
+      this.user.selectedRole = v.roles;
+      console.log(this.user);
+    },
+    clearData() {
+      this.user.id = "";
+      this.user.name = "";
+      this.user.email = "";
+      this.user.password = "";
+      this.user.selectedRole = [];
+      console.log(this.user);
     }
   }
 };

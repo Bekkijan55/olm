@@ -119,6 +119,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -127,14 +132,14 @@ __webpack_require__.r(__webpack_exports__);
       users: [],
       roles: [],
       user: {
-        id: '',
+        id: "",
         name: "",
         email: "",
         password: "",
         role: "",
-        selectedRole: [],
-        edit: false
+        selectedRole: []
       },
+      edit: false,
       popupActive2: false
     };
   },
@@ -162,20 +167,42 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$validator.validateAll().then(function (result) {
         if (result) {
-          Object(_api_users__WEBPACK_IMPORTED_MODULE_0__["newUser"])(_this2.user).then(function (res) {
-            _this2.users.unshift(res.data.data);
+          if (_this2.edit === false) {
+            Object(_api_users__WEBPACK_IMPORTED_MODULE_0__["newUser"])(_this2.user).then(function (res) {
+              _this2.users.unshift(res.data.data);
 
-            _this2.popupActive2 = false;
-          })["catch"](function (err) {
-            console.log(err);
-          });
+              _this2.popupActive2 = false;
+            })["catch"](function (err) {
+              console.log(err);
+            });
+          } else {
+            Object(_api_users__WEBPACK_IMPORTED_MODULE_0__["updateUser"])(_this2.user).then(function (res) {
+              console.log(res.data.data);
+            })["catch"](function (err) {
+              console.log(err);
+            });
+          }
         }
       });
     },
     updateUser: function updateUser(v) {
-      this.edit = true;
-      Object.assign(this.user, v);
-      console.log(v);
+      this.edit = true; // Object.assign(this.user, v);
+      // console.log(v);
+
+      this.user.id = v.id;
+      this.user.name = v.name;
+      this.user.email = v.email;
+      this.user.password = v.password;
+      this.user.selectedRole = v.roles;
+      console.log(this.user);
+    },
+    clearData: function clearData() {
+      this.user.id = "";
+      this.user.name = "";
+      this.user.email = "";
+      this.user.password = "";
+      this.user.selectedRole = [];
+      console.log(this.user);
     }
   }
 });
@@ -307,14 +334,6 @@ var render = function() {
                     { staticClass: "vx-col sm:w-1/1 w-full mb-2" },
                     [
                       _c("vs-input", {
-                        directives: [
-                          {
-                            name: "validate",
-                            rawName: "v-validate",
-                            value: "required|min:4",
-                            expression: "'required|min:4'"
-                          }
-                        ],
                         staticClass: "w-full",
                         attrs: {
                           label: "Password",
@@ -329,11 +348,7 @@ var render = function() {
                           },
                           expression: "user.password"
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger text-sm" }, [
-                        _vm._v(_vm._s(_vm.errors.first("Password")))
-                      ])
+                      })
                     ],
                     1
                   )
@@ -421,6 +436,8 @@ var render = function() {
                       on: {
                         click: function($event) {
                           _vm.popupActive2 = true
+                          _vm.edit = false
+                          _vm.clearData()
                         }
                       }
                     },
@@ -486,7 +503,8 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      return _vm.updateUser(val)
+                                      _vm.updateUser(val)
+                                      _vm.popupActive2 = true
                                     }
                                   }
                                 },
@@ -568,8 +586,8 @@ function newUser(data) {
 }
 function updateUser(data) {
   return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    url: '/api/add-user',
-    method: 'put',
+    url: '/api/update-user',
+    method: 'post',
     data: data
   });
 }

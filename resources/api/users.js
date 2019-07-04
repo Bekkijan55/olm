@@ -18,8 +18,8 @@ export function newUser(data) {
 
 export function updateUser(data) {
     return request({
-        url: '/api/add-user',
-        method: 'put',
+        url: '/api/update-user',
+        method: 'post',
         data
     })
 }

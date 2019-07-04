@@ -40,4 +40,12 @@ class UsersController extends Controller
         return new UserResource($user);
 
     }
+
+    public function updateUser(Request $request) {
+        return $request->input('selectedRole');
+        $user = User::finsOrFail($request->input('id'));
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        
+    }
 }

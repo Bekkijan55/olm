@@ -217,7 +217,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$validator.validateAll().then(function (result) {
         if (result) {
           Object(_api_contact__WEBPACK_IMPORTED_MODULE_1__["addContact"])(_this2.contact).then(function (res) {
-            console.log(res.data.data);
+            console.log(res.data.data), _this2.contacts.unshift(res.data.data);
+            _this2.popupActive = false;
           })["catch"](function (err) {
             return console.log(err);
           });
