@@ -263,6 +263,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.common.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -403,6 +404,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -416,6 +418,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      username: '',
       navbarSearchAndPinList: this.$store.state.navbarSearchAndPinList,
       searchQuery: '',
       showFullSearch: false,
@@ -468,6 +471,9 @@ __webpack_require__.r(__webpack_exports__);
     '$route': function $route() {
       if (this.showBookmarkPagesDropdown) this.showBookmarkPagesDropdown = false;
     }
+  },
+  mounted: function mounted() {
+    this.username = this.$store.getters.username;
   },
   computed: {
     // HELPER
@@ -2204,7 +2210,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "\r\n                        checkout-footer\r\n                        fixed\r\n                        bottom-0\r\n                        rounded-b-lg\r\n                        text-primary\r\n                        w-full\r\n                        p-2\r\n                        font-semibold\r\n                        text-center\r\n                        border\r\n                        border-b-0\r\n                        border-l-0\r\n                        border-r-0\r\n                        border-solid\r\n                        d-theme-border-grey-light\r\n                        cursor-pointer"
+                          "\n                        checkout-footer\n                        fixed\n                        bottom-0\n                        rounded-b-lg\n                        text-primary\n                        w-full\n                        p-2\n                        font-semibold\n                        text-center\n                        border\n                        border-b-0\n                        border-l-0\n                        border-r-0\n                        border-solid\n                        d-theme-border-grey-light\n                        cursor-pointer"
                       },
                       [_c("span", [_vm._v("View All Notifications")])]
                     )
@@ -2224,7 +2230,7 @@ var render = function() {
                   { staticClass: "text-right leading-tight hidden sm:block" },
                   [
                     _c("p", { staticClass: "font-semibold" }, [
-                      _vm._v("John Doe")
+                      _vm._v(_vm._s(_vm.username))
                     ]),
                     _vm._v(" "),
                     _c("small", [_vm._v("Available")])

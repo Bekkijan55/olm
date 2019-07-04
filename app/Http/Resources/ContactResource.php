@@ -23,12 +23,13 @@ class ContactResource extends JsonResource
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'middlename' => $this->middlename,
-            'mob_num' => $this->mob_num,
-            'work_num' => $this->work_num,
+            'mobnum' => $this->mob_num,
+            'worknum' => $this->work_num,
             'birthday' => $this->birthday,
-            'avatar' => $this->avatar,
+            'photo' => $this->avatar,
             'desc' => $this->description,
-            'birthday' => $this->birthday 
+            'date' => $this->birthday,
+            'created_at' => $this->created_at 
         ];
     }
 }

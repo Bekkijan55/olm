@@ -164,7 +164,8 @@ export default {
           } else {
             updateUser(this.user)
               .then(res => {
-                console.log(res.data.data);
+                this.fetchUsers();
+                this.popupActive2 = false;
               })
               .catch(err => {
                 console.log(err);
@@ -181,7 +182,7 @@ export default {
       this.user.id = v.id;
       this.user.name = v.name;
       this.user.email = v.email;
-      this.user.password = v.password;
+      this.user.password = v.password ? v.password : null;
       this.user.selectedRole = v.roles;
       console.log(this.user);
     },

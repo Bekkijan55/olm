@@ -14,3 +14,12 @@ export function getContacts() {
         method: 'get'
     })
 }
+
+export function editContact(data) {
+    return request({
+        url: '/api/edit-contact',
+        method: 'post',
+        data
+    })
+}
+

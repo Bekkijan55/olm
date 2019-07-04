@@ -42,10 +42,27 @@ class UsersController extends Controller
     }
 
     public function updateUser(Request $request) {
-        return $request->input('selectedRole');
-        $user = User::finsOrFail($request->input('id'));
+        // return $request->all();
+        $ru = RoleUser::where('user_id',$request->input('id'))->delete();
+        
+        $user = User::findOrFail($request->input('id'));
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        if($request->input('password') != null) {
+            $user->password = bcrypt($request->input('password'));
+        }
+        $user->save();
+
+        foreach($request->input('selectedRole') as $sr) {
+            $role = new RoleUser;
+            $role->user_id = $request->input('id');
+            $role->role_id = $sr['id'];
+            $role->save();
+        }
+
+        return new UserResource($user);
+
+       
         
     }
 }

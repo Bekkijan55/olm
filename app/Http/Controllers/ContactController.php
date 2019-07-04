@@ -22,7 +22,7 @@ class ContactController extends Controller
         $con->work_num = $request->input('worknum');
         $con->email = $request->input('email');
         $con->birthday = Carbon::parse($request->input('date'));
-        $con->description = $request->input('description');
+        $con->description = $request->input('desc');
         if($request->input('gender') == 'male') {
             $con->gender = 1;
         }
@@ -34,7 +34,7 @@ class ContactController extends Controller
 
          $con->save();
 
-         return response()->json($con);
+         return new ContactResource($con);
     }
 
     private function upload_image($request) {
@@ -75,6 +75,30 @@ class ContactController extends Controller
     }
 
     public function updateContact(Request $request) {
-      
+    //   return $request->all();
+
+      $con = Contact::findOrFail($request->input('id'));
+
+      $con->firstname = $request->input('firstname');
+      $con->lastname = $request->input('lastname');
+      $con->middlename = $request->input('middlename');
+      $con->mob_num = $request->input('mobnum');
+      $con->work_num = $request->input('worknum');
+      $con->email = $request->input('email');
+      $con->birthday = Carbon::parse($request->input('date'));
+      $con->description = $request->input('desc');
+      if($request->input('gender') == 'male') {
+          $con->gender = 1;
+      }
+       else $con->gender = 0;
+
+       if($request->input('photo') != null) {
+        $photo = $this->upload_image($request);
+        $con->avatar = $photo;
+       }
+       $con->save();
+
+       return new ContactResource($con);
+
     }
 }

@@ -173,6 +173,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -190,8 +192,9 @@ __webpack_require__.r(__webpack_exports__);
         gender: 'male',
         date: null,
         photo: null,
-        description: ''
-      }
+        desc: ''
+      },
+      edit: false
     };
   },
   components: {
@@ -216,12 +219,24 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$validator.validateAll().then(function (result) {
         if (result) {
-          Object(_api_contact__WEBPACK_IMPORTED_MODULE_1__["addContact"])(_this2.contact).then(function (res) {
-            console.log(res.data.data), _this2.contacts.unshift(res.data.data);
-            _this2.popupActive = false;
-          })["catch"](function (err) {
-            return console.log(err);
-          });
+          if (_this2.edit === false) {
+            Object(_api_contact__WEBPACK_IMPORTED_MODULE_1__["addContact"])(_this2.contact).then(function (res) {
+              console.log(res.data.data), _this2.contacts.unshift(res.data.data);
+              _this2.popupActive = false;
+            })["catch"](function (err) {
+              return console.log(err);
+            });
+          } else {
+            Object(_api_contact__WEBPACK_IMPORTED_MODULE_1__["editContact"])(_this2.contact).then(function (res) {
+              console.log(res.data.data);
+
+              _this2.fetchContacts();
+
+              _this2.popupActive = false;
+            })["catch"](function (err) {
+              console.log(err);
+            });
+          }
         }
       });
     },
@@ -233,6 +248,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    updateContact: function updateContact(v) {
+      this.edit = true;
+      Object.assign(this.contact, v);
+      v.gender == 1 ? this.contact.gender = 'male' : this.contact.gender = 'female';
+      this.contact.photo = null;
+      console.log(this.contact);
     }
   }
 });
@@ -568,62 +590,70 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "vx-col sm:w-1/2 w-full mb-2 mt-4" },
-                    [
-                      _c("ul", { staticClass: "centerx" }, [
-                        _c(
-                          "li",
-                          [
-                            _c(
-                              "vs-radio",
-                              {
-                                attrs: { "vs-value": "male" },
-                                model: {
-                                  value: _vm.contact.gender,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.contact, "gender", $$v)
-                                  },
-                                  expression: "contact.gender"
-                                }
-                              },
-                              [_vm._v("Male")]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          [
-                            _c(
-                              "vs-radio",
-                              {
-                                attrs: { "vs-value": "female" },
-                                model: {
-                                  value: _vm.contact.gender,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.contact, "gender", $$v)
-                                  },
-                                  expression: "contact.gender"
-                                }
-                              },
-                              [_vm._v("Female")]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ]
-                  )
+                  _c("div", { staticClass: "vx-col sm:w-1/2 w-full mb-2" }, [
+                    _c(
+                      "label",
+                      { staticClass: "mb-4", attrs: { for: "Gender" } },
+                      [_vm._v("Gender")]
+                    ),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "centerx" }, [
+                      _c(
+                        "li",
+                        [
+                          _c(
+                            "vs-radio",
+                            {
+                              attrs: { "vs-value": "male" },
+                              model: {
+                                value: _vm.contact.gender,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.contact, "gender", $$v)
+                                },
+                                expression: "contact.gender"
+                              }
+                            },
+                            [_vm._v("Male")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        [
+                          _c(
+                            "vs-radio",
+                            {
+                              attrs: { "vs-value": "female" },
+                              model: {
+                                value: _vm.contact.gender,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.contact, "gender", $$v)
+                                },
+                                expression: "contact.gender"
+                              }
+                            },
+                            [_vm._v("Female")]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "vx-row" }, [
                   _c(
                     "div",
-                    { staticClass: "vx-col sm:w-1/2 w-full mb-2 mt-4" },
+                    { staticClass: "vx-col sm:w-1/2 w-full mb-2 mt-2" },
                     [
+                      _c(
+                        "label",
+                        { staticClass: "mb-4", attrs: { for: "photo" } },
+                        [_vm._v("Upload Photo ")]
+                      ),
+                      _vm._v(" "),
                       _c("input", {
                         attrs: { type: "file" },
                         on: { change: _vm.getPhoto }
@@ -640,11 +670,11 @@ var render = function() {
                       _c("vs-textarea", {
                         attrs: { label: "Description" },
                         model: {
-                          value: _vm.contact.description,
+                          value: _vm.contact.desc,
                           callback: function($$v) {
-                            _vm.$set(_vm.contact, "description", $$v)
+                            _vm.$set(_vm.contact, "desc", $$v)
                           },
-                          expression: "contact.description"
+                          expression: "contact.desc"
                         }
                       })
                     ],
@@ -742,10 +772,10 @@ var render = function() {
                           _c("vs-td", [_vm._v(_vm._s(val.id))]),
                           _vm._v(" "),
                           _c("vs-td", [
-                            val.avatar
+                            val.photo
                               ? _c("img", {
                                   attrs: {
-                                    src: val.avatar,
+                                    src: val.photo,
                                     width: "80",
                                     height: "80"
                                   }
@@ -761,7 +791,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("vs-td", [_vm._v(_vm._s(val.birthday))]),
                           _vm._v(" "),
-                          _c("vs-td", [_vm._v(_vm._s(val.mob_num))]),
+                          _c("vs-td", [_vm._v(_vm._s(val.mobnum))]),
                           _vm._v(" "),
                           _c(
                             "vs-td",
@@ -772,6 +802,12 @@ var render = function() {
                                   type: "filled",
                                   "icon-pack": "feather",
                                   icon: "icon-edit"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.updateContact(val)
+                                    _vm.popupActive = true
+                                  }
                                 }
                               })
                             ],
@@ -827,13 +863,14 @@ render._withStripped = true
 /*!**********************************!*\
   !*** ./resources/api/contact.js ***!
   \**********************************/
-/*! exports provided: addContact, getContacts */
+/*! exports provided: addContact, getContacts, editContact */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addContact", function() { return addContact; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getContacts", function() { return getContacts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editContact", function() { return editContact; });
 /* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
 
 function addContact(data) {
@@ -847,6 +884,13 @@ function getContacts() {
   return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
     url: '/api/get-contacts',
     method: 'get'
+  });
+}
+function editContact(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/edit-contact',
+    method: 'post',
+    data: data
   });
 }
 

@@ -177,7 +177,9 @@ __webpack_require__.r(__webpack_exports__);
             });
           } else {
             Object(_api_users__WEBPACK_IMPORTED_MODULE_0__["updateUser"])(_this2.user).then(function (res) {
-              console.log(res.data.data);
+              _this2.fetchUsers();
+
+              _this2.popupActive2 = false;
             })["catch"](function (err) {
               console.log(err);
             });
@@ -192,7 +194,7 @@ __webpack_require__.r(__webpack_exports__);
       this.user.id = v.id;
       this.user.name = v.name;
       this.user.email = v.email;
-      this.user.password = v.password;
+      this.user.password = v.password ? v.password : null;
       this.user.selectedRole = v.roles;
       console.log(this.user);
     },

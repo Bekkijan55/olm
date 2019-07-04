@@ -115,7 +115,7 @@
 			<!-- USER META -->
 			<div class="the-navbar__user-meta flex items-center">
 				<div class="text-right leading-tight hidden sm:block">
-					<p class="font-semibold">John Doe</p>
+					<p class="font-semibold">{{username}}</p>
 					<small>Available</small>
 				</div>
 				<vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
@@ -142,6 +142,7 @@
 import VxAutoSuggest from '@/components/vx-auto-suggest/VxAutoSuggest.vue';
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import draggable from 'vuedraggable'
+import {mapGetters} from 'vuex'
 
 export default {
     name: "the-navbar",
@@ -153,6 +154,7 @@ export default {
     },
     data() {
         return {
+            username:'',
             navbarSearchAndPinList: this.$store.state.navbarSearchAndPinList,
             searchQuery: '',
             showFullSearch: false,
@@ -176,6 +178,10 @@ export default {
             if (this.showBookmarkPagesDropdown) this.showBookmarkPagesDropdown = false
         }
     },
+    mounted() {
+          this.username = this.$store.getters.username;
+        },
+    
     computed: {
         // HELPER
         sidebarWidth() {
@@ -184,13 +190,14 @@ export default {
         breakpoint() {
             return this.$store.state.breakpoint;
         },
-
+       
         // NAVBAR STYLE
         classObj() {
             if (this.sidebarWidth == "default") return "navbar-default"
             else if (this.sidebarWidth == "reduced") return "navbar-reduced"
             else if (this.sidebarWidth) return "navbar-full"
         },
+        
 
         // BOOKMARK & SEARCH
         data() {
@@ -280,6 +287,7 @@ export default {
             this.showBookmarkPagesDropdown = false
         },
     },
+    
     directives: {
         'click-outside': {
             bind: function(el, binding) {

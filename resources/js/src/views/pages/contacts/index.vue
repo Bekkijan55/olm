@@ -79,7 +79,8 @@
               />
               <span class="text-danger text-sm">{{errors.first('Email')}}</span>
             </div>
-              <div class="vx-col sm:w-1/2 w-full mb-2 mt-4">
+              <div class="vx-col sm:w-1/2 w-full mb-2">
+              <label for="Gender" class="mb-4">Gender</label>
                 <ul class="centerx">
                      <li>
                         <vs-radio v-model="contact.gender" vs-value="male">Male</vs-radio>
@@ -91,13 +92,14 @@
               </div>                
           </div>
           <div class="vx-row">
-              <div class="vx-col sm:w-1/2 w-full mb-2 mt-4">
+              <div class="vx-col sm:w-1/2 w-full mb-2 mt-2">
+              <label for="photo" class="mb-4">Upload Photo </label>
                 <input type="file" @change='getPhoto' >
               </div>
           </div>
            <div class="vx-row">
               <div class="vx-col sm:w-1/1 w-full mb-2 mt-4">
-                <vs-textarea label="Description" v-model="contact.description" />
+                <vs-textarea label="Description" v-model="contact.desc" />
               </div>
           </div>
            <vs-row vs-type="flex" vs-justify="flex-end">
@@ -143,15 +145,15 @@
                 <vs-tr v-for="(val,index) in data" :key="index">
                     <vs-td>{{val.id}}</vs-td>
                     <vs-td>
-                        <img v-if="val.avatar" :src="val.avatar" width="80" height="80">
+                        <img v-if="val.photo" :src="val.photo" width="80" height="80">
                     </vs-td>
                     <vs-td>{{val.firstname}}</vs-td>
                     <vs-td v-if="val.gender == 1">Male</vs-td>
                     <vs-td v-else>Female</vs-td>
                     <vs-td>{{val.birthday}}</vs-td>
-                    <vs-td>{{val.mob_num}}</vs-td>
+                    <vs-td>{{val.mobnum}}</vs-td>
                     <vs-td>
-                        <vs-button color="warning" type="filled" icon-pack="feather" icon="icon-edit" ></vs-button>
+                        <vs-button color="warning" type="filled" icon-pack="feather" icon="icon-edit" @click="updateContact(val);popupActive=true" ></vs-button>
                     </vs-td>
                 </vs-tr>
             </template>
@@ -162,7 +164,7 @@
 
 <script>
 import Datepicker from 'vuejs-datepicker';
-import { addContact, getContacts } from "../../../../../api/contact";
+import { addContact, getContacts, editContact } from "../../../../../api/contact";
 export default {    
     data() {
         return {
@@ -178,8 +180,9 @@ export default {
                 gender:'male',
                 date:null,
                 photo:null,
-                description:''
-            }
+                desc:''
+            },
+            edit:false
         }
     },
     components: {
@@ -203,6 +206,7 @@ export default {
       storeContact() {
             this.$validator.validateAll().then(result => {
         if (result) {
+            if(this.edit ===false) {
           addContact(this.contact)
            .then(res => {
                console.log(res.data.data),
@@ -210,6 +214,18 @@ export default {
                this.popupActive = false;
            })
              .catch(err => console.log(err))
+        }
+        else {
+            editContact(this.contact)
+             .then(res => {
+                 console.log(res.data.data);
+                 this.fetchContacts();
+                 this.popupActive = false;
+             })
+              .catch(err => {
+                  console.log(err)
+              })
+        }
         }
         }
             )},
@@ -222,6 +238,14 @@ export default {
              .catch(err => {
                  console.log(err);
              })
+     },
+     updateContact(v) {
+         this.edit = true;
+         Object.assign(this.contact,v)
+         v.gender == 1 ? this.contact.gender='male' : this.contact.gender='female';
+         this.contact.photo = null;
+         console.log(this.contact);               
+
      }
   }
 
