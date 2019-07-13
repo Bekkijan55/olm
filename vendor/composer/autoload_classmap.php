@@ -30,6 +30,7 @@ return array(
     'App\\Http\\Resources\\ContactResource' => $baseDir . '/app/Http/Resources/ContactResource.php',
     'App\\Http\\Resources\\RoleResource' => $baseDir . '/app/Http/Resources/RoleResource.php',
     'App\\Http\\Resources\\UserResource' => $baseDir . '/app/Http/Resources/UserResource.php',
+    'App\\Nation' => $baseDir . '/app/Nation.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

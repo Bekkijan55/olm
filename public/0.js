@@ -3776,6 +3776,16 @@ __webpack_require__.r(__webpack_exports__);
   name: 'contacts',
   slug: 'contacts',
   icon: 'VoicemailIcon'
+}, {
+  url: null,
+  name: "Справочники",
+  slug: "Справочники",
+  icon: 'SlidersIcon',
+  submenu: [{
+    url: "/nationalities",
+    name: 'nationality',
+    slug: 'nationality'
+  }]
 }]);
 
 /***/ }),

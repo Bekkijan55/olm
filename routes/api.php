@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth:api','return-json'],function () {
     Route::get('get-contacts','ContactController@getContacts');
     Route::post('update-user','Api\UsersController@updateUser');
     Route::post('edit-contact','ContactController@updateContact');
+    Route::get('get-nations','NationController@getNations');
+    Route::post('store-nation','NationController@storeNation');
 });
 
 

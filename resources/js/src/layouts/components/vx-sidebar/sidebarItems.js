@@ -36,5 +36,18 @@ export default [{
         name: 'contacts',
         slug: 'contacts',
         icon : 'VoicemailIcon'
+    },
+    {
+        url: null,
+        name: "Справочники",
+        slug: "Справочники",
+        icon: 'SlidersIcon',
+        submenu: [
+            {
+                url: "/nationalities",
+                name: 'nationality',
+                slug: 'nationality'
+            }
+        ]
     }
 ]

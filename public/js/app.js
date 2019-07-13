@@ -59682,6 +59682,35 @@ function userInfo() {
 
 /***/ }),
 
+/***/ "./resources/api/nations.js":
+/*!**********************************!*\
+  !*** ./resources/api/nations.js ***!
+  \**********************************/
+/*! exports provided: getNations, storeNations */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNations", function() { return getNations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeNations", function() { return storeNations; });
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
+
+function getNations() {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-nations',
+    method: 'get'
+  });
+}
+function storeNations(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/store-nation',
+    method: 'post',
+    data: data
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/css/main.css":
 /*!***************************************!*\
   !*** ./resources/assets/css/main.css ***!
@@ -60899,6 +60928,21 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return Promise.all(/*! import() */[__webpack_require__.e(9), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
       }
+    }, {
+      path: '/nationalities',
+      name: 'nationality',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Nationality',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/pages/nationality/index.vue */ "./resources/js/src/views/pages/nationality/index.vue"));
+      }
     }]
   }, // =============================================================================
   // FULL PAGE LAYOUTS
@@ -61289,10 +61333,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _auth_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth/index */ "./resources/js/src/store/auth/index.js");
-/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./state */ "./resources/js/src/store/state.js");
-/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getters */ "./resources/js/src/store/getters.js");
-/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mutations */ "./resources/js/src/store/mutations.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions */ "./resources/js/src/store/actions.js");
+/* harmony import */ var _user_creds_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-creds/index */ "./resources/js/src/store/user-creds/index.js");
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./state */ "./resources/js/src/store/state.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getters */ "./resources/js/src/store/getters.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mutations */ "./resources/js/src/store/mutations.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./actions */ "./resources/js/src/store/actions.js");
 /*=========================================================================================
   File Name: store.js
   Description: Vuex store
@@ -61308,18 +61353,63 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    user: _auth_index__WEBPACK_IMPORTED_MODULE_2__["default"]
+    user: _auth_index__WEBPACK_IMPORTED_MODULE_2__["default"],
+    userCreds: _user_creds_index__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  getters: _getters__WEBPACK_IMPORTED_MODULE_4__["default"],
-  mutations: _mutations__WEBPACK_IMPORTED_MODULE_5__["default"],
-  state: _state__WEBPACK_IMPORTED_MODULE_3__["default"],
-  actions: _actions__WEBPACK_IMPORTED_MODULE_6__["default"],
+  getters: _getters__WEBPACK_IMPORTED_MODULE_5__["default"],
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_6__["default"],
+  state: _state__WEBPACK_IMPORTED_MODULE_4__["default"],
+  actions: _actions__WEBPACK_IMPORTED_MODULE_7__["default"],
   strict: "development" !== 'production'
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/src/store/user-creds/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/src/store/user-creds/index.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api_nations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../api/nations */ "./resources/api/nations.js");
+
+var userCreds = {
+  state: {
+    nations: []
+  },
+  getters: {
+    nations: function nations(state) {
+      return state.nations;
+    }
+  },
+  mutations: {
+    setNations: function setNations(state, nations) {
+      state.nations = nations;
+    },
+    addNation: function addNation(state, nation) {
+      state.nations.push(nation);
+    }
+  },
+  actions: {
+    fetchNations: function fetchNations(_ref) {
+      var commit = _ref.commit;
+      Object(_api_nations__WEBPACK_IMPORTED_MODULE_0__["getNations"])().then(function (res) {
+        commit('setNations', res.data.data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (userCreds);
 
 /***/ }),
 

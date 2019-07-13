@@ -66,6 +66,21 @@ const router = new Router({
                     }]
                     },
                     component: () => import('./views/pages/contacts/index.vue')
+                },
+                {
+                    path: '/nationalities',
+                    name: 'nationality',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Nationality',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/nationality/index.vue')
                 }
 
             ],
