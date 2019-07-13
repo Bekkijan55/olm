@@ -1,6 +1,6 @@
 <template>
     <div>
-    <vs-popup class="holamundo" title="Lorem ipsum dolor sit amet" :active.sync="popupActive">
+    <vs-popup class="holamundo" :title="edit ? editing : add" :active.sync="popupActive">
         <div class="vx-col w-full mb-base">
             <form @submit.prevent ="storeContact">
          <div class="vx-row">
@@ -182,7 +182,9 @@ export default {
                 photo:null,
                 desc:''
             },
-            edit:false
+            edit:false,
+            add: 'Add Contact',
+            editing: 'Edit Contact'
         }
     },
     components: {

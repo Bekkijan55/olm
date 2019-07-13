@@ -194,7 +194,9 @@ __webpack_require__.r(__webpack_exports__);
         photo: null,
         desc: ''
       },
-      edit: false
+      edit: false,
+      add: 'Add Contact',
+      editing: 'Edit Contact'
     };
   },
   components: {
@@ -333,7 +335,7 @@ var render = function() {
         {
           staticClass: "holamundo",
           attrs: {
-            title: "Lorem ipsum dolor sit amet",
+            title: _vm.edit ? _vm.editing : _vm.add,
             active: _vm.popupActive
           },
           on: {

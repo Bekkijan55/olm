@@ -12,7 +12,7 @@ import themeConfig from '@/../themeConfig.js'
 import colors from '@/../themeConfig.js'
 
 const state = {
-    isSidebarActive: true,
+    isSidebarActive: false,
     breakpoint: null,
     sidebarWidth: "default",
     reduceButton: themeConfig.sidebarCollapsed,

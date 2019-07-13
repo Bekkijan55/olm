@@ -59668,7 +59668,7 @@ function logout() {
   return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
     url: '/api/logout',
     headers: {
-      'Authorization': 'Bearer ' + Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["default"])()
+      'Authorization': 'Bearer ' + Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["getToken"])()
     },
     method: 'post'
   });
@@ -61247,7 +61247,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var state = {
-  isSidebarActive: true,
+  isSidebarActive: false,
   breakpoint: null,
   sidebarWidth: "default",
   reduceButton: _themeConfig_js__WEBPACK_IMPORTED_MODULE_1__["default"].sidebarCollapsed,
@@ -61363,11 +61363,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuesax__WEBPACK_IMPORTED_MODULE_1
 var themeConfig = {
   theme: 'light',
   // options[String]: 'light'(default), 'dark', 'semi-dark'
-  sidebarCollapsed: false,
+  sidebarCollapsed: true,
   // options[Boolean]: true, false(default)
   navbarColor: "#fff",
   // options[String]: HEX color / rgb / rgba / Valid HTML Color name - (default: #fff)
-  navbarType: "floating",
+  navbarType: "sticky",
   // options[String]: floating(default) / static / sticky / hidden
   footerType: "static",
   // options[String]: static(default) / sticky / hidden
@@ -61507,9 +61507,9 @@ service.interceptors.response.use(function (response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OSPanel\domains\vuesax\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\OSPanel\domains\vuesax\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\vuesax\resources\assets\css\main.css */"./resources/assets/css/main.css");
+__webpack_require__(/*! C:\OSPanel\domains\olm\newvuesax\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\OSPanel\domains\olm\newvuesax\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\olm\newvuesax\resources\assets\css\main.css */"./resources/assets/css/main.css");
 
 
 /***/ })
