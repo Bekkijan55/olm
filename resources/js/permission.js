@@ -12,7 +12,7 @@ function hasPermission(roles, permissionRoles) {
         for (var item of roles) {
           permissionRoles = permissionRoles.filter((obj, pos, arr) => {
             return arr.map(function (val) {
-              if (item.name=== val) {
+              if (item.role_name === val) {
                 Boolean = true
               }
             })

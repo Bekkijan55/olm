@@ -24,12 +24,14 @@ export default [{
         name: "Home",
         slug: "home",
         icon: "HomeIcon",
+        
     },
     {
         url: "/users",
         name: 'users',
         slug: 'users',
-        icon: 'UserIcon'
+        icon: 'UserIcon',
+        roles: ["Manager"]
     },
     {
         url : '/contacts',

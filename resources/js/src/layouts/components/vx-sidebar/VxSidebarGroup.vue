@@ -96,6 +96,12 @@ export default {
                 return open
             }
         },
+        permissionRoles: {
+            get() {
+                return this.$store.getters.roles;
+            },
+            set(){}
+        }
     },
     watch: {
         // OPEN & CLOSES DROPDOWN ON ROUTE CHANGE
@@ -167,6 +173,25 @@ export default {
                 })
 
 
+            }
+        },
+        hasPermission(data) {
+            let roles = data.roles;
+            if(!roles) {
+                return true;
+            }
+            else{
+                let Boolean = false;
+                for(let item of this.permissionRoles) {
+                    roles = roles.filter((obj,pos,arr) => {
+                        return arr.map(function(val) {
+                            if(item.role_name === val) {
+                                Boolean = true;
+                            }
+                        });
+                    });
+                }
+                return Boolean;
             }
         },
         mouseover() {

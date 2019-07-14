@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth:api','return-json'],function () {
     Route::post('edit-contact','ContactController@updateContact');
     Route::get('get-nations','NationController@getNations');
     Route::post('store-nation','NationController@storeNation');
+    Route::put('update-nation','NationController@updateNation');
 });
 
 

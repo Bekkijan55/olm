@@ -19,4 +19,12 @@ class NationController extends Controller
         
         return new NationsResource($n);
     }
+
+    public function updateNation(Request $request) {
+        $nation = Nation::findOrFail($request->input('id'));
+        $nation->update($request->all());
+        return new NationsResource($nation);
+
+        
+    }
 }

@@ -732,6 +732,12 @@ __webpack_require__.r(__webpack_exports__);
         this.$store.commit('TOGGLE_IS_SIDEBAR_ACTIVE', val);
       }
     },
+    permissionRoles: {
+      get: function get() {
+        return this.$store.getters.roles;
+      },
+      set: function set() {}
+    },
     reduceSidebar: function reduceSidebar() {
       return Boolean(this.reduce && this.reduceButton);
     },
@@ -827,6 +833,50 @@ __webpack_require__.r(__webpack_exports__);
         this.clickNotClose = true;
         this.showCloseButton = false;
         if (this.reduceSidebar) this.$store.dispatch('updateSidebarWidth', 'reduced');else this.$store.dispatch('updateSidebarWidth', 'default');
+      }
+    },
+    hasPermission: function hasPermission(data) {
+      var roles = data.roles;
+
+      if (!roles) {
+        return true;
+      } else {
+        var _Boolean = false;
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          var _loop = function _loop() {
+            var item = _step.value;
+            roles = roles.filter(function (obj, pos, arr) {
+              return arr.map(function (val) {
+                if (item.role_name === val) {
+                  _Boolean = true;
+                }
+              });
+            });
+          };
+
+          for (var _iterator = this.permissionRoles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            _loop();
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+              _iterator["return"]();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+
+        return _Boolean;
       }
     },
     psSectionScroll: function psSectionScroll() {
@@ -968,6 +1018,12 @@ __webpack_require__.r(__webpack_exports__);
         func(sidebarItem);
         return open;
       };
+    },
+    permissionRoles: {
+      get: function get() {
+        return this.$store.getters.roles;
+      },
+      set: function set() {}
     }
   },
   watch: {
@@ -1047,6 +1103,50 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         });
+      }
+    },
+    hasPermission: function hasPermission(data) {
+      var roles = data.roles;
+
+      if (!roles) {
+        return true;
+      } else {
+        var _Boolean = false;
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          var _loop = function _loop() {
+            var item = _step.value;
+            roles = roles.filter(function (obj, pos, arr) {
+              return arr.map(function (val) {
+                if (item.role_name === val) {
+                  _Boolean = true;
+                }
+              });
+            });
+          };
+
+          for (var _iterator = this.permissionRoles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            _loop();
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+              _iterator["return"]();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+
+        return _Boolean;
       }
     },
     mouseover: function mouseover() {
@@ -2610,89 +2710,91 @@ var render = function() {
                 },
                 [
                   _vm._l(_vm.sidebarItems, function(sidebarItem, index) {
-                    return [
-                      sidebarItem.header && !_vm.sidebarItemsMin
-                        ? _c(
-                            "span",
-                            {
-                              key: "header-" + index,
-                              staticClass: "navigation-header truncate"
-                            },
-                            [_vm._v(_vm._s(sidebarItem.header))]
-                          )
-                        : !sidebarItem.header
-                        ? [
-                            !sidebarItem.submenu
-                              ? _c(
-                                  "vx-sidebar-item",
-                                  {
-                                    key: "sidebarItem-" + index,
-                                    ref: "sidebarLink",
-                                    refInFor: true,
-                                    attrs: {
-                                      index: index,
-                                      to:
-                                        sidebarItem.slug != "external"
-                                          ? sidebarItem.url
-                                          : "",
-                                      href:
-                                        sidebarItem.slug == "external"
-                                          ? sidebarItem.url
-                                          : "",
-                                      icon: sidebarItem.icon,
-                                      target: sidebarItem.target,
-                                      isDisabled: sidebarItem.isDisabled
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "span",
+                    return _vm.hasPermission(sidebarItem)
+                      ? [
+                          sidebarItem.header && !_vm.sidebarItemsMin
+                            ? _c(
+                                "span",
+                                {
+                                  key: "header-" + index,
+                                  staticClass: "navigation-header truncate"
+                                },
+                                [_vm._v(_vm._s(sidebarItem.header))]
+                              )
+                            : !sidebarItem.header
+                            ? [
+                                !sidebarItem.submenu
+                                  ? _c(
+                                      "vx-sidebar-item",
                                       {
-                                        directives: [
-                                          {
-                                            name: "show",
-                                            rawName: "v-show",
-                                            value: !_vm.sidebarItemsMin,
-                                            expression: "!sidebarItemsMin"
-                                          }
-                                        ],
-                                        staticClass: "truncate"
+                                        key: "sidebarItem-" + index,
+                                        ref: "sidebarLink",
+                                        refInFor: true,
+                                        attrs: {
+                                          index: index,
+                                          to:
+                                            sidebarItem.slug != "external"
+                                              ? sidebarItem.url
+                                              : "",
+                                          href:
+                                            sidebarItem.slug == "external"
+                                              ? sidebarItem.url
+                                              : "",
+                                          icon: sidebarItem.icon,
+                                          target: sidebarItem.target,
+                                          isDisabled: sidebarItem.isDisabled
+                                        }
                                       },
-                                      [_vm._v(_vm._s(sidebarItem.name))]
-                                    ),
-                                    _vm._v(" "),
-                                    sidebarItem.tag &&
-                                    (_vm.isMouseEnter || !_vm.reduce)
-                                      ? _c(
-                                          "vs-chip",
+                                      [
+                                        _c(
+                                          "span",
                                           {
-                                            staticClass: "ml-auto",
-                                            attrs: {
-                                              color: sidebarItem.tagColor
-                                            }
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: !_vm.sidebarItemsMin,
+                                                expression: "!sidebarItemsMin"
+                                              }
+                                            ],
+                                            staticClass: "truncate"
                                           },
-                                          [_vm._v(_vm._s(sidebarItem.tag))]
-                                        )
-                                      : _vm._e()
-                                  ],
-                                  1
-                                )
-                              : [
-                                  _c("vx-sidebar-group", {
-                                    key: "group-" + index,
-                                    ref: "sidebarGrp",
-                                    refInFor: true,
-                                    attrs: {
-                                      openHover: _vm.openGroupHover,
-                                      group: sidebarItem,
-                                      groupIndex: index,
-                                      open: _vm.isGroupActive(sidebarItem)
-                                    }
-                                  })
-                                ]
-                          ]
-                        : _vm._e()
-                    ]
+                                          [_vm._v(_vm._s(sidebarItem.name))]
+                                        ),
+                                        _vm._v(" "),
+                                        sidebarItem.tag &&
+                                        (_vm.isMouseEnter || !_vm.reduce)
+                                          ? _c(
+                                              "vs-chip",
+                                              {
+                                                staticClass: "ml-auto",
+                                                attrs: {
+                                                  color: sidebarItem.tagColor
+                                                }
+                                              },
+                                              [_vm._v(_vm._s(sidebarItem.tag))]
+                                            )
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    )
+                                  : [
+                                      _c("vx-sidebar-group", {
+                                        key: "group-" + index,
+                                        ref: "sidebarGrp",
+                                        refInFor: true,
+                                        attrs: {
+                                          openHover: _vm.openGroupHover,
+                                          group: sidebarItem,
+                                          groupIndex: index,
+                                          open: _vm.isGroupActive(sidebarItem)
+                                        }
+                                      })
+                                    ]
+                              ]
+                            : _vm._e()
+                        ]
+                      : _vm._e()
                   })
                 ],
                 2
@@ -3770,7 +3872,8 @@ __webpack_require__.r(__webpack_exports__);
   url: "/users",
   name: 'users',
   slug: 'users',
-  icon: 'UserIcon'
+  icon: 'UserIcon',
+  roles: ["Manager"]
 }, {
   url: '/contacts',
   name: 'contacts',
