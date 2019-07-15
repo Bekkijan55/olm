@@ -428,6 +428,7 @@ class ComposerStaticInit9eb19605f4acdedf22cea6e47daecd19
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Contact' => __DIR__ . '/../..' . '/app/Contact.php',
+        'App\\Education' => __DIR__ . '/../..' . '/app/Education.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Api\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UsersController.php',
         'App\\Http\\Controllers\\ApplicationController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApplicationController.php',
@@ -439,6 +440,7 @@ class ComposerStaticInit9eb19605f4acdedf22cea6e47daecd19
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\NationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NationController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -448,6 +450,7 @@ class ComposerStaticInit9eb19605f4acdedf22cea6e47daecd19
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Resources\\ContactResource' => __DIR__ . '/../..' . '/app/Http/Resources/ContactResource.php',
+        'App\\Http\\Resources\\NationsResource' => __DIR__ . '/../..' . '/app/Http/Resources/NationsResource.php',
         'App\\Http\\Resources\\RoleResource' => __DIR__ . '/../..' . '/app/Http/Resources/RoleResource.php',
         'App\\Http\\Resources\\UserResource' => __DIR__ . '/../..' . '/app/Http/Resources/UserResource.php',
         'App\\Nation' => __DIR__ . '/../..' . '/app/Nation.php',

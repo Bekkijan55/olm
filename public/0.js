@@ -3873,7 +3873,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'users',
   slug: 'users',
   icon: 'UserIcon',
-  roles: ["Manager"]
+  roles: ["Admin"]
 }, {
   url: '/contacts',
   name: 'contacts',
@@ -3888,6 +3888,22 @@ __webpack_require__.r(__webpack_exports__);
     url: "/nationalities",
     name: 'nationality',
     slug: 'nationality'
+  }, {
+    url: "/education",
+    name: 'Education',
+    slug: 'education'
+  }, {
+    url: '/parties',
+    name: 'Parties',
+    slug: 'parties'
+  }, {
+    url: '/institution',
+    name: 'Institutions',
+    slug: 'institutions'
+  }, {
+    url: '/okrug',
+    name: 'Okrug',
+    slug: 'Okrug'
   }]
 }]);
 

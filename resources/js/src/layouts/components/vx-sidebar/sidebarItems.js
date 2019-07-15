@@ -31,7 +31,7 @@ export default [{
         name: 'users',
         slug: 'users',
         icon: 'UserIcon',
-        roles: ["Manager"]
+        roles: ["Admin"]
     },
     {
         url : '/contacts',
@@ -49,6 +49,26 @@ export default [{
                 url: "/nationalities",
                 name: 'nationality',
                 slug: 'nationality'
+            },
+            {
+                url: "/education",
+                name : 'Education',
+                slug: 'education'
+            },
+            {
+                url: '/parties',
+                name: 'Parties',
+                slug: 'parties'
+            },
+            {
+                url: '/institution',
+                name: 'Institutions',
+                slug: 'institutions'
+            },
+            {
+                url: '/okrug',
+                name: 'Okrug',
+                slug: 'Okrug'
             }
         ]
     }

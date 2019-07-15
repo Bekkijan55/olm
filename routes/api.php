@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth:api','return-json'],function () {
     Route::get('get-nations','NationController@getNations');
     Route::post('store-nation','NationController@storeNation');
     Route::put('update-nation','NationController@updateNation');
+    Route::get('get-edu','EducationController@getEdu');
+    Route::post('add-edu','EducationController@storeEdu');
 });
 
 

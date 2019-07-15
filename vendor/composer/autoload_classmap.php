@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Contact' => $baseDir . '/app/Contact.php',
+    'App\\Education' => $baseDir . '/app/Education.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Api\\UsersController' => $baseDir . '/app/Http/Controllers/Api/UsersController.php',
     'App\\Http\\Controllers\\ApplicationController' => $baseDir . '/app/Http/Controllers/ApplicationController.php',
@@ -19,6 +20,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\ContactController' => $baseDir . '/app/Http/Controllers/ContactController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\NationController' => $baseDir . '/app/Http/Controllers/NationController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -28,6 +30,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Resources\\ContactResource' => $baseDir . '/app/Http/Resources/ContactResource.php',
+    'App\\Http\\Resources\\NationsResource' => $baseDir . '/app/Http/Resources/NationsResource.php',
     'App\\Http\\Resources\\RoleResource' => $baseDir . '/app/Http/Resources/RoleResource.php',
     'App\\Http\\Resources\\UserResource' => $baseDir . '/app/Http/Resources/UserResource.php',
     'App\\Nation' => $baseDir . '/app/Nation.php',

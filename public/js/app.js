@@ -59682,6 +59682,35 @@ function userInfo() {
 
 /***/ }),
 
+/***/ "./resources/api/education.js":
+/*!************************************!*\
+  !*** ./resources/api/education.js ***!
+  \************************************/
+/*! exports provided: getEdu, storeEdu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEdu", function() { return getEdu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeEdu", function() { return storeEdu; });
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
+
+function getEdu() {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-edu',
+    method: 'get'
+  });
+}
+function storeEdu(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/add-edu',
+    method: 'post',
+    data: data
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/api/nations.js":
 /*!**********************************!*\
   !*** ./resources/api/nations.js ***!
@@ -60908,7 +60937,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/',
       name: 'home',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
       }
     }, // {
     //     path: '/page2',
@@ -60919,7 +60948,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/users',
       name: 'users',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/pages/users/index.vue */ "./resources/js/src/views/pages/users/index.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/pages/users/index.vue */ "./resources/js/src/views/pages/users/index.vue"));
       }
     }, {
       path: '/contacts',
@@ -60934,7 +60963,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(10), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(14), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
       }
     }, {
       path: '/nationalities',
@@ -60949,7 +60978,67 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/pages/nationality/index.vue */ "./resources/js/src/views/pages/nationality/index.vue"));
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/pages/nationality/index.vue */ "./resources/js/src/views/pages/nationality/index.vue"));
+      }
+    }, {
+      path: '/education',
+      name: 'education',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Education',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/pages/education/index.vue */ "./resources/js/src/views/pages/education/index.vue"));
+      }
+    }, {
+      path: '/parties',
+      name: 'Party',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Parties',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/pages/parties/index.vue */ "./resources/js/src/views/pages/parties/index.vue"));
+      }
+    }, {
+      path: '/institution',
+      name: 'institution',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Institution',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/pages/insts/index.vue */ "./resources/js/src/views/pages/insts/index.vue"));
+      }
+    }, {
+      path: '/okrug',
+      name: 'Okrug',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Okrug',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/pages/okruk/index.vue */ "./resources/js/src/views/pages/okruk/index.vue"));
       }
     }]
   }, // =============================================================================
@@ -60958,7 +61047,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   {
     path: '',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
     },
     children: [// =============================================================================
     // PAGES
@@ -60967,19 +61056,19 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/pages/login',
       name: 'pageLogin',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! @/views/pages/Login.vue */ "./resources/js/src/views/pages/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @/views/pages/Login.vue */ "./resources/js/src/views/pages/Login.vue"));
       }
     }, {
       path: '/pages/error-404',
       name: 'pageError404',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
       }
     }, {
       path: '/login',
       name: 'login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
       }
     }]
   }, // Redirect to 404 page, if no match found
@@ -61388,14 +61477,52 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_nations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../api/nations */ "./resources/api/nations.js");
+/* harmony import */ var _api_education__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../api/education */ "./resources/api/education.js");
+
 
 var userCreds = {
   state: {
-    nations: []
+    nations: [],
+    edu: [],
+    parties: [{
+      id: 1,
+      party_uz: 'O`zbekiston “Milliy tiklаnish” Demokrаtik pаrtiyasi',
+      party_ru: 'Демократической партии Узбекистана «Миллий тикланиш»',
+      party_en: 'The Democratic party of Uzbekistan “Milliy tiklanish'
+    }, {
+      id: 2,
+      party_uz: '“Tаdbirkorlаr vа ishbilаrmonlаr hаrаkаti – O`zbekiston Liberаl-demokrаtik pаrtiyasi” (O’zLiDeP)',
+      party_ru: 'движении предпринимателей и деловых людей – Либерально-демократической партии Узбекистана” (УзЛиДеП)',
+      party_en: 'The Movement of Entrepreneurs and Business people – the Liberal-democratic party of Uzbekistan (UzLiDeP)'
+    }],
+    inst: [{
+      id: 1,
+      inst_uz: 'Volgograddagi gaz va neft sanoati texnika maktabi',
+      inst_ru: 'Волгоградский техникум газовой и нефтяной промышленности',
+      inst_en: 'Volgograd technical school of gas and oil industry'
+    }],
+    okrug: [{
+      id: 1,
+      okrug_uz: 'Senat a\'zosi',
+      okrug_uz2: 'Сенат аъзоси',
+      okrug_ru: 'Член Сената'
+    }]
   },
   getters: {
     nations: function nations(state) {
       return state.nations;
+    },
+    edu: function edu(state) {
+      return state.edu;
+    },
+    parties: function parties(state) {
+      return state.parties;
+    },
+    inst: function inst(state) {
+      return state.inst;
+    },
+    okrug: function okrug(state) {
+      return state.okrug;
     }
   },
   mutations: {
@@ -61404,6 +61531,18 @@ var userCreds = {
     },
     addNation: function addNation(state, nation) {
       state.nations.push(nation);
+    },
+    setEdu: function setEdu(state, edu) {
+      state.edu = edu;
+    },
+    setParty: function setParty(state, party) {
+      state.parties.push(party);
+    },
+    setInst: function setInst(state, inst) {
+      state.inst.push(inst);
+    },
+    setOkrug: function setOkrug(state, okrug) {
+      state.okrug.push(okrug);
     }
   },
   actions: {
@@ -61414,6 +61553,33 @@ var userCreds = {
       })["catch"](function (err) {
         return console.log(err);
       });
+    },
+    fetchEdu: function fetchEdu(_ref2) {
+      var commit = _ref2.commit;
+      Object(_api_education__WEBPACK_IMPORTED_MODULE_1__["getEdu"])().then(function (res) {
+        commit('setEdu', res.data.data);
+      });
+    },
+    addEdu: function addEdu(_ref3, data) {
+      var commit = _ref3.commit,
+          dispatch = _ref3.dispatch;
+      Object(_api_education__WEBPACK_IMPORTED_MODULE_1__["storeEdu"])(data).then(function (res) {
+        dispatch('fetchEdu');
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    addParty: function addParty(_ref4, party) {
+      var commit = _ref4.commit;
+      commit('setParty', party);
+    },
+    addInst: function addInst(_ref5, inst) {
+      var commit = _ref5.commit;
+      commit('setInst', inst);
+    },
+    addOkrug: function addOkrug(_ref6, okrug) {
+      var commit = _ref6.commit;
+      commit('setOkrug', okrug);
     }
   }
 };
