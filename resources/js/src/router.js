@@ -53,6 +53,11 @@ const router = new Router({
                     component: () => import('./views/pages/users/index.vue')
                 },
                 {
+                    path: '/users/edit/:id',
+                    name: 'editUser',
+                    component: () => import('./views/pages/users/edit-user.vue')
+                },
+                {
                     path: '/contacts',
                     name: 'contacts',
                     meta: {

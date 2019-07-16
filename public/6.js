@@ -1,16 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/parties/index.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/pages/parties/index.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/okruk/index.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/pages/okruk/index.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _part_form_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./part-form.vue */ "./resources/js/src/views/pages/parties/part-form.vue");
+/* harmony import */ var _okruk_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./okruk-form */ "./resources/js/src/views/pages/okruk/okruk-form.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -43,34 +43,112 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      okrugs: {
+        id: '',
+        okrug_uz: '',
+        okrug_uz2: '',
+        okrug_ru: ''
+      },
+      popup: false
+    };
   },
   components: {
-    PartForm: _part_form_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    OkrukForm: _okruk_form__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    this.fetchParties();
+    this.fetchOkrug();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["parties"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["fetchParties"]))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['okrug'])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['fetchOkrug']), {
+    editOkrug: function editOkrug(val) {
+      Object.assign(this.okrugs, val);
+    },
+    changeOkrug: function changeOkrug() {
+      var _this = this;
+
+      this.$store.dispatch('updateOkrug', this.okrugs).then(function () {
+        _this.popup = false;
+      });
+    }
+  })
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/parties/part-form.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/pages/parties/part-form.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -141,24 +219,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      party: {
-        party_uz: "",
-        party_uz2: "",
-        party_ru: ""
+      okrug: {
+        okrug_uz: '',
+        okrug_uz2: '',
+        okrug_ru: ''
       },
       popup: false
     };
   },
   methods: {
-    storeParty: function storeParty() {
+    storeOkrug: function storeOkrug() {
       var _this = this;
 
-      this.$store.dispatch("addParty", this.party).then(function () {
-        _this.popup = false;
+      this.$validator.validateAll().then(function (result) {
+        if (result) {
+          _this.$store.dispatch('addOkrug', _this.okrug).then(function () {
+            _this.popup = false;
+          });
+        }
       });
     }
   }
@@ -166,10 +254,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/parties/index.vue?vue&type=template&id=27c3cee2&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/pages/parties/index.vue?vue&type=template&id=27c3cee2& ***!
-  \*********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/okruk/index.vue?vue&type=template&id=09ab16ca&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/pages/okruk/index.vue?vue&type=template&id=09ab16ca& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -184,7 +272,173 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("part-form"),
+      _c(
+        "vs-popup",
+        {
+          staticClass: "holamundo",
+          attrs: { title: "Update Okrug", active: _vm.popup },
+          on: {
+            "update:active": function($event) {
+              _vm.popup = $event
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "vx-col w-full mb-base" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.changeOkrug($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "vx-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "vx-col sm:w-1/1 w-full mb-2" },
+                    [
+                      _c("vs-input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required",
+                            expression: "'required'"
+                          }
+                        ],
+                        staticClass: "w-full",
+                        attrs: {
+                          label: "Okrug",
+                          placeholder: "Okrug",
+                          name: "Okrug"
+                        },
+                        model: {
+                          value: _vm.okrugs.okrug_uz,
+                          callback: function($$v) {
+                            _vm.$set(_vm.okrugs, "okrug_uz", $$v)
+                          },
+                          expression: "okrugs.okrug_uz"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "text-danger text-sm" }, [
+                        _vm._v(_vm._s(_vm.errors.first("Okrug")))
+                      ])
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "vx-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "vx-col sm:w-1/1 w-full mb-2" },
+                    [
+                      _c("vs-input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required",
+                            expression: "'required'"
+                          }
+                        ],
+                        staticClass: "w-full",
+                        attrs: {
+                          label: "Округ",
+                          placeholder: "Округ",
+                          name: "Округ"
+                        },
+                        model: {
+                          value: _vm.okrugs.okrug_uz2,
+                          callback: function($$v) {
+                            _vm.$set(_vm.okrugs, "okrug_uz2", $$v)
+                          },
+                          expression: "okrugs.okrug_uz2"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "text-danger text-sm" }, [
+                        _vm._v(_vm._s(_vm.errors.first("Округ")))
+                      ])
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "vx-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "vx-col sm:w-1/1 w-full mb-2" },
+                    [
+                      _c("vs-input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required",
+                            expression: "'required'"
+                          }
+                        ],
+                        staticClass: "w-full",
+                        attrs: {
+                          label: "Округ",
+                          placeholder: "Округ",
+                          name: "Округ"
+                        },
+                        model: {
+                          value: _vm.okrugs.okrug_ru,
+                          callback: function($$v) {
+                            _vm.$set(_vm.okrugs, "okrug_ru", $$v)
+                          },
+                          expression: "okrugs.okrug_ru"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "text-danger text-sm" }, [
+                        _vm._v(_vm._s(_vm.errors.first("Округ")))
+                      ])
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "vs-row",
+                  { attrs: { "vs-type": "flex", "vs-justify": "flex-end" } },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "bx-row" },
+                      [
+                        _c(
+                          "vs-button",
+                          {
+                            attrs: {
+                              color: "success",
+                              type: "filled",
+                              size: "medium"
+                            }
+                          },
+                          [_vm._v("Save")]
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("okruk-form"),
       _vm._v(" "),
       _c(
         "vx-card",
@@ -192,7 +446,7 @@ var render = function() {
           _c(
             "vs-table",
             {
-              attrs: { data: _vm.parties },
+              attrs: { data: _vm.okrug },
               scopedSlots: _vm._u([
                 {
                   key: "default",
@@ -205,11 +459,11 @@ var render = function() {
                         [
                           _c("vs-td", [_vm._v(_vm._s(val.id))]),
                           _vm._v(" "),
-                          _c("vs-td", [_vm._v(_vm._s(val.party_uz))]),
+                          _c("vs-td", [_vm._v(_vm._s(val.okrug_uz))]),
                           _vm._v(" "),
-                          _c("vs-td", [_vm._v(_vm._s(val.party_uz2))]),
+                          _c("vs-td", [_vm._v(_vm._s(val.okrug_uz2))]),
                           _vm._v(" "),
-                          _c("vs-td", [_vm._v(_vm._s(val.party_ru))]),
+                          _c("vs-td", [_vm._v(_vm._s(val.okrug_ru))]),
                           _vm._v(" "),
                           _c(
                             "vs-td",
@@ -220,6 +474,12 @@ var render = function() {
                                   type: "filled",
                                   "icon-pack": "feather",
                                   icon: "icon-edit"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.editOkrug(val)
+                                    _vm.popup = true
+                                  }
                                 }
                               })
                             ],
@@ -240,11 +500,11 @@ var render = function() {
                 [
                   _c("vs-th", [_vm._v("ID")]),
                   _vm._v(" "),
-                  _c("vs-th", [_vm._v("Partiya")]),
+                  _c("vs-th", [_vm._v("Okrug")]),
                   _vm._v(" "),
-                  _c("vs-th", [_vm._v("Партия")]),
+                  _c("vs-th", [_vm._v("Округ")]),
                   _vm._v(" "),
-                  _c("vs-th", [_vm._v("Партия")]),
+                  _c("vs-th", [_vm._v("Округ")]),
                   _vm._v(" "),
                   _c("vs-th", [_vm._v("Action")])
                 ],
@@ -267,10 +527,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/parties/part-form.vue?vue&type=template&id=5a4f4e6e&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/pages/parties/part-form.vue?vue&type=template&id=5a4f4e6e& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=template&id=6a006b06&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=template&id=6a006b06& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -328,7 +588,7 @@ var render = function() {
         "vs-popup",
         {
           staticClass: "holamundo",
-          attrs: { title: "Add Party", active: _vm.popup },
+          attrs: { title: "Add Okrug", active: _vm.popup },
           on: {
             "update:active": function($event) {
               _vm.popup = $event
@@ -343,7 +603,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.storeParty($event)
+                    return _vm.storeOkrug($event)
                   }
                 }
               },
@@ -364,21 +624,21 @@ var render = function() {
                         ],
                         staticClass: "w-full",
                         attrs: {
-                          label: "Ta'lim",
-                          placeholder: "Ta'lim",
-                          name: "Ta'lim"
+                          label: "Okrug",
+                          placeholder: "Okrug",
+                          name: "Okrug"
                         },
                         model: {
-                          value: _vm.party.party_uz,
+                          value: _vm.okrug.okrug_uz,
                           callback: function($$v) {
-                            _vm.$set(_vm.party, "party_uz", $$v)
+                            _vm.$set(_vm.okrug, "okrug_uz", $$v)
                           },
-                          expression: "party.party_uz"
+                          expression: "okrug.okrug_uz"
                         }
                       }),
                       _vm._v(" "),
                       _c("span", { staticClass: "text-danger text-sm" }, [
-                        _vm._v(_vm._s(_vm.errors.first("Ta'lim")))
+                        _vm._v(_vm._s(_vm.errors.first("Okrug")))
                       ])
                     ],
                     1
@@ -401,21 +661,21 @@ var render = function() {
                         ],
                         staticClass: "w-full",
                         attrs: {
-                          label: "Талим",
-                          placeholder: "Талим",
-                          name: "Талим"
+                          label: "Округ",
+                          placeholder: "Округ",
+                          name: "Округ"
                         },
                         model: {
-                          value: _vm.party.party_uz2,
+                          value: _vm.okrug.okrug_uz2,
                           callback: function($$v) {
-                            _vm.$set(_vm.party, "party_uz2", $$v)
+                            _vm.$set(_vm.okrug, "okrug_uz2", $$v)
                           },
-                          expression: "party.party_uz2"
+                          expression: "okrug.okrug_uz2"
                         }
                       }),
                       _vm._v(" "),
                       _c("span", { staticClass: "text-danger text-sm" }, [
-                        _vm._v(_vm._s(_vm.errors.first("Талим")))
+                        _vm._v(_vm._s(_vm.errors.first("Округ")))
                       ])
                     ],
                     1
@@ -438,21 +698,21 @@ var render = function() {
                         ],
                         staticClass: "w-full",
                         attrs: {
-                          label: "Образование",
-                          placeholder: "Образование",
-                          name: "Образование"
+                          label: "Округ",
+                          placeholder: "Округ",
+                          name: "Округ"
                         },
                         model: {
-                          value: _vm.party.party_ru,
+                          value: _vm.okrug.okrug_ru,
                           callback: function($$v) {
-                            _vm.$set(_vm.party, "party_ru", $$v)
+                            _vm.$set(_vm.okrug, "okrug_ru", $$v)
                           },
-                          expression: "party.party_ru"
+                          expression: "okrug.okrug_ru"
                         }
                       }),
                       _vm._v(" "),
                       _c("span", { staticClass: "text-danger text-sm" }, [
-                        _vm._v(_vm._s(_vm.errors.first("Образование")))
+                        _vm._v(_vm._s(_vm.errors.first("Округ")))
                       ])
                     ],
                     1
@@ -500,17 +760,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/src/views/pages/parties/index.vue":
-/*!********************************************************!*\
-  !*** ./resources/js/src/views/pages/parties/index.vue ***!
-  \********************************************************/
+/***/ "./resources/js/src/views/pages/okruk/index.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/src/views/pages/okruk/index.vue ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_vue_vue_type_template_id_27c3cee2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=27c3cee2& */ "./resources/js/src/views/pages/parties/index.vue?vue&type=template&id=27c3cee2&");
-/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/src/views/pages/parties/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _index_vue_vue_type_template_id_09ab16ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=09ab16ca& */ "./resources/js/src/views/pages/okruk/index.vue?vue&type=template&id=09ab16ca&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/src/views/pages/okruk/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -521,8 +781,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _index_vue_vue_type_template_id_27c3cee2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _index_vue_vue_type_template_id_27c3cee2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _index_vue_vue_type_template_id_09ab16ca___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_09ab16ca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -532,54 +792,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/src/views/pages/parties/index.vue"
+component.options.__file = "resources/js/src/views/pages/okruk/index.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/src/views/pages/parties/index.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/src/views/pages/parties/index.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
+/***/ "./resources/js/src/views/pages/okruk/index.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/src/views/pages/okruk/index.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/parties/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/okruk/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/src/views/pages/parties/index.vue?vue&type=template&id=27c3cee2&":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/src/views/pages/parties/index.vue?vue&type=template&id=27c3cee2& ***!
-  \***************************************************************************************/
+/***/ "./resources/js/src/views/pages/okruk/index.vue?vue&type=template&id=09ab16ca&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/src/views/pages/okruk/index.vue?vue&type=template&id=09ab16ca& ***!
+  \*************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_27c3cee2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=27c3cee2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/parties/index.vue?vue&type=template&id=27c3cee2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_27c3cee2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_09ab16ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=09ab16ca& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/okruk/index.vue?vue&type=template&id=09ab16ca&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_09ab16ca___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_27c3cee2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_09ab16ca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/src/views/pages/parties/part-form.vue":
-/*!************************************************************!*\
-  !*** ./resources/js/src/views/pages/parties/part-form.vue ***!
-  \************************************************************/
+/***/ "./resources/js/src/views/pages/okruk/okruk-form.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/src/views/pages/okruk/okruk-form.vue ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _part_form_vue_vue_type_template_id_5a4f4e6e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./part-form.vue?vue&type=template&id=5a4f4e6e& */ "./resources/js/src/views/pages/parties/part-form.vue?vue&type=template&id=5a4f4e6e&");
-/* harmony import */ var _part_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./part-form.vue?vue&type=script&lang=js& */ "./resources/js/src/views/pages/parties/part-form.vue?vue&type=script&lang=js&");
+/* harmony import */ var _okruk_form_vue_vue_type_template_id_6a006b06___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./okruk-form.vue?vue&type=template&id=6a006b06& */ "./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=template&id=6a006b06&");
+/* harmony import */ var _okruk_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./okruk-form.vue?vue&type=script&lang=js& */ "./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -589,9 +849,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _part_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _part_form_vue_vue_type_template_id_5a4f4e6e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _part_form_vue_vue_type_template_id_5a4f4e6e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _okruk_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _okruk_form_vue_vue_type_template_id_6a006b06___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _okruk_form_vue_vue_type_template_id_6a006b06___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -601,38 +861,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/src/views/pages/parties/part-form.vue"
+component.options.__file = "resources/js/src/views/pages/okruk/okruk-form.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/src/views/pages/parties/part-form.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/src/views/pages/parties/part-form.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_part_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./part-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/parties/part-form.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_part_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_okruk_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./okruk-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_okruk_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/src/views/pages/parties/part-form.vue?vue&type=template&id=5a4f4e6e&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/src/views/pages/parties/part-form.vue?vue&type=template&id=5a4f4e6e& ***!
-  \*******************************************************************************************/
+/***/ "./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=template&id=6a006b06&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=template&id=6a006b06& ***!
+  \******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_part_form_vue_vue_type_template_id_5a4f4e6e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./part-form.vue?vue&type=template&id=5a4f4e6e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/parties/part-form.vue?vue&type=template&id=5a4f4e6e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_part_form_vue_vue_type_template_id_5a4f4e6e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_okruk_form_vue_vue_type_template_id_6a006b06___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./okruk-form.vue?vue&type=template&id=6a006b06& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/pages/okruk/okruk-form.vue?vue&type=template&id=6a006b06&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_okruk_form_vue_vue_type_template_id_6a006b06___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_part_form_vue_vue_type_template_id_5a4f4e6e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_okruk_form_vue_vue_type_template_id_6a006b06___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -95,13 +95,15 @@
             </vs-td>
             <vs-td>{{val.created_at}}</vs-td>
             <vs-td>
+              <router-link :to="{name:'editUser', params:{id:val.id}}">
               <vs-button
                 color="warning"
                 icon-pack="feather"
                 icon="icon-edit"
                 type="filled"
-                @click="updateUser(val);popupActive2=true"
+               
               >edit</vs-button>
+              </router-link>
             </vs-td>
           </vs-tr>
         </template>

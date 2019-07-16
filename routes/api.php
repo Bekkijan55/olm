@@ -33,8 +33,17 @@ Route::group(['middleware' => 'auth:api','return-json'],function () {
     Route::put('update-nation','NationController@updateNation');
     Route::get('get-edu','EducationController@getEdu');
     Route::post('add-edu','EducationController@storeEdu');
+    Route::put('update-edu','EducationController@updateEdu');
     Route::get('get-parties','PartyController@getParties');
     Route::post('add-party','PartyController@addParty');
+    Route::put('update-party','PartyController@updateParty');
+    Route::get('get-inst','InstitutionController@getInst');
+    Route::post('add-inst','InstitutionController@storeInst');
+    Route::put('update-inst','InstitutionController@updateInst');
+    Route::get('get-okrug','OkrugController@getOkrug');
+    Route::post('add-okrug','OkrugController@addOkrug');
+    Route::put('update-okrug','OkrugController@updateOkrug');
+    
 });
 
 

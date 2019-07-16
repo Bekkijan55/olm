@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\RoleResource;
+use App\Http\Resources\UserCredsResource;
 use App\User;
 use App\Role;
 use App\RoleUser;
@@ -13,11 +14,11 @@ use App\RoleUser;
 class UsersController extends Controller
 {
     public function getUsers() {
-        $users = User::with('roles')->orderBy('id','desc')->get();
+        $users = User::orderBy('id','desc')->get();
 
         $roles = Role::all();
 
-        return [UserResource::collection($users),RoleResource::collection($roles)];
+        return [UserCredsResource::collection($users),RoleResource::collection($roles)];
     }
     public function addUser(Request $request) {
         // return $request->input('selectedRole');

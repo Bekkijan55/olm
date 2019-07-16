@@ -22,12 +22,12 @@
               <vs-input
                 class="w-full"
                 v-validate="'required'"
-                label="Ta'lim"
-                placeholder="Ta'lim"
-                name="Ta'lim"
-                v-model="inst.inst_uz"
+                label="Institut"
+                placeholder="Institut"
+                name="Institut"
+                v-model="insts.inst_uz"
               />
-              <span class="text-danger text-sm">{{errors.first('Ta\'lim')}}</span>
+              <span class="text-danger text-sm">{{errors.first('Institut')}}</span>
             </div>
            
           </div>
@@ -36,12 +36,12 @@
               <vs-input
                 class="w-full"
                 v-validate="'required'"
-                label="Образование"
-                placeholder="Образование"
-                name="Образование"
-                v-model="inst.inst_ru"
+                label="Институт"
+                placeholder="Институт"
+                name="Институт"
+                v-model="insts.inst_uz2"
               />
-              <span class="text-danger text-sm">{{errors.first('Образование')}}</span>
+              <span class="text-danger text-sm">{{errors.first('Институт')}}</span>
             </div>
           </div>
            <div class="vx-row">
@@ -49,12 +49,12 @@
               <vs-input
                 class="w-full"
                 v-validate="'required'"
-                label="Education"
-                placeholder="Education"
-                name="Education"
-                v-model="inst.inst_en"
+                label="Институт"
+                placeholder="Институт"
+                name="Институт"
+                v-model="insts.inst_ru"
               />
-              <span class="text-danger text-sm">{{errors.first('Education')}}</span>
+              <span class="text-danger text-sm">{{errors.first('Институт')}}</span>
             </div>
           
           </div>      
@@ -78,21 +78,24 @@
 <script>
 export default {
     data: () => ({
-        inst: {
-            id:3,
+        insts: {            
             inst_uz:'',
-            inst_ru: '',
-            inst_en:''
+            inst_uz2: '',
+            inst_ru:''
         },
         popup: false
     }),
 
     methods:{
         storeInst() {
-            this.$store.dispatch('addInst',this.inst)
+           this.$validator.validateAll().then(result => {
+        if (result) {
+            this.$store.dispatch('addInst',this.insts)
               .then(() => {
                   this.popup = false;
               })
+        }
+           })
         }
     }
 }

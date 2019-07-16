@@ -78,8 +78,7 @@
 <script>
 export default {
     data: () => ({
-        okrug: {
-            id:2,
+        okrug: {            
             okrug_uz:'',
             okrug_uz2:'',
             okrug_ru:''
@@ -88,11 +87,16 @@ export default {
     }),
 
     methods:{
+
         storeOkrug() {
+           this.$validator.validateAll().then(result => {
+        if (result) {
             this.$store.dispatch('addOkrug',this.okrug)
               .then(() => {
                   this.popup = false;
               })
+        }
+           })
         }
     }
 }

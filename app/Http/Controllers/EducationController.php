@@ -25,4 +25,11 @@ class EducationController extends Controller
 
         return new EducationResource($edu);
     }
+
+    public function updateEdu(Request $request) {
+        $e = Education::findOrFail($request->input('id'));
+        $e->update($request->all());
+
+        return new EducationResource($e);
+    }
 }

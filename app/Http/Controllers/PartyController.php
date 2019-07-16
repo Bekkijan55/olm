@@ -20,4 +20,12 @@ class PartyController extends Controller
 
         return new PartyResource($p);
     }
+
+    public function updateParty(Request $request) {
+        $p = Party::findOrFail($request->input('id'));
+
+        $p->update($request->all());
+
+        return new PartyResource($p);
+    }
 }

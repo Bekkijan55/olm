@@ -36,12 +36,12 @@
               <vs-input
                 class="w-full"
                 v-validate="'required'"
-                label="Образование"
-                placeholder="Образование"
-                name="Образование"
+                label="Таълим"
+                placeholder="Таълим"
+                name="Таълим"
                 v-model="edu.edu_uz2"
               />
-              <span class="text-danger text-sm">{{errors.first('Образование')}}</span>
+              <span class="text-danger text-sm">{{errors.first('Таълим')}}</span>
             </div>
           </div>
            <div class="vx-row">
@@ -49,12 +49,12 @@
               <vs-input
                 class="w-full"
                 v-validate="'required'"
-                label="Education"
-                placeholder="Education"
-                name="Education"
+                label="Образование"
+                placeholder="Образование"
+                name="Образование"
                 v-model="edu.edu_ru"
               />
-              <span class="text-danger text-sm">{{errors.first('Education')}}</span>
+              <span class="text-danger text-sm">{{errors.first('Образование')}}</span>
             </div>
           
           </div>      
@@ -88,9 +88,13 @@ export default {
 
     methods: {
         storeEdu() {
+           this.$validator.validateAll().then(result => {
+        if (result) {
             this.$store.dispatch('addEdu',this.edu).then(() => {
                 this.popup=false
             })
+        }
+           });
 
         }
     }

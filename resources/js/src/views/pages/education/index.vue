@@ -1,19 +1,65 @@
 <template>
     <div>
-          <!-- <vx-card class="mb-2">
-      <vs-row vs-type="flex" vs-justify="flex-end">
+        
+        <vs-popup class="holamundo" title="Update Education" :active.sync="popup">
+       <div class="vx-col w-full mb-base">
+            <form @submit.prevent ="changeEdu">
+         <div class="vx-row">
+            <div class="vx-col sm:w-1/1 w-full mb-2">
+              <vs-input
+                class="w-full"
+                v-validate="'required'"
+                label="Ta'lim"
+                placeholder="Ta'lim"
+                name="Ta'lim"
+                v-model="edus.edu_uz"
+              />
+              <span class="text-danger text-sm">{{errors.first('Ta\'lim')}}</span>
+            </div>
+           
+          </div>
+          <div class="vx-row">
+                <div class="vx-col sm:w-1/1 w-full mb-2">
+              <vs-input
+                class="w-full"
+                v-validate="'required'"
+                label="Таълим"
+                placeholder="Таълим"
+                name="Таълим"
+                v-model="edus.edu_uz2"
+              />
+              <span class="text-danger text-sm">{{errors.first('Таълим')}}</span>
+            </div>
+          </div>
+           <div class="vx-row">
+            <div class="vx-col sm:w-1/1 w-full mb-2">
+              <vs-input
+                class="w-full"
+                v-validate="'required'"
+                label="Образование"
+                placeholder="Образование"
+                name="Образование"
+                v-model="edus.edu_ru"
+              />
+              <span class="text-danger text-sm">{{errors.first('Образование')}}</span>
+            </div>
+          
+          </div>      
+           
+           <vs-row vs-type="flex" vs-justify="flex-end">
         <div class="bx-row">
           <vs-button
-            color="primary"
+            color="success"
             type="filled"
             size="medium"
-            icon-pack="feather"
-            icon="icon-plus" 
-            @click="popupActive = true"          
-          >Add</vs-button>
+                                  
+          >Save</vs-button>
         </div>
       </vs-row>
-    </vx-card> -->
+          </form>
+        </div>
+    </vs-popup>
+
     <edu-form></edu-form>
     
         <vx-card>
@@ -21,8 +67,8 @@
                 <template slot="thead">
                     <vs-th>ID</vs-th>
                     <vs-th>Ta'lim</vs-th>
-                    <vs-th>Образование</vs-th>
-                    <vs-th>Education</vs-th>   
+                    <vs-th>Таълим</vs-th>
+                    <vs-th>Образование</vs-th>   
                     <vs-th>Action</vs-th>                 
                 </template>
                 <template slot-scope="{data}">
@@ -32,7 +78,7 @@
                     <vs-td>{{val.edu_uz2}}</vs-td>
                     <vs-td>{{val.edu_ru}}</vs-td>
                     <vs-td>
-                        <vs-button color="warning" type="filled" icon-pack="feather" icon="icon-edit"></vs-button>
+                        <vs-button color="warning" type="filled" icon-pack="feather" icon="icon-edit" @click="editEdu(val);popup=true"></vs-button>
                     </vs-td>
                     </vs-tr>
                 </template>
@@ -46,7 +92,13 @@ import {mapGetters, mapActions} from 'vuex'
 import EduForm from './edu-form.vue'
 export default {
 data: () => ({
-    
+    edus: {
+        id:'',
+        edu_uz: '',
+        edu_uz2: '',
+        edu_ru:''
+    },
+    popup:false
 }),
 components:{
     EduForm
@@ -60,7 +112,17 @@ computed: {
 },
 
 methods:{
-    ...mapActions(['fetchEdu'])
+    ...mapActions(['fetchEdu']),
+
+    editEdu(val) {
+        Object.assign(this.edus,val)
+    },
+    changeEdu() {
+        this.$store.dispatch('updateEdu',this.edus)
+         .then(() => {
+             this.popup = false;
+         })
+    }
 }
 }
 </script>

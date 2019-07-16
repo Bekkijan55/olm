@@ -1,23 +1,24 @@
 import request from '../utils/request';
 
-export function getEdu() {
+
+export function getInst() {
     return request({
-        url: '/api/get-edu',
+        url:'/api/get-inst',
         method: 'get'
     })
 }
 
-export function storeEdu(data) {
+export function storeInst(data) {
     return request({
-        url: '/api/add-edu',
+        url:'/api/add-inst',
         method: 'post',
         data
     })
 }
 
-export function editEdu(data) {
+export function updateInst(data) {
     return request({
-        url: '/api/update-edu',
+        url: '/api/update-inst',
         method: 'put',
         data
     })

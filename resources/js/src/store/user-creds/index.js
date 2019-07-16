@@ -4,11 +4,22 @@ import {
 } from '../../../../api/nations'
 import {
     getEdu,
-    storeEdu
+    storeEdu,
+    editEdu
 } from '../../../../api/education'
 import {
-    getParties,storeParty
+    getParties,storeParty,updateParty
 } from '../../../../api/party'
+
+import {
+    getInst,
+    storeInst,
+    updateInst
+} from '../../../../api/institution'
+
+import {
+    getOkrug,storeOkrug,editOkrug
+} from '../../../../api/okrug'
 
 
 const userCreds = {
@@ -16,18 +27,8 @@ const userCreds = {
         nations: [],
         edu: [],
         parties: [],
-        inst: [{
-            id: 1,
-            inst_uz: 'Volgograddagi gaz va neft sanoati texnika maktabi',
-            inst_ru: 'Волгоградский техникум газовой и нефтяной промышленности',
-            inst_en: 'Volgograd technical school of gas and oil industry'
-        }],
-        okrug: [{
-            id: 1,
-            okrug_uz: 'Senat a\'zosi',
-            okrug_uz2: 'Сенат аъзоси',
-            okrug_ru: 'Член Сената'
-        }]
+        inst: [],
+        okrug: []
 
     },
     getters: {
@@ -62,10 +63,16 @@ const userCreds = {
             state.parties = party;
         },
         setInst: (state, inst) => {
+            state.inst = inst;
+        },
+        addInst: (state, inst) => {
             state.inst.push(inst);
         },
         setOkrug: (state, okrug) => {
-            state.okrug.push(okrug);
+            state.okrug = okrug;
+        },
+        addOkrug : (state,data) => {
+            state.okrug.push(data);
         }
     },
     actions: {
@@ -96,6 +103,12 @@ const userCreds = {
                 })
                 .catch(err => console.log(err))
         },
+        updateEdu({commit,dispatch},data) {
+            editEdu(data)
+              .then(res => {
+                  dispatch('fetchEdu');
+              })
+        },
         fetchParties({
             commit
         }) {
@@ -112,15 +125,56 @@ const userCreds = {
              })
              .catch(err => console.log(err))
         },
-        addInst({
-            commit
-        }, inst) {
-            commit('setInst', inst);
+
+        editParty({dispatch},data) {
+            updateParty(data)
+              .then(res => {
+                  dispatch('fetchParties');
+              })
+               .catch(err => console.log(err))
         },
-        addOkrug({
-            commit
-        }, okrug) {
-            commit('setOkrug', okrug);
+        fetchInst({commit}){
+              getInst()
+             .then(res => {
+                commit('setInst',res.data.data)
+             })
+              .catch(err => console.log(err))
+        },
+        addInst({commit}, data) {
+            storeInst(data)
+              .then(res => {
+                commit('addInst',res.data.data)
+              })
+               .catch(err => console.log(err))
+        },
+        editInst({dispatch},data) {
+            updateInst(data)
+             .then(res => {
+                 dispatch('fetchInst');
+             })
+               .catch(err => console.log(err))
+        },
+        fetchOkrug({commit}) {
+            getOkrug() 
+            .then(res => {
+                commit('setOkrug',res.data.data);
+            })
+             .catch(err => console.log(err))
+        },
+        addOkrug({commit}, okrug) {
+            storeOkrug(okrug)
+             .then(res => {
+                commit('addOkrug',res.data.data)
+             })
+              .catch(err => console.log(err))
+        },
+
+        updateOkrug({dispatch},data) {
+            editOkrug(data)
+             .then(res => {
+                 dispatch('fetchOkrug');
+             })
+              .catch(err => console.log(err))
         }
 
     },

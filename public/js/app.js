@@ -59686,13 +59686,14 @@ function userInfo() {
 /*!************************************!*\
   !*** ./resources/api/education.js ***!
   \************************************/
-/*! exports provided: getEdu, storeEdu */
+/*! exports provided: getEdu, storeEdu, editEdu */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEdu", function() { return getEdu; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeEdu", function() { return storeEdu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editEdu", function() { return editEdu; });
 /* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
 
 function getEdu() {
@@ -59705,6 +59706,50 @@ function storeEdu(data) {
   return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
     url: '/api/add-edu',
     method: 'post',
+    data: data
+  });
+}
+function editEdu(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/update-edu',
+    method: 'put',
+    data: data
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/api/institution.js":
+/*!**************************************!*\
+  !*** ./resources/api/institution.js ***!
+  \**************************************/
+/*! exports provided: getInst, storeInst, updateInst */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getInst", function() { return getInst; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeInst", function() { return storeInst; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateInst", function() { return updateInst; });
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
+
+function getInst() {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-inst',
+    method: 'get'
+  });
+}
+function storeInst(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/add-inst',
+    method: 'post',
+    data: data
+  });
+}
+function updateInst(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/update-inst',
+    method: 'put',
     data: data
   });
 }
@@ -59748,17 +59793,55 @@ function updateNation(data) {
 
 /***/ }),
 
+/***/ "./resources/api/okrug.js":
+/*!********************************!*\
+  !*** ./resources/api/okrug.js ***!
+  \********************************/
+/*! exports provided: getOkrug, storeOkrug, editOkrug */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOkrug", function() { return getOkrug; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeOkrug", function() { return storeOkrug; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editOkrug", function() { return editOkrug; });
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
+
+function getOkrug() {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-okrug',
+    method: 'get'
+  });
+}
+function storeOkrug(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/add-okrug',
+    method: 'post',
+    data: data
+  });
+}
+function editOkrug(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/update-okrug',
+    method: 'put',
+    data: data
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/api/party.js":
 /*!********************************!*\
   !*** ./resources/api/party.js ***!
   \********************************/
-/*! exports provided: getParties, storeParty */
+/*! exports provided: getParties, storeParty, updateParty */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParties", function() { return getParties; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeParty", function() { return storeParty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateParty", function() { return updateParty; });
 /* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
 
 function getParties() {
@@ -59771,6 +59854,13 @@ function storeParty(data) {
   return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
     url: '/api/add-party',
     method: 'post',
+    data: data
+  });
+}
+function updateParty(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/update-party',
+    method: 'put',
     data: data
   });
 }
@@ -60957,7 +61047,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     // =============================================================================
     path: '',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/js/src/layouts/main/Main.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/js/src/layouts/main/Main.vue"));
     },
     children: [// =============================================================================
     // Theme Routes
@@ -60966,7 +61056,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/',
       name: 'home',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
       }
     }, // {
     //     path: '/page2',
@@ -60977,7 +61067,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/users',
       name: 'users',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/pages/users/index.vue */ "./resources/js/src/views/pages/users/index.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/pages/users/index.vue */ "./resources/js/src/views/pages/users/index.vue"));
+      }
+    }, {
+      path: '/users/edit/:id',
+      name: 'editUser',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/pages/users/edit-user.vue */ "./resources/js/src/views/pages/users/edit-user.vue"));
       }
     }, {
       path: '/contacts',
@@ -60992,7 +61088,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(14), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(17), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
       }
     }, {
       path: '/nationalities',
@@ -61007,7 +61103,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/pages/nationality/index.vue */ "./resources/js/src/views/pages/nationality/index.vue"));
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/pages/nationality/index.vue */ "./resources/js/src/views/pages/nationality/index.vue"));
       }
     }, {
       path: '/education',
@@ -61022,7 +61118,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/pages/education/index.vue */ "./resources/js/src/views/pages/education/index.vue"));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/pages/education/index.vue */ "./resources/js/src/views/pages/education/index.vue"));
       }
     }, {
       path: '/parties',
@@ -61037,7 +61133,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/pages/parties/index.vue */ "./resources/js/src/views/pages/parties/index.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/pages/parties/index.vue */ "./resources/js/src/views/pages/parties/index.vue"));
       }
     }, {
       path: '/institution',
@@ -61052,7 +61148,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/pages/insts/index.vue */ "./resources/js/src/views/pages/insts/index.vue"));
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/pages/insts/index.vue */ "./resources/js/src/views/pages/insts/index.vue"));
       }
     }, {
       path: '/okrug',
@@ -61067,7 +61163,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/pages/okruk/index.vue */ "./resources/js/src/views/pages/okruk/index.vue"));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/pages/okruk/index.vue */ "./resources/js/src/views/pages/okruk/index.vue"));
       }
     }]
   }, // =============================================================================
@@ -61076,7 +61172,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   {
     path: '',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
     },
     children: [// =============================================================================
     // PAGES
@@ -61085,19 +61181,19 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/pages/login',
       name: 'pageLogin',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @/views/pages/Login.vue */ "./resources/js/src/views/pages/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/views/pages/Login.vue */ "./resources/js/src/views/pages/Login.vue"));
       }
     }, {
       path: '/pages/error-404',
       name: 'pageError404',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
       }
     }, {
       path: '/login',
       name: 'login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
       }
     }]
   }, // Redirect to 404 page, if no match found
@@ -61508,6 +61604,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_nations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../api/nations */ "./resources/api/nations.js");
 /* harmony import */ var _api_education__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../api/education */ "./resources/api/education.js");
 /* harmony import */ var _api_party__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../api/party */ "./resources/api/party.js");
+/* harmony import */ var _api_institution__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../api/institution */ "./resources/api/institution.js");
+/* harmony import */ var _api_okrug__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../api/okrug */ "./resources/api/okrug.js");
+
+
 
 
 
@@ -61516,18 +61616,8 @@ var userCreds = {
     nations: [],
     edu: [],
     parties: [],
-    inst: [{
-      id: 1,
-      inst_uz: 'Volgograddagi gaz va neft sanoati texnika maktabi',
-      inst_ru: 'Волгоградский техникум газовой и нефтяной промышленности',
-      inst_en: 'Volgograd technical school of gas and oil industry'
-    }],
-    okrug: [{
-      id: 1,
-      okrug_uz: 'Senat a\'zosi',
-      okrug_uz2: 'Сенат аъзоси',
-      okrug_ru: 'Член Сената'
-    }]
+    inst: [],
+    okrug: []
   },
   getters: {
     nations: function nations(state) {
@@ -61560,10 +61650,16 @@ var userCreds = {
       state.parties = party;
     },
     setInst: function setInst(state, inst) {
+      state.inst = inst;
+    },
+    addInst: function addInst(state, inst) {
       state.inst.push(inst);
     },
     setOkrug: function setOkrug(state, okrug) {
-      state.okrug.push(okrug);
+      state.okrug = okrug;
+    },
+    addOkrug: function addOkrug(state, data) {
+      state.okrug.push(data);
     }
   },
   actions: {
@@ -61590,30 +61686,85 @@ var userCreds = {
         return console.log(err);
       });
     },
-    fetchParties: function fetchParties(_ref4) {
-      var commit = _ref4.commit;
+    updateEdu: function updateEdu(_ref4, data) {
+      var commit = _ref4.commit,
+          dispatch = _ref4.dispatch;
+      Object(_api_education__WEBPACK_IMPORTED_MODULE_1__["editEdu"])(data).then(function (res) {
+        dispatch('fetchEdu');
+      });
+    },
+    fetchParties: function fetchParties(_ref5) {
+      var commit = _ref5.commit;
       Object(_api_party__WEBPACK_IMPORTED_MODULE_2__["getParties"])().then(function (res) {
         commit('setParty', res.data.data);
       })["catch"](function (err) {
         return console.log(err);
       });
     },
-    addParty: function addParty(_ref5, party) {
-      var commit = _ref5.commit,
-          dispatch = _ref5.dispatch;
+    addParty: function addParty(_ref6, party) {
+      var commit = _ref6.commit,
+          dispatch = _ref6.dispatch;
       Object(_api_party__WEBPACK_IMPORTED_MODULE_2__["storeParty"])(party).then(function (res) {
         dispatch('fetchParties');
       })["catch"](function (err) {
         return console.log(err);
       });
     },
-    addInst: function addInst(_ref6, inst) {
-      var commit = _ref6.commit;
-      commit('setInst', inst);
+    editParty: function editParty(_ref7, data) {
+      var dispatch = _ref7.dispatch;
+      Object(_api_party__WEBPACK_IMPORTED_MODULE_2__["updateParty"])(data).then(function (res) {
+        dispatch('fetchParties');
+      })["catch"](function (err) {
+        return console.log(err);
+      });
     },
-    addOkrug: function addOkrug(_ref7, okrug) {
-      var commit = _ref7.commit;
-      commit('setOkrug', okrug);
+    fetchInst: function fetchInst(_ref8) {
+      var commit = _ref8.commit;
+      Object(_api_institution__WEBPACK_IMPORTED_MODULE_3__["getInst"])().then(function (res) {
+        commit('setInst', res.data.data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    addInst: function addInst(_ref9, data) {
+      var commit = _ref9.commit;
+      Object(_api_institution__WEBPACK_IMPORTED_MODULE_3__["storeInst"])(data).then(function (res) {
+        commit('addInst', res.data.data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    editInst: function editInst(_ref10, data) {
+      var dispatch = _ref10.dispatch;
+      Object(_api_institution__WEBPACK_IMPORTED_MODULE_3__["updateInst"])(data).then(function (res) {
+        dispatch('fetchInst');
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    fetchOkrug: function fetchOkrug(_ref11) {
+      var commit = _ref11.commit;
+      Object(_api_okrug__WEBPACK_IMPORTED_MODULE_4__["getOkrug"])().then(function (res) {
+        commit('setOkrug', res.data.data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    addOkrug: function addOkrug(_ref12, okrug) {
+      var commit = _ref12.commit;
+      Object(_api_okrug__WEBPACK_IMPORTED_MODULE_4__["storeOkrug"])(okrug).then(function (res) {
+        commit('addOkrug', res.data.data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    updateOkrug: function updateOkrug(_ref13, data) {
+      var dispatch = _ref13.dispatch;
+      Object(_api_okrug__WEBPACK_IMPORTED_MODULE_4__["editOkrug"])(data).then(function (res) {
+        dispatch('fetchOkrug');
+      })["catch"](function (err) {
+        return console.log(err);
+      });
     }
   }
 };
@@ -61805,9 +61956,9 @@ service.interceptors.response.use(function (response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OSPanel\domains\olm\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\OSPanel\domains\olm\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\olm\resources\assets\css\main.css */"./resources/assets/css/main.css");
+__webpack_require__(/*! C:\OSPanel\domains\olm\newvuesax\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\OSPanel\domains\olm\newvuesax\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\olm\newvuesax\resources\assets\css\main.css */"./resources/assets/css/main.css");
 
 
 /***/ })

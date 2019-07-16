@@ -15,3 +15,11 @@ export function storeParty(data) {
         data
     })
 }
+
+export function updateParty(data) {
+    return request({
+        url: '/api/update-party',
+        method: 'put',
+        data
+    })
+}

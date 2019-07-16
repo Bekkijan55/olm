@@ -22,12 +22,12 @@
               <vs-input
                 class="w-full"
                 v-validate="'required'"
-                label="Ta'lim"
-                placeholder="Ta'lim"
-                name="Ta'lim"
+                label="Partiya"
+                placeholder="Partiya"
+                name="Partiya"
                 v-model="party.party_uz"
               />
-              <span class="text-danger text-sm">{{errors.first('Ta\'lim')}}</span>
+              <span class="text-danger text-sm">{{errors.first('Partiya')}}</span>
             </div>
           </div>
           <div class="vx-row">
@@ -35,12 +35,12 @@
               <vs-input
                 class="w-full"
                 v-validate="'required'"
-                label="Талим"
-                placeholder="Талим"
-                name="Талим"
+                label="Партия"
+                placeholder="Партия"
+                name="Партия"
                 v-model="party.party_uz2"
               />
-              <span class="text-danger text-sm">{{errors.first('Талим')}}</span>
+              <span class="text-danger text-sm">{{errors.first('Партия')}}</span>
             </div>
           </div>
           <div class="vx-row">
@@ -48,12 +48,12 @@
               <vs-input
                 class="w-full"
                 v-validate="'required'"
-                label="Образование"
-                placeholder="Образование"
-                name="Образование"
+                label="Партия"
+                placeholder="Партия"
+                name="Партия"
                 v-model="party.party_ru"
               />
-              <span class="text-danger text-sm">{{errors.first('Образование')}}</span>
+              <span class="text-danger text-sm">{{errors.first('Партия')}}</span>
             </div>
           </div>
 
@@ -82,10 +82,14 @@ export default {
 
   methods: {
     storeParty() {
+       this.$validator.validateAll().then(result => {
+        if (result) {
       this.$store.dispatch("addParty", this.party)
       .then(() => {
         this.popup = false;
       })
+        }
+       });
     }
   }
 };
