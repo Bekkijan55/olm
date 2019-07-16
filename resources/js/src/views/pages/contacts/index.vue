@@ -116,7 +116,7 @@
         </div>
     </vs-popup>
 
-        <vx-card class="mb-2">
+        <vx-card class="mb-2" v-if="hasPermission(addingRoles)">
       <vs-row vs-type="flex" vs-justify="flex-end">
         <div class="bx-row">
           <vs-button
@@ -153,7 +153,7 @@
                     <vs-td>{{val.birthday}}</vs-td>
                     <vs-td>{{val.mobnum}}</vs-td>
                     <vs-td>
-                        <vs-button color="warning" type="filled" icon-pack="feather" icon="icon-edit" @click="updateContact(val);popupActive=true" ></vs-button>
+                        <vs-button v-if="hasPermission(editingRoles)" color="warning" type="filled" icon-pack="feather" icon="icon-edit" @click="updateContact(val);popupActive=true" ></vs-button>
                     </vs-td>
                 </vs-tr>
             </template>
@@ -170,6 +170,8 @@ export default {
         return {
             popupActive: false,
             contacts: [],
+            addingRoles:['Manager'],
+            editingRoles:['Admin'],
             contact:{
                 firstname:'',
                 lastname:'',
@@ -193,6 +195,14 @@ export default {
   mounted() {
       this.fetchContacts()
   },
+  computed:{
+      permissionRoles:{
+          get() {
+              return this.$store.getters.roles;
+          },
+          set() {}
+      }
+  },
 
   methods : {
       getPhoto(e) {
@@ -211,7 +221,7 @@ export default {
             if(this.edit ===false) {
           addContact(this.contact)
            .then(res => {
-               console.log(res.data.data),
+              
                this.contacts.unshift(res.data.data);
                this.popupActive = false;
            })
@@ -220,7 +230,7 @@ export default {
         else {
             editContact(this.contact)
              .then(res => {
-                 console.log(res.data.data);
+                 
                  this.fetchContacts();
                  this.popupActive = false;
              })
@@ -246,8 +256,26 @@ export default {
          Object.assign(this.contact,v)
          v.gender == 1 ? this.contact.gender='male' : this.contact.gender='female';
          this.contact.photo = null;
-         console.log(this.contact);               
+                  
 
+     },
+     hasPermission(data) {
+         let roles = data;
+         if(data.length == 0) {
+             return true;
+         }
+         else{
+             let Boolean=false;
+             for(let item of this.permissionRoles) {
+                 roles = roles.filter(val => {
+                     if(item.role_name === val) {
+                         Boolean = true;
+                     }
+                 });
+             }
+             return Boolean;
+         }
+        
      }
   }
 

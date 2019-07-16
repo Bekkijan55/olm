@@ -14,3 +14,11 @@ export function storeNations(data) {
         data
     })
 }
+
+export function updateNation(data) {
+    return request({
+        url: '/api/update-nation',
+        method: 'put',
+        data
+    })
+}

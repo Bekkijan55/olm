@@ -81,6 +81,66 @@ const router = new Router({
                     }]
                     },
                     component: () => import('./views/pages/nationality/index.vue')
+                },
+                {
+                    path: '/education',
+                    name: 'education',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Education',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/education/index.vue')
+                },
+                {
+                    path: '/parties',
+                    name: 'Party',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Parties',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/parties/index.vue')
+                },
+                {
+                    path: '/institution',
+                    name: 'institution',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Institution',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/insts/index.vue')
+                },
+                {
+                    path: '/okrug',
+                    name: 'Okrug',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Okrug',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/okruk/index.vue')
                 }
 
             ],

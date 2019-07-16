@@ -32,7 +32,7 @@
                 <div class="shadow-bottom" v-show="showShadowBottom"></div>
 
                 <VuePerfectScrollbar ref="mainSidebarPs" class="scroll-area--main-sidebar pt-2" :settings="settings" @ps-scroll-y="psSectionScroll">
-                    <template v-for="(sidebarItem, index) in sidebarItems">
+                    <template v-for="(sidebarItem, index) in sidebarItems" v-if="hasPermission(sidebarItem)">
 
                         <!-- GROUP ITEM HEADER -->
                         <span :key="`header-${index}`" v-if="sidebarItem.header && !sidebarItemsMin" class="navigation-header truncate">{{ sidebarItem.header }}</span>
@@ -108,6 +108,12 @@ export default {
             set(val) {
               this.$store.commit('TOGGLE_IS_SIDEBAR_ACTIVE', val)
             }
+        },
+        permissionRoles:{
+            get() {
+                return this.$store.getters.roles;
+            },
+            set(){}
         },
         reduceSidebar() {
             return Boolean(this.reduce && this.reduceButton)
@@ -207,6 +213,26 @@ export default {
                     this.$store.dispatch('updateSidebarWidth', 'reduced')
                 else
                     this.$store.dispatch('updateSidebarWidth', 'default')
+            }
+        },
+        hasPermission(data) {
+           
+            let roles = data.roles;
+            if(!roles) {
+                return true;
+            }
+            else{
+                let Boolean = false;
+                for(let item of this.permissionRoles) {
+                    roles = roles.filter((obj,pos,arr) => {
+                        return arr.map(function(val) {
+                            if(item.role_name === val) {
+                                Boolean = true;
+                            }
+                        });
+                    });
+                }
+                return Boolean
             }
         },
         psSectionScroll() {
