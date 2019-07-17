@@ -16,7 +16,11 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('photo')->nullable();
+            $table->integer('education_id')->nullable();
+            $table->integer('nation_id')->nullable();
+            $table->integer('party_id')->nullable();
+            $table->integer('okrug_id')->nullable();
+            
             $table->string('birthplace')->nullable();
             $table->string('registered_address')->nullable();
             $table->string('actual_address')->nullable();

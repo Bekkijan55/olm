@@ -18,11 +18,7 @@ class UserCredsResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'edu' => $this->education,
-            'okrug' => $this->okrug,
-            'nation' => $this->nation,
-            'party' => $this->party,
-            'insts' => $this->insts,
+            'photo' => $this->photo,           
             'profile' => $this->profile,
             'name' => $this->name,
             'lastname' => $this->lastname,

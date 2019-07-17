@@ -12,7 +12,7 @@ class Nation extends Model
         'nation_uz','nation_uz2','nation_ru'
     ];
 
-    public function user() {
-        return $this->hasMany(User::class,'id','nation_id');
+    public function profile() {
+        return $this->hasMany(Profile::class,'id','nation_id');
     }
 }

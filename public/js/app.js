@@ -59867,6 +59867,59 @@ function updateParty(data) {
 
 /***/ }),
 
+/***/ "./resources/api/users.js":
+/*!********************************!*\
+  !*** ./resources/api/users.js ***!
+  \********************************/
+/*! exports provided: getUsers, newUser, updateUser, userById, addUserCreds */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newUser", function() { return newUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userById", function() { return userById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addUserCreds", function() { return addUserCreds; });
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
+
+function getUsers() {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-users',
+    method: 'get'
+  });
+}
+function newUser(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/add-user',
+    method: 'post',
+    data: data
+  });
+}
+function updateUser(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/update-user',
+    method: 'post',
+    data: data
+  });
+}
+function userById(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/user-id',
+    method: 'get',
+    params: data
+  });
+}
+function addUserCreds(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/add-usercreds',
+    method: 'post',
+    data: data
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/css/main.css":
 /*!***************************************!*\
   !*** ./resources/assets/css/main.css ***!
@@ -61056,7 +61109,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/',
       name: 'home',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
       }
     }, // {
     //     path: '/page2',
@@ -61067,13 +61120,22 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/users',
       name: 'users',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/pages/users/index.vue */ "./resources/js/src/views/pages/users/index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ./views/pages/users/index.vue */ "./resources/js/src/views/pages/users/index.vue"));
       }
     }, {
       path: '/users/edit/:id',
       name: 'editUser',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Edit',
+          active: true
+        }]
+      },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/pages/users/edit-user.vue */ "./resources/js/src/views/pages/users/edit-user.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/pages/users/edit-user.vue */ "./resources/js/src/views/pages/users/edit-user.vue"));
       }
     }, {
       path: '/contacts',
@@ -61088,7 +61150,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(17), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
       }
     }, {
       path: '/nationalities',
@@ -61172,7 +61234,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   {
     path: '',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
     },
     children: [// =============================================================================
     // PAGES
@@ -61193,7 +61255,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/login',
       name: 'login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
       }
     }]
   }, // Redirect to 404 page, if no match found
@@ -61606,6 +61668,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_party__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../api/party */ "./resources/api/party.js");
 /* harmony import */ var _api_institution__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../api/institution */ "./resources/api/institution.js");
 /* harmony import */ var _api_okrug__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../api/okrug */ "./resources/api/okrug.js");
+/* harmony import */ var _api_users__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../api/users */ "./resources/api/users.js");
+
 
 
 
@@ -61617,7 +61681,13 @@ var userCreds = {
     edu: [],
     parties: [],
     inst: [],
-    okrug: []
+    okrug: [],
+    user_id: {},
+    user_edu: [],
+    user_nation: [],
+    user_party: [],
+    user_inst: [],
+    user_okrug: []
   },
   getters: {
     nations: function nations(state) {
@@ -61634,6 +61704,24 @@ var userCreds = {
     },
     okrug: function okrug(state) {
       return state.okrug;
+    },
+    userId: function userId(state) {
+      return state.user_id;
+    },
+    userEdu: function userEdu(state) {
+      return state.user_edu;
+    },
+    userParty: function userParty(state) {
+      return state.user_party;
+    },
+    userNation: function userNation(state) {
+      return state.user_nation;
+    },
+    userInst: function userInst(state) {
+      return state.user_inst;
+    },
+    userOkrug: function userOkrug(state) {
+      return state.user_okrug;
     }
   },
   mutations: {
@@ -61660,6 +61748,14 @@ var userCreds = {
     },
     addOkrug: function addOkrug(state, data) {
       state.okrug.push(data);
+    },
+    setUserById: function setUserById(state, data) {
+      state.user_id = data[0];
+      state.user_edu = data[2];
+      state.user_nation = data[1];
+      state.user_party = data[3];
+      state.user_okrug = data[4];
+      state.user_inst = data[5];
     }
   },
   actions: {
@@ -61762,6 +61858,14 @@ var userCreds = {
       var dispatch = _ref13.dispatch;
       Object(_api_okrug__WEBPACK_IMPORTED_MODULE_4__["editOkrug"])(data).then(function (res) {
         dispatch('fetchOkrug');
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    getUserById: function getUserById(_ref14, data) {
+      var commit = _ref14.commit;
+      Object(_api_users__WEBPACK_IMPORTED_MODULE_5__["userById"])(data).then(function (res) {
+        commit('setUserById', res.data);
       })["catch"](function (err) {
         return console.log(err);
       });

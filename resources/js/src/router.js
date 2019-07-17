@@ -55,6 +55,16 @@ const router = new Router({
                 {
                     path: '/users/edit/:id',
                     name: 'editUser',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Edit',
+                        active: true
+                    }]
+                    },
                     component: () => import('./views/pages/users/edit-user.vue')
                 },
                 {

@@ -7,10 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
-use App\Okrug;
-use App\Education;
-use App\Nation;
-use App\Institution;
+
 use App\Profile;
 
 class User extends Authenticatable implements JWTSubject
@@ -56,27 +53,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Role::class,'role_user');
     }
 
-    public function insts() {
-        return $this->belongsToMany(Institution::class,'institution_users');
-    }
-
-    public function okrug() {
-        return $this->belongsTo(Okrug::class,'okrug_id','id');
-    }
-
-    public function education() {
-        return $this->belongsTo(Education::class,'education_id','id');
-    }
-
-    public function nation() {
-        return $this->belongsTo(Nation::class,'nation_id','id');
-    }
-
-    public function party() {
-        return $this->belongsTo(Party::class,'party_id','id');
-    } 
-
+   
     public function profile() {
-        return $this->hasOne(Profile::class,'id','user_id');
+        return $this->hasOne(Profile::class);
     }
 }

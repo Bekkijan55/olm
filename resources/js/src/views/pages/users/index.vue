@@ -4,7 +4,7 @@
       <div class="vx-col w-full mb-base">
         <form @submit.prevent="addUser">
           <div class="vx-row">
-            <div class="vx-col sm:w-1/1 w-full mb-2">
+            <div class="vx-col sm:w-1/2 w-full mb-2">
               <vs-input
                 class="w-full"
                 v-validate="'required'"
@@ -15,9 +15,31 @@
               />
               <span class="text-danger text-sm">{{errors.first('Name')}}</span>
             </div>
-          </div>
-          <div class="vx-row">
-            <div class="vx-col sm:w-1/1 w-full mb-2">
+            <div class="vx-col sm:w-1/2 w-full mb-2">
+              <vs-input
+                class="w-full"
+                v-validate="'required'"
+                label="Lastname"
+                placeholder="Lastname"
+                name="Lastname"
+                v-model="user.lastname"
+              />
+              <span class="text-danger text-sm">{{errors.first('Lastname')}}</span>
+            </div>
+          </div>    
+             <div class="vx-row">
+            <div class="vx-col sm:w-1/2 w-full mb-2">
+              <vs-input
+                class="w-full"
+                v-validate="'required'"
+                label="Surname"
+                placeholder="Surname"
+                name="Surname"
+                v-model="user.surname"
+              />
+              <span class="text-danger text-sm">{{errors.first('Surname')}}</span>
+            </div>
+             <div class="vx-col sm:w-1/2 w-full mb-2">
               <vs-input
                 class="w-full"
                 v-validate="'required|email'"
@@ -29,8 +51,9 @@
               <span class="text-danger text-sm">{{errors.first('email')}}</span>
             </div>
           </div>
+          
           <div class="vx-row">
-            <div class="vx-col sm:w-1/1 w-full mb-2">
+            <div class="vx-col sm:w-1/2 w-full mb-2">
               <vs-input
                 class="w-full"
                 label="Password"
@@ -41,12 +64,20 @@
               />
               <!-- <span class="text-danger text-sm">{{errors.first('Password')}}</span> -->
             </div>
-          </div>
-          <div class="vx-row">
-            <div class="vx-col sm:w-1/1 w-full mb-2">
+            <div class="vx-col sm:w-1/2 w-full mb-2 mt-6">
               <v-select multiple label="role_name" :options="roles" v-model="user.selectedRole"></v-select>
             </div>
           </div>
+          <div class="vx-row">
+           <div class="vx-col sm:w-1/2 w-full mb-2 mt-6">
+               <datepicker placeholder="Select Date" v-model="user.birthdate"></datepicker>
+            </div>
+            <div class="vx-col sm:w-1/2 w-full mb-2 mt-8">
+               <input type="file" @change="getPhoto">
+            </div>
+
+          </div>
+         
 
           <div class="vx-row">
             <div class="vx-col w-full">
@@ -79,15 +110,18 @@
       <vs-table :data="users">
         <template slot="thead">
           <vs-th>ID</vs-th>
+          <vs-th>Foto</vs-th>
           <vs-th>Name</vs-th>
           <vs-th>Email</vs-th>
           <vs-th>Roles</vs-th>
           <vs-th>created_at</vs-th>
           <vs-th>Action</vs-th>
+         
         </template>
         <template slot-scope="{data}">
-          <vs-tr v-for="(val) in data" :key="val.id">
+          <vs-tr v-for="(val,index) in data" :key="index">
             <vs-td>{{val.id}}</vs-td>
+            <vs-td><img v-if="val.photo" :src="val.photo" width="60" height="60" alt=""></vs-td>
             <vs-td>{{val.name}}</vs-td>
             <vs-td>{{val.email}}</vs-td>
             <vs-td>
@@ -95,16 +129,24 @@
             </vs-td>
             <vs-td>{{val.created_at}}</vs-td>
             <vs-td>
+              <div class="vx-row">
+                <div class="vx-col w-1/2">
               <router-link :to="{name:'editUser', params:{id:val.id}}">
               <vs-button
                 color="warning"
                 icon-pack="feather"
                 icon="icon-edit"
-                type="filled"
-               
-              >edit</vs-button>
-              </router-link>
+                type="filled"               
+              ></vs-button>
+              </router-link>   
+              </div> 
+              <div class="vx-col w-1/2">
+                  <vs-button color="primary" type="filled" icon-pack="feather" icon="icon-eye" ></vs-button>
+                </div>
+              </div>  
+                    
             </vs-td>
+            
           </vs-tr>
         </template>
       </vs-table>
@@ -115,6 +157,7 @@
 <script>
 import { getUsers, newUser, updateUser } from "../../../../../api/users";
 import vSelect from "vue-select";
+import Datepicker from 'vuejs-datepicker';
 export default {
   data() {
     return {
@@ -123,10 +166,14 @@ export default {
       user: {
         id: "",
         name: "",
+        lastname:'',
+        surname:'',
         email: "",
         password: "",
         role: "",
-        selectedRole: []
+        selectedRole: [],
+        birthdate:'',
+        photo:null
       },
       edit: false,
       popupActive2: false
@@ -137,7 +184,8 @@ export default {
     this.fetchUsers();
   },
   components: {
-    "v-select": vSelect
+    "v-select": vSelect,
+    Datepicker
   },
 
   methods: {
@@ -149,6 +197,15 @@ export default {
         })
         .catch(err => console.log(err));
     },
+    getPhoto(e) {
+          
+          var filereader = new FileReader();
+          filereader.readAsDataURL(e.target.files[0]);
+
+          filereader.onload = e => {
+              this.user.photo = e.target.result;
+          }
+      },
     addUser() {
       console.log(this.selectedRole);
       // this.user.role = this.selectedRole.id;

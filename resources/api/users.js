@@ -23,3 +23,20 @@ export function updateUser(data) {
         data
     })
 }
+
+export function userById(data) {
+   
+    return request({
+        url : '/api/user-id',
+        method: 'get',
+        params: data
+    })
+}
+
+export function addUserCreds(data) {
+    return request({
+        url: '/api/add-usercreds',
+        method: 'post',
+        data
+    })
+}

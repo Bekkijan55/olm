@@ -21,6 +21,9 @@ import {
     getOkrug,storeOkrug,editOkrug
 } from '../../../../api/okrug'
 
+import {userById} from '../../../../api/users'
+
+
 
 const userCreds = {
     state: {
@@ -28,7 +31,13 @@ const userCreds = {
         edu: [],
         parties: [],
         inst: [],
-        okrug: []
+        okrug: [],
+        user_id:{},
+        user_edu:[],
+        user_nation:[],
+        user_party:[],
+        user_inst:[],
+        user_okrug:[]
 
     },
     getters: {
@@ -46,6 +55,24 @@ const userCreds = {
         },
         okrug: state => {
             return state.okrug;
+        },
+        userId: state => {
+            return state.user_id;
+        },
+        userEdu: state => {
+            return state.user_edu;
+        },
+        userParty: state => {
+            return state.user_party;
+        },
+        userNation: state => {
+            return state.user_nation;
+        },
+        userInst: state => {
+            return state.user_inst;
+        },
+        userOkrug: state => {
+            return state.user_okrug;
         }
 
     },
@@ -73,6 +100,14 @@ const userCreds = {
         },
         addOkrug : (state,data) => {
             state.okrug.push(data);
+        },
+        setUserById: (state,data) => {
+            state.user_id = data[0];
+            state.user_edu = data[2];
+            state.user_nation = data[1];
+            state.user_party = data[3];
+            state.user_okrug = data[4];
+            state.user_inst = data[5];
         }
     },
     actions: {
@@ -173,6 +208,15 @@ const userCreds = {
             editOkrug(data)
              .then(res => {
                  dispatch('fetchOkrug');
+             })
+              .catch(err => console.log(err))
+        },
+
+        getUserById({commit},data) {           
+            userById(data)
+             .then(res => {
+                 commit('setUserById',res.data);
+                 
              })
               .catch(err => console.log(err))
         }

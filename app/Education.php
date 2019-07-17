@@ -9,8 +9,8 @@ class Education extends Model
 {
     protected $fillable = ['edu_uz','edu_uz2','edu_ru'];
 
-    public function user() {
-        return $this->hasMany(User::class,'id','education_id');
+    public function profile() {
+        return $this->hasMany(Profile::class,'id','education_id');
     }
 
 }
