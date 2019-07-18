@@ -24,12 +24,13 @@ class ProfileResource extends JsonResource
             'nation' => $this->nation,
             'party' => $this->party,
             'birthplace' => $this->birthplace,
-            'regis_address' => $this->registered_address,
+            'registered_address' => $this->registered_address,
             'actual_address' => $this->actual_address,
             'work_phone' => $this->work_phone,
             'phone' => $this->phone,
-            'mob_phone' => $this->mobile_phone,
-            'created_at' =>$this->created_at
+            'mobile_phone' => $this->mobile_phone,
+            'created_at' =>$this->created_at,
+            'username' => $this->usernames ? new UserNamesResource($this->usernames) : null
         ];
     }
 }

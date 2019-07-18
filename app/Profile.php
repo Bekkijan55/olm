@@ -10,6 +10,7 @@ use App\Okrug;
 use App\Education;
 use App\Nation;
 use App\Institution;
+use App\UserNames;
 
 class Profile extends Model
 {
@@ -20,7 +21,7 @@ class Profile extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
     public function insts() {
-        return $this->belongsToMany(Institution::class,'institution_users');
+        return $this->belongsToMany(Institution::class,'institution_profile');
     }
 
     public function okrug() {
@@ -38,5 +39,9 @@ class Profile extends Model
     public function party() {
         return $this->belongsTo(Party::class,'party_id','id');
     } 
+
+    public function usernames() {
+        return $this->hasOne(UserNames::class);
+    }
 
 }

@@ -40,3 +40,11 @@ export function addUserCreds(data) {
         data
     })
 }
+
+export function viewUsers(data) {
+    return request({
+        url: '/api/view-users',
+        method: 'get',
+        params:data
+    })
+}

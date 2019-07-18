@@ -9,8 +9,8 @@ class Institution extends Model
 {
     protected $fillable = ['inst_uz','inst_uz2','inst_ru'];
 
-    public function userinst() {
-        return $this->belongsToMany(Profile::class,'institution_users');
+    public function profile() {
+        return $this->belongsToMany(Profile::class,'institution_profile');
     }
 
 }

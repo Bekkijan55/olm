@@ -21,9 +21,11 @@ use App\Party;
 use App\Okrug;
 use App\Institution;
 use App\InstitutionProfile;
+use App\UserNames;
 use Image;
 use File;
 use App\Profile;
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
@@ -46,8 +48,7 @@ class UsersController extends Controller
             $user->birthdate = $request->input('birthdate');
         }       
         $user->name = $request->input('name');
-        $user->lastname = $request->input('lastname');
-        $user->surname = $request->input('surname');
+        
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
 
@@ -79,6 +80,12 @@ class UsersController extends Controller
         RoleResource::collection($roles)];
     }
 
+    public function viewUsers(Request $request) {
+        $user = User::findOrFail($request->input('id'));
+        
+        return new UserCredsResource($user);
+    }
+
     public function updateUser(Request $request) {
         // return $request->all();
         $ru = RoleUser::where('user_id',$request->input('id'))->delete();
@@ -103,7 +110,7 @@ class UsersController extends Controller
     }
 
     public function addUserCreds(Request $request) {
-        // return $request->all();  
+        return $request->all();  
         
         $u = User::findOrFail($request->input('id'));
         if($request->input('photo') != null) {
@@ -111,8 +118,7 @@ class UsersController extends Controller
             $u->photo = $photo;
         }
         $u->name=$request->input('name');
-        $u->lastname = $request->input('lastname');
-        $u->surname = $request->input('surname');
+        
         $u->birthdate = $request->input('birthdate');
         $u->email = $request->input('email');
 
@@ -146,8 +152,33 @@ class UsersController extends Controller
         $p->work_phone = $request->input('work_phone');
         $p->phone = $request->input('phone');
         $p->mobile_phone = $request->input('mobile_phone');
+    
 
         $p->save();
+
+        if($request->input('username_id') != null) {
+            $usernames = UserNames::findOrFail($request->input('username_id'));
+            
+        }
+        else { 
+            $usernames = new UserNames;
+            $usernames->profile_id = $p->id;
+        }
+
+        $usernames->firstname_uz = $request->input('firstname_uz');
+        $usernames->firstname_uz2 = $request->input('firstname_uz2');
+        $usernames->firstname_ru = $request->input('firstname_ru');
+
+        $usernames->lastname_uz = $request->input('lastname_uz');
+        $usernames->lastname_uz2 = $request->input('lastname_uz2');
+        $usernames->lastname_ru = $request->input('lastname_ru');
+
+        $usernames->surname_uz = $request->input('surname_uz');
+        $usernames->surname_uz2 = $request->input('surname_uz2');
+        $usernames->surname_ru = $request->input('surname_ru');
+       
+
+        $usernames->save();
 
         foreach($request->input('insts') as $ins) {
             $ip = new InstitutionProfile;

@@ -118,6 +118,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -130,9 +166,16 @@ __webpack_require__.r(__webpack_exports__);
         id: ''
       },
       userCreds: {
-        name: '',
-        lastname: '',
-        surname: '',
+        firstname_uz: '',
+        firstname_uz2: '',
+        firstname_ru: '',
+        lastname_uz: '',
+        lastname_uz2: '',
+        lastname_ru: '',
+        surname_uz: '',
+        surname_uz2: '',
+        surname_ru: '',
+        username_id: '',
         photo: null,
         email: '',
         birthdate: '',
@@ -150,6 +193,7 @@ __webpack_require__.r(__webpack_exports__);
         mobile_phone: '',
         prof_id: ''
       },
+      users: {},
       edus: [],
       parties: [],
       okrugs: [],
@@ -179,14 +223,23 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       Object(_api_users__WEBPACK_IMPORTED_MODULE_3__["userById"])(this.pageId).then(function (res) {
-        Object.assign(_this.userCreds, res.data[0]);
+        Object.assign(_this.userCreds, res.data[0], res.data[0].profile, res.data[0].profile.username);
+        console.log(_this.userCreds);
 
         if (_this.userCreds.profile != null) {
-          _this.userCreds.prof_id = _this.userCreds.profile.id;
-          _this.eduo = _this.userCreds.profile.edu;
-          _this.partyo = _this.userCreds.profile.party;
-          _this.okrugo = _this.userCreds.profile.okrug;
-          _this.nationo = _this.userCreds.profile.nation;
+          var prof = _this.userCreds.profile;
+          _this.userCreds.prof_id = prof.id;
+          _this.eduo = prof.edu;
+          _this.partyo = prof.party;
+          _this.okrugo = prof.okrug;
+          _this.nationo = prof.nation;
+          _this.instsa = prof.insts; //  this.userCreds.actual_address = prof.actual_address;
+          //  this.userCreds.birthplace = prof.birthplace;
+          //  this.userCreds.mobile_phone = prof.mob_phone;
+          //  this.userCreds.phone = prof.phone;
+          //  this.userCreds.registered_address = prof.regis_address;
+          //  this.userCreds.work_phone = prof.work_phone;
+          //  this.userCreds.username_id = prof.username.id;
         }
 
         _this.edus = res.data[2], _this.nations = res.data[1], _this.parties = res.data[3], _this.okrugs = res.data[4], _this.inst = res.data[5], _this.role = res.data[6];
@@ -207,6 +260,7 @@ __webpack_require__.r(__webpack_exports__);
     addCreds: function addCreds() {
       var _this3 = this;
 
+      // Object.seal(this.userCreds,this.userCreds.profile)
       this.userCreds.edu = this.eduo.id;
       this.userCreds.party = this.partyo.id;
       this.userCreds.okrug = this.okrugo.id;
@@ -268,133 +322,290 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "vx-row" }, [
-              _c("div", { staticClass: "vx-col sm:w-2/3 w-full mb-2" }, [
-                _c("div", { staticClass: "vx-row" }, [
+              _c(
+                "div",
+                { staticClass: "vx-col sm:w-2/3 w-full mb-2" },
+                [
                   _c(
-                    "div",
-                    { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                    "vs-tabs",
                     [
-                      _c("vs-input", {
-                        staticClass: "w-full",
-                        attrs: { label: "Firstname", placeholder: "Firstname" },
-                        model: {
-                          value: _vm.userCreds.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.userCreds, "name", $$v)
-                          },
-                          expression: "userCreds.name"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
-                    [
-                      _c("vs-input", {
-                        staticClass: "w-full",
-                        attrs: { label: "Lastname", placeholder: "Lastname" },
-                        model: {
-                          value: _vm.userCreds.lastname,
-                          callback: function($$v) {
-                            _vm.$set(_vm.userCreds, "lastname", $$v)
-                          },
-                          expression: "userCreds.lastname"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "vx-row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
-                    [
-                      _c("vs-input", {
-                        staticClass: "w-full",
-                        attrs: { label: "Surname", placeholder: "Surname" },
-                        model: {
-                          value: _vm.userCreds.surname,
-                          callback: function($$v) {
-                            _vm.$set(_vm.userCreds, "surname", $$v)
-                          },
-                          expression: "userCreds.surname"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
-                    [
-                      _c("vs-input", {
-                        staticClass: "w-full",
-                        attrs: { label: "Email", placeholder: "Email" },
-                        model: {
-                          value: _vm.userCreds.email,
-                          callback: function($$v) {
-                            _vm.$set(_vm.userCreds, "email", $$v)
-                          },
-                          expression: "userCreds.email"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "vx-row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "vx-col sm:w-1/2 w-full mb-2 mt-5" },
-                    [
-                      _c("label", { attrs: { for: "education" } }, [
-                        _vm._v("Education")
+                      _c("vs-tab", { attrs: { label: "Uz" } }, [
+                        _c("div", { staticClass: "vx-row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: { label: "Ism", placeholder: "Ism" },
+                                model: {
+                                  value: _vm.userCreds.firstname_uz,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.userCreds, "firstname_uz", $$v)
+                                  },
+                                  expression: "userCreds.firstname_uz"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: {
+                                  label: "Familiya",
+                                  placeholder: "Familiya"
+                                },
+                                model: {
+                                  value: _vm.userCreds.lastname_uz,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.userCreds, "lastname_uz", $$v)
+                                  },
+                                  expression: "userCreds.lastname_uz"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: {
+                                  label: "Otasini Ismi",
+                                  placeholder: "Otasini Ismi"
+                                },
+                                model: {
+                                  value: _vm.userCreds.surname_uz,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.userCreds, "surname_uz", $$v)
+                                  },
+                                  expression: "userCreds.surname_uz"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c("v-select", {
-                        attrs: { options: _vm.edus, label: "edu_uz" },
-                        model: {
-                          value: _vm.eduo,
-                          callback: function($$v) {
-                            _vm.eduo = $$v
-                          },
-                          expression: "eduo"
-                        }
-                      })
+                      _c("vs-tab", { attrs: { label: "Ru" } }, [
+                        _c("div", { staticClass: "vx-row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: { label: "Имя", placeholder: "Имя" },
+                                model: {
+                                  value: _vm.userCreds.firstname_ru,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.userCreds, "firstname_ru", $$v)
+                                  },
+                                  expression: "userCreds.firstname_ru"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: {
+                                  label: "Фамилия",
+                                  placeholder: "Фамилия"
+                                },
+                                model: {
+                                  value: _vm.userCreds.lastname_ru,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.userCreds, "lastname_ru", $$v)
+                                  },
+                                  expression: "userCreds.lastname_ru"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: {
+                                  label: "отчество",
+                                  placeholder: "отчество"
+                                },
+                                model: {
+                                  value: _vm.userCreds.surname_ru,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.userCreds, "surname_ru", $$v)
+                                  },
+                                  expression: "userCreds.surname_ru"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("vs-tab", { attrs: { label: "kiril" } }, [
+                        _c("div", { staticClass: "vx-row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: { label: "Исм", placeholder: "Исм" },
+                                model: {
+                                  value: _vm.userCreds.firstname_uz2,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.userCreds,
+                                      "firstname_uz2",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "userCreds.firstname_uz2"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: {
+                                  label: "Фамилия",
+                                  placeholder: "Фамилия"
+                                },
+                                model: {
+                                  value: _vm.userCreds.lastname_uz2,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.userCreds, "lastname_uz2", $$v)
+                                  },
+                                  expression: "userCreds.lastname_uz2"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: {
+                                  label: "Отасини исми",
+                                  placeholder: "Отасини исми"
+                                },
+                                model: {
+                                  value: _vm.userCreds.surname_uz2,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.userCreds, "surname_uz2", $$v)
+                                  },
+                                  expression: "userCreds.surname_uz2"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ])
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "vx-col sm:w-1/2 w-full mb-2 mt-5" },
-                    [
-                      _c("label", { attrs: { for: "party" } }, [
-                        _vm._v("Party")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-select", {
-                        attrs: { options: _vm.parties, label: "party_uz" },
-                        model: {
-                          value: _vm.partyo,
-                          callback: function($$v) {
-                            _vm.partyo = $$v
-                          },
-                          expression: "partyo"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ]),
+                  _c("div", { staticClass: "vx-row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "vx-col sm:w-1/2 w-full mb-2" },
+                      [
+                        _c("vs-input", {
+                          staticClass: "w-full",
+                          attrs: { label: "Email", placeholder: "Email" },
+                          model: {
+                            value: _vm.userCreds.email,
+                            callback: function($$v) {
+                              _vm.$set(_vm.userCreds, "email", $$v)
+                            },
+                            expression: "userCreds.email"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "vx-row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "vx-col sm:w-1/2 w-full mb-2 mt-5" },
+                      [
+                        _c("label", { attrs: { for: "education" } }, [
+                          _vm._v("Education")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-select", {
+                          attrs: { options: _vm.edus, label: "edu_uz" },
+                          model: {
+                            value: _vm.eduo,
+                            callback: function($$v) {
+                              _vm.eduo = $$v
+                            },
+                            expression: "eduo"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "vx-col sm:w-1/2 w-full mb-2 mt-5" },
+                      [
+                        _c("label", { attrs: { for: "party" } }, [
+                          _vm._v("Party")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-select", {
+                          attrs: { options: _vm.parties, label: "party_uz" },
+                          model: {
+                            value: _vm.partyo,
+                            callback: function($$v) {
+                              _vm.partyo = $$v
+                            },
+                            expression: "partyo"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "vx-col sm:w-1/3 w-full mb-2 mt-4" }, [
                 _vm.userCreds.photo

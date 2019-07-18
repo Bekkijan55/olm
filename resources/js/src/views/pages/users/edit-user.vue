@@ -4,20 +4,56 @@
         <form @submit.prevent="addCreds">
         <div class="vx-row">
             <div class="vx-col sm:w-2/3 w-full mb-2">
-            <div class="vx-row">
+            <vs-tabs>
+                <vs-tab label="Uz">
+                     <div class="vx-row">
 
              <div class="vx-col sm:w-1/2 w-full mb-2">
-            <vs-input class="w-full" label="Firstname" placeholder="Firstname" v-model="userCreds.name" ></vs-input>
+            <vs-input class="w-full" label="Ism" placeholder="Ism" v-model="userCreds.firstname_uz" ></vs-input>
         </div>
         <div class="vx-col sm:w-1/2 w-full mb-2">
-            <vs-input class="w-full" label="Lastname" placeholder="Lastname" v-model="userCreds.lastname" ></vs-input>
+            <vs-input class="w-full" label="Familiya" placeholder="Familiya" v-model="userCreds.lastname_uz" ></vs-input>
         </div>
+        <div class="vx-col sm:w-1/2 w-full mb-2">
+            <vs-input class="w-full" label="Otasini Ismi" placeholder="Otasini Ismi" v-model="userCreds.surname_uz" ></vs-input>
+        </div>             
+        
         </div>
-        <div class="vx-row">
-            <div class="vx-col sm:w-1/2 w-full mb-2">
-            <vs-input class="w-full" label="Surname" placeholder="Surname" v-model="userCreds.surname" ></vs-input>
+                </vs-tab>
+                <vs-tab label="Ru">
+                   <div class="vx-row">
+                       <div class="vx-col sm:w-1/2 w-full mb-2">
+            <vs-input class="w-full" label="Имя" placeholder="Имя" v-model="userCreds.firstname_ru" ></vs-input>
+        </div>
+            
+        <div class="vx-col sm:w-1/2 w-full mb-2">
+            <vs-input class="w-full" label="Фамилия" placeholder="Фамилия" v-model="userCreds.lastname_ru" ></vs-input>
         </div>
          <div class="vx-col sm:w-1/2 w-full mb-2">
+            <vs-input class="w-full" label="отчество" placeholder="отчество" v-model="userCreds.surname_ru" ></vs-input>
+        </div>
+        </div> 
+                </vs-tab>
+         <vs-tab label="kiril">
+               <div class="vx-row">
+                       <div class="vx-col sm:w-1/2 w-full mb-2">
+            <vs-input class="w-full" label="Исм" placeholder="Исм" v-model="userCreds.firstname_uz2" ></vs-input>
+        </div>
+            
+        <div class="vx-col sm:w-1/2 w-full mb-2">
+            <vs-input class="w-full" label="Фамилия" placeholder="Фамилия" v-model="userCreds.lastname_uz2" ></vs-input>
+        </div>
+         <div class="vx-col sm:w-1/2 w-full mb-2">
+            <vs-input class="w-full" label="Отасини исми" placeholder="Отасини исми" v-model="userCreds.surname_uz2" ></vs-input>
+        </div>
+        </div> 
+                </vs-tab>
+            </vs-tabs>
+           
+        
+      
+        <div class="vx-row">
+            <div class="vx-col sm:w-1/2 w-full mb-2">
             <vs-input class="w-full" label="Email" placeholder="Email" v-model="userCreds.email" ></vs-input>
         </div>
         </div>
@@ -114,11 +150,17 @@ data:() => ({
     },
 
     userCreds: {
-        name:'',
-        lastname: '',
-        surname: '',
-        photo:null,
-       
+        firstname_uz:'',
+        firstname_uz2:'',
+        firstname_ru:'',
+        lastname_uz: '',
+        lastname_uz2:'',
+        lastname_ru:'',
+        surname_uz: '',
+        surname_uz2:'',
+        surname_ru:'',
+        username_id:'',
+        photo:null,       
         email:'',
         birthdate:'',
         roles:[],
@@ -135,6 +177,7 @@ data:() => ({
         mobile_phone:'',
         prof_id:''
     },
+    users:{},
     edus:[],
     parties:[],
     okrugs:[],
@@ -168,15 +211,24 @@ methods: {
      
        userById(this.pageId)
          .then(res => {
-             Object.assign(this.userCreds,res.data[0]);
+             Object.assign(this.userCreds,res.data[0],res.data[0].profile,res.data[0].profile.username);
+            console.log(this.userCreds)
              
              if(this.userCreds.profile != null) {
-                 this.userCreds.prof_id = this.userCreds.profile.id;
-                 this.eduo = this.userCreds.profile.edu;
-                 this.partyo = this.userCreds.profile.party;
-                 this.okrugo = this.userCreds.profile.okrug;
-                 this.nationo = this.userCreds.profile.nation;
-                 
+                 let prof = this.userCreds.profile;
+                 this.userCreds.prof_id = prof.id;
+                 this.eduo = prof.edu;
+                 this.partyo = prof.party;
+                 this.okrugo = prof.okrug;
+                 this.nationo = prof.nation;
+                 this.instsa = prof.insts;
+                //  this.userCreds.actual_address = prof.actual_address;
+                //  this.userCreds.birthplace = prof.birthplace;
+                //  this.userCreds.mobile_phone = prof.mob_phone;
+                //  this.userCreds.phone = prof.phone;
+                //  this.userCreds.registered_address = prof.regis_address;
+                //  this.userCreds.work_phone = prof.work_phone;
+                //  this.userCreds.username_id = prof.username.id;
              }
              
              this.edus = res.data[2],
@@ -201,6 +253,7 @@ methods: {
       },
 
       addCreds() {
+            // Object.seal(this.userCreds,this.userCreds.profile)
              this.userCreds.edu = this.eduo.id;
              this.userCreds.party = this.partyo.id;
              this.userCreds.okrug = this.okrugo.id;

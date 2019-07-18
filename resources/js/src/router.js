@@ -68,6 +68,21 @@ const router = new Router({
                     component: () => import('./views/pages/users/edit-user.vue')
                 },
                 {
+                    path: '/users/view/:id',
+                    name: 'viewUser',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'View',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/users/view-user.vue')
+                },
+                {
                     path: '/contacts',
                     name: 'contacts',
                     meta: {

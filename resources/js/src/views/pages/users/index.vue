@@ -141,7 +141,9 @@
               </router-link>   
               </div> 
               <div class="vx-col w-1/2">
+              <router-link :to="{name:'viewUser',params:{id:val.id}}" >
                   <vs-button color="primary" type="filled" icon-pack="feather" icon="icon-eye" ></vs-button>
+              </router-link>
                 </div>
               </div>  
                     

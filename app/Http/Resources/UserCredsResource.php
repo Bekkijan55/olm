@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class UserCredsResource extends JsonResource
 {
@@ -19,7 +20,7 @@ class UserCredsResource extends JsonResource
         return [
             'id' => $this->id,
             'photo' => $this->photo,           
-            'profile' => $this->profile,
+            'profile' => $this->profile ? new ProfileResource($this->profile) : null,
             'name' => $this->name,
             'lastname' => $this->lastname,
             'surname' => $this->surname,

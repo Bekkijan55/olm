@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api','return-json'],function () {
     Route::post('add-user','Api\UsersController@addUser');
     Route::post('add-usercreds','Api\UsersController@addUserCreds');
     Route::get('user-id','Api\UsersController@getById');
+    Route::get('view-users','Api\UsersController@viewUsers');
     Route::post('add-contact','ContactController@store');
     Route::get('get-contacts','ContactController@getContacts');
     Route::post('update-user','Api\UsersController@updateUser');
