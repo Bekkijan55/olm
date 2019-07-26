@@ -14,7 +14,8 @@ const user = {
         username: '',
         email: '',
         token: getToken(),
-        roles: []
+        roles: [],
+        photo: ''
     },
     getters: {
         token: state => {
@@ -28,6 +29,9 @@ const user = {
         },
         roles: state => {
             return state.roles;
+        },
+        photo: state => {
+            return state.photo;
         }
     },
     mutations: {
@@ -42,6 +46,9 @@ const user = {
         },
         SET_ROLES: (state, roles) => {
             state.roles = roles;
+        },
+        SET_PHOTO: (state, photo) => {
+            state.photo = photo;
         }
     },
     actions: {
@@ -73,6 +80,7 @@ const user = {
                 commit('SET_NAME', name)
                 commit('SET_EMAIL', response.data.data.email)
                 commit('SET_ROLES', response.data.data.roles)
+                commit('SET_PHOTO',response.data.data.photo)
             })
         },
         FedLogOut({

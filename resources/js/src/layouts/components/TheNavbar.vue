@@ -46,28 +46,28 @@
 					</vs-dropdown>
 				</div>
 
-				<div class="bookmark-container">
+				<!-- <div class="bookmark-container">
 					<feather-icon icon="StarIcon" :svgClasses="['stoke-current text-warning', {'text-white': navbarColor != '#fff'}]" class="cursor-pointer p-2" @click.stop="showBookmarkPagesDropdown = !showBookmarkPagesDropdown" />
                     <div v-click-outside="outside" class="absolute bookmark-list w-1/3 xl:w-1/4 mt-4" v-if="showBookmarkPagesDropdown">
 					<vx-auto-suggest :autoFocus="true" :data="navbarSearchAndPinList" @selected="selected" @actionClicked="actionClicked" inputClassses="w-full" show-action show-pinned background-overlay></vx-auto-suggest>
 					</div>
-				</div>
+				</div> -->
 			</template>
 
 
 			<vs-spacer></vs-spacer>
 
             <!-- SEARCHBAR -->
-            <div class="search-full-container w-full h-full absolute left-0 rounded-lg" :class="{'flex': showFullSearch}" v-show="showFullSearch">
+            <!-- <div class="search-full-container w-full h-full absolute left-0 rounded-lg" :class="{'flex': showFullSearch}" v-show="showFullSearch">
                 <vx-auto-suggest :autoFocus="showFullSearch" :data="navbarSearchAndPinList" @selected="selected" ref="navbarSearch" @closeSearchbar="showFullSearch = false" placeholder="Search..." class="w-full" inputClassses="w-full vs-input-no-border vs-input-no-shdow-focus no-icon-border" icon="SearchIcon" background-overlay></vx-auto-suggest>
                 <div class="absolute right-0 h-full z-50">
                     <feather-icon icon="XIcon" class="px-4 cursor-pointer h-full close-search-icon" @click="showFullSearch = false"></feather-icon>
                 </div>
             </div>
-            <feather-icon icon="SearchIcon" @click="showFullSearch = true" class="cursor-pointer navbar-fuzzy-search ml-4"></feather-icon>
+            <feather-icon icon="SearchIcon" @click="showFullSearch = true" class="cursor-pointer navbar-fuzzy-search ml-4"></feather-icon> -->
 
 			<!-- NOTIFICATIONS -->
-			<vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer ml-4">
+			<!-- <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer ml-4">
 				<feather-icon icon="BellIcon" class="cursor-pointer mt-1 sm:mr-6 mr-2" :badge="unreadNotifications.length"></feather-icon>
 				<vs-dropdown-menu class="notification-dropdown dropdown-custom vx-navbar-dropdown">
 
@@ -110,7 +110,7 @@
                         <span>View All Notifications</span>
                     </div>
 				</vs-dropdown-menu>
-			</vs-dropdown>
+			</vs-dropdown> -->
 
 			<!-- USER META -->
 			<div class="the-navbar__user-meta flex items-center">
@@ -119,7 +119,9 @@
 					<small>Available</small>
 				</div>
 				<vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
-					<div class="con-img ml-3"><img src="../../../../assets/images/portrait/small/avatar-s-11.png" alt="" width="40" height="40" class="rounded-full shadow-md cursor-pointer block"></div>
+					<div class="con-img ml-3"><img v-if="photo != null" :src="photo" alt="" width="40" height="40" class="rounded-full shadow-md cursor-pointer block">
+                                    <img v-else src="../../../../../public/uploads/Nophoto.jpg" alt="" width="40" height="40" class="rounded-full shadow-md cursor-pointer block">
+                    </div>
 					<vs-dropdown-menu class="vx-navbar-dropdown">
 						<ul style="min-width: 9rem">
 							<li class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white" @click="$router.push('/pages/profile')"><feather-icon icon="UserIcon" svgClasses="w-4 h-4"></feather-icon> <span class="ml-2">Profile</span></li>
@@ -154,7 +156,7 @@ export default {
     },
     data() {
         return {
-            username:'',
+            
             navbarSearchAndPinList: this.$store.state.navbarSearchAndPinList,
             searchQuery: '',
             showFullSearch: false,
@@ -179,7 +181,7 @@ export default {
         }
     },
     mounted() {
-          this.username = this.$store.getters.username;
+        //   this.username = this.$store.getters.username;
         },
     
     computed: {
@@ -190,6 +192,7 @@ export default {
         breakpoint() {
             return this.$store.state.breakpoint;
         },
+        ...mapGetters(['username','photo']),
        
         // NAVBAR STYLE
         classObj() {

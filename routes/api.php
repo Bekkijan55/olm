@@ -46,6 +46,15 @@ Route::group(['middleware' => 'auth:api','return-json'],function () {
     Route::get('get-okrug','OkrugController@getOkrug');
     Route::post('add-okrug','OkrugController@addOkrug');
     Route::put('update-okrug','OkrugController@updateOkrug');
+    Route::get('get-knowledge','KnowledgeBaseCategoryController@getKnowledge');
+    Route::post('add-knowledge','KnowledgeBaseCategoryController@addKnowledge');
+    Route::put('edit-knowledge','KnowledgeBaseCategoryController@updateKnow');
+    Route::get('get-categories','KnowledgeBaseCategoryController@getCategories');
+    Route::post('add-category','KnowledgeBaseCategoryController@addCategory');
+    Route::post('add-cat-item','KnowledgeBaseCategoryController@addCatItem');
+    Route::get('get-item-page','KnowledgeBaseCategoryController@getItemPage');
+    Route::get('get-edit-item','KnowledgeBaseCategoryController@getEditItem');
+    Route::put('update-item','KnowledgeBaseCategoryController@updateItem');
     
 });
 

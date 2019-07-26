@@ -59756,6 +59756,91 @@ function updateInst(data) {
 
 /***/ }),
 
+/***/ "./resources/api/knowledge.js":
+/*!************************************!*\
+  !*** ./resources/api/knowledge.js ***!
+  \************************************/
+/*! exports provided: getKnowledge, addKnowledge, getCategories, addCategory, editKnow, addItem, getItemPage, updateItem, editItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getKnowledge", function() { return getKnowledge; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addKnowledge", function() { return addKnowledge; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCategories", function() { return getCategories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addCategory", function() { return addCategory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editKnow", function() { return editKnow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addItem", function() { return addItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getItemPage", function() { return getItemPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateItem", function() { return updateItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editItem", function() { return editItem; });
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/utils/request.js");
+
+function getKnowledge() {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-knowledge',
+    method: 'get'
+  });
+}
+function addKnowledge(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/add-knowledge',
+    method: 'post',
+    data: data
+  });
+}
+function getCategories(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-categories',
+    method: 'get',
+    params: data
+  });
+}
+function addCategory(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/add-category',
+    method: 'post',
+    data: data
+  });
+}
+function editKnow(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/edit-knowledge',
+    method: 'put',
+    data: data
+  });
+}
+function addItem(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/add-cat-item',
+    method: 'post',
+    data: data
+  });
+}
+function getItemPage(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-item-page',
+    method: 'get',
+    params: data
+  });
+}
+function updateItem(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/get-edit-item',
+    method: 'get',
+    params: data
+  });
+}
+function editItem(data) {
+  return Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    url: '/api/update-item',
+    method: 'put',
+    data: data
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/api/nations.js":
 /*!**********************************!*\
   !*** ./resources/api/nations.js ***!
@@ -61108,7 +61193,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     // =============================================================================
     path: '',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/js/src/layouts/main/Main.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/js/src/layouts/main/Main.vue"));
     },
     children: [// =============================================================================
     // Theme Routes
@@ -61117,7 +61202,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/',
       name: 'home',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
+        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/src/views/Home.vue"));
       }
     }, // {
     //     path: '/page2',
@@ -61128,7 +61213,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/users',
       name: 'users',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./views/pages/users/index.vue */ "./resources/js/src/views/pages/users/index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, /*! ./views/pages/users/index.vue */ "./resources/js/src/views/pages/users/index.vue"));
       }
     }, {
       path: '/users/edit/:id',
@@ -61143,7 +61228,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/pages/users/edit-user.vue */ "./resources/js/src/views/pages/users/edit-user.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, /*! ./views/pages/users/edit-user.vue */ "./resources/js/src/views/pages/users/edit-user.vue"));
       }
     }, {
       path: '/users/view/:id',
@@ -61158,7 +61243,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/pages/users/view-user.vue */ "./resources/js/src/views/pages/users/view-user.vue"));
+        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ./views/pages/users/view-user.vue */ "./resources/js/src/views/pages/users/view-user.vue"));
       }
     }, {
       path: '/contacts',
@@ -61173,7 +61258,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/pages/contacts/index.vue */ "./resources/js/src/views/pages/contacts/index.vue"));
       }
     }, {
       path: '/nationalities',
@@ -61188,7 +61273,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/pages/nationality/index.vue */ "./resources/js/src/views/pages/nationality/index.vue"));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/pages/nationality/index.vue */ "./resources/js/src/views/pages/nationality/index.vue"));
       }
     }, {
       path: '/education',
@@ -61203,7 +61288,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/pages/education/index.vue */ "./resources/js/src/views/pages/education/index.vue"));
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/pages/education/index.vue */ "./resources/js/src/views/pages/education/index.vue"));
       }
     }, {
       path: '/parties',
@@ -61218,7 +61303,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/pages/parties/index.vue */ "./resources/js/src/views/pages/parties/index.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/pages/parties/index.vue */ "./resources/js/src/views/pages/parties/index.vue"));
       }
     }, {
       path: '/institution',
@@ -61233,7 +61318,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/pages/insts/index.vue */ "./resources/js/src/views/pages/insts/index.vue"));
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/pages/insts/index.vue */ "./resources/js/src/views/pages/insts/index.vue"));
       }
     }, {
       path: '/okrug',
@@ -61248,7 +61333,134 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }]
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/pages/okruk/index.vue */ "./resources/js/src/views/pages/okruk/index.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/pages/okruk/index.vue */ "./resources/js/src/views/pages/okruk/index.vue"));
+      }
+    }, {
+      path: '/knowledge',
+      name: 'Knowledge',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Knowledge',
+          active: true
+        }],
+        Adding: {
+          title: 'Add KB',
+          url: '/add-knowledge'
+        }
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/pages/knowledge/index.vue */ "./resources/js/src/views/pages/knowledge/index.vue"));
+      }
+    }, {
+      path: '/add-knowledge',
+      name: 'AddKnowledge',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Add Knowledge',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./views/pages/knowledge/add-kb.vue */ "./resources/js/src/views/pages/knowledge/add-kb.vue"));
+      }
+    }, {
+      path: '/knowledge/category/:id',
+      name: 'KnowledgeCategory',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Knowledge',
+          url: '/knowledge'
+        }, {
+          title: 'Category',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/pages/knowledge/category.vue */ "./resources/js/src/views/pages/knowledge/category.vue"));
+      }
+    }, {
+      path: '/knowledge/category/item/:id',
+      name: 'KnowledgeCategoryItem',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Knowledge',
+          url: '/knowledge'
+        }, {
+          title: 'CategoryItem',
+          active: true
+        }]
+      },
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./views/pages/knowledge/category-item.vue */ "./resources/js/src/views/pages/knowledge/category-item.vue"));
+      }
+    }, {
+      path: '/knowledge/items/:cat_id/:id',
+      name: 'catItems',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Knowledge',
+          url: '/knowledge'
+        }, {
+          title: 'Items',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./views/pages/knowledge/items.vue */ "./resources/js/src/views/pages/knowledge/items.vue"));
+      }
+    }, {
+      path: '/knowledge/item/edit/:id',
+      name: 'editItem',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Knowledge',
+          url: '/knowledge'
+        }, {
+          title: 'EditItems',
+          active: true
+        }]
+      },
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./views/pages/knowledge/edit-item.vue */ "./resources/js/src/views/pages/knowledge/edit-item.vue"));
+      }
+    }, {
+      path: '/add-kb-category/:id',
+      name: 'AddKbCategory',
+      meta: {
+        breadcrumb: [{
+          title: 'Home',
+          url: '/'
+        }, {
+          title: 'Knowledge',
+          url: '/knowledge'
+        }, {
+          title: 'category',
+          url: '/knowledge/category/:id'
+        }, {
+          title: 'Add Category',
+          active: true
+        }]
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/pages/knowledge/add-kb-category.vue */ "./resources/js/src/views/pages/knowledge/add-kb-category.vue"));
       }
     }]
   }, // =============================================================================
@@ -61257,7 +61469,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   {
     path: '',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @/layouts/full-page/FullPage.vue */ "./resources/js/src/layouts/full-page/FullPage.vue"));
     },
     children: [// =============================================================================
     // PAGES
@@ -61266,19 +61478,19 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/pages/login',
       name: 'pageLogin',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/views/pages/Login.vue */ "./resources/js/src/views/pages/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @/views/pages/Login.vue */ "./resources/js/src/views/pages/Login.vue"));
       }
     }, {
       path: '/pages/error-404',
       name: 'pageError404',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
+        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @/views/pages/Error404.vue */ "./resources/js/src/views/pages/Error404.vue"));
       }
     }, {
       path: '/login',
       name: 'login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/authentication/Login.vue */ "./resources/js/src/views/authentication/Login.vue"));
       }
     }]
   }, // Redirect to 404 page, if no match found
@@ -61376,7 +61588,8 @@ var user = {
     username: '',
     email: '',
     token: Object(_utils_auth__WEBPACK_IMPORTED_MODULE_0__["getToken"])(),
-    roles: []
+    roles: [],
+    photo: ''
   },
   getters: {
     token: function token(state) {
@@ -61390,6 +61603,9 @@ var user = {
     },
     roles: function roles(state) {
       return state.roles;
+    },
+    photo: function photo(state) {
+      return state.photo;
     }
   },
   mutations: {
@@ -61404,6 +61620,9 @@ var user = {
     },
     SET_ROLES: function SET_ROLES(state, roles) {
       state.roles = roles;
+    },
+    SET_PHOTO: function SET_PHOTO(state, photo) {
+      state.photo = photo;
     }
   },
   actions: {
@@ -61436,6 +61655,7 @@ var user = {
         commit('SET_NAME', name);
         commit('SET_EMAIL', response.data.data.email);
         commit('SET_ROLES', response.data.data.roles);
+        commit('SET_PHOTO', response.data.data.photo);
       });
     },
     FedLogOut: function FedLogOut(_ref3) {
@@ -61473,6 +61693,133 @@ var getters = {// COMPONENT
   // starredPages: state => state.navbarSearchAndPinList.data.filter((page) => page.highlightAction),
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
+
+/***/ }),
+
+/***/ "./resources/js/src/store/knowledge-base/index.js":
+/*!********************************************************!*\
+  !*** ./resources/js/src/store/knowledge-base/index.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api_knowledge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../api/knowledge */ "./resources/api/knowledge.js");
+
+var knowledgeBase = {
+  state: {
+    knowleds: [],
+    categories: [],
+    catKnow: {},
+    knowItems: [],
+    catName: {},
+    item: {},
+    items: []
+  },
+  getters: {
+    kb: function kb(state) {
+      return state.knowleds;
+    },
+    categories: function categories(state) {
+      return state.categories;
+    },
+    catKnow: function catKnow(state) {
+      return state.catKnow;
+    },
+    item: function item(state) {
+      return state.item;
+    },
+    items: function items(state) {
+      return state.items;
+    }
+  },
+  mutations: {
+    SET_KNOWLEDGES: function SET_KNOWLEDGES(state, knowledges) {
+      state.knowleds = knowledges;
+    },
+    ADD_KNOWLEDGE: function ADD_KNOWLEDGE(state, data) {
+      state.knowledges.push(data);
+    },
+    getCategory: function getCategory(state, data) {
+      state.categories = data;
+    },
+    setCategory: function setCategory(state, data) {
+      state.categories.push(data);
+    },
+    setCatKnow: function setCatKnow(state, data) {
+      state.catKnow = data;
+    },
+    setItem: function setItem(state, data) {
+      state.item = data;
+    },
+    setItems: function setItems(state, data) {
+      state.items = data;
+    }
+  },
+  actions: {
+    fetchKnowledges: function fetchKnowledges(_ref) {
+      var commit = _ref.commit;
+      Object(_api_knowledge__WEBPACK_IMPORTED_MODULE_0__["getKnowledge"])().then(function (res) {
+        commit('SET_KNOWLEDGES', res.data.data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    addKB: function addKB(_ref2, data) {
+      var commit = _ref2.commit;
+      Object(_api_knowledge__WEBPACK_IMPORTED_MODULE_0__["addKnowledge"])(data).then(function (res) {
+        commit('ADD_KNOWLEDGE', res.data.data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    fetchCategories: function fetchCategories(_ref3, data) {
+      var commit = _ref3.commit;
+      Object(_api_knowledge__WEBPACK_IMPORTED_MODULE_0__["getCategories"])(data).then(function (res) {
+        commit('getCategory', res.data[0]);
+        commit('setCatKnow', res.data[1]);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    addCategory: function addCategory(_ref4, data) {
+      var commit = _ref4.commit;
+
+      Object(_api_knowledge__WEBPACK_IMPORTED_MODULE_0__["addCategory"])(data).then(function (res) {
+        commit('setCategory', res.data.data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    updateKnow: function updateKnow(_ref5, data) {
+      var dispatch = _ref5.dispatch;
+      Object(_api_knowledge__WEBPACK_IMPORTED_MODULE_0__["editKnow"])(data).then(function (res) {
+        dispatch('fetchCategories', {
+          id: data.id
+        });
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    addNewItem: function addNewItem(_ref6, data) {
+      var commit = _ref6.commit;
+      Object(_api_knowledge__WEBPACK_IMPORTED_MODULE_0__["addItem"])(data).then(function (res) {})["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    getItem: function getItem(_ref7, data) {
+      var commit = _ref7.commit;
+      Object(_api_knowledge__WEBPACK_IMPORTED_MODULE_0__["getItemPage"])(data).then(function (res) {
+        commit('setItem', res.data[0]);
+        commit('setItems', res.data[1]);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (knowledgeBase);
 
 /***/ }),
 
@@ -61641,10 +61988,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _auth_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth/index */ "./resources/js/src/store/auth/index.js");
 /* harmony import */ var _user_creds_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-creds/index */ "./resources/js/src/store/user-creds/index.js");
-/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./state */ "./resources/js/src/store/state.js");
-/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getters */ "./resources/js/src/store/getters.js");
-/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mutations */ "./resources/js/src/store/mutations.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./actions */ "./resources/js/src/store/actions.js");
+/* harmony import */ var _knowledge_base_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./knowledge-base/index */ "./resources/js/src/store/knowledge-base/index.js");
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./state */ "./resources/js/src/store/state.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./getters */ "./resources/js/src/store/getters.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mutations */ "./resources/js/src/store/mutations.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions */ "./resources/js/src/store/actions.js");
 /*=========================================================================================
   File Name: store.js
   Description: Vuex store
@@ -61661,16 +62009,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     user: _auth_index__WEBPACK_IMPORTED_MODULE_2__["default"],
-    userCreds: _user_creds_index__WEBPACK_IMPORTED_MODULE_3__["default"]
+    userCreds: _user_creds_index__WEBPACK_IMPORTED_MODULE_3__["default"],
+    knowledgeBase: _knowledge_base_index__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  getters: _getters__WEBPACK_IMPORTED_MODULE_5__["default"],
-  mutations: _mutations__WEBPACK_IMPORTED_MODULE_6__["default"],
-  state: _state__WEBPACK_IMPORTED_MODULE_4__["default"],
-  actions: _actions__WEBPACK_IMPORTED_MODULE_7__["default"],
+  getters: _getters__WEBPACK_IMPORTED_MODULE_6__["default"],
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_7__["default"],
+  state: _state__WEBPACK_IMPORTED_MODULE_5__["default"],
+  actions: _actions__WEBPACK_IMPORTED_MODULE_8__["default"],
   strict: "development" !== 'production'
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);

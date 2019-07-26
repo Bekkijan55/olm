@@ -13,6 +13,7 @@ import Vuex from 'vuex'
 
 import user from './auth/index'
 import userCreds from './user-creds/index'
+import knowledgeBase from './knowledge-base/index'
 
 import state from "./state"
 import getters from "./getters"
@@ -25,7 +26,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   modules: {
     user,
-    userCreds
+    userCreds,
+    knowledgeBase
   },
     getters,
     mutations,

@@ -264,6 +264,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.common.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
 //
 //
 //
@@ -418,7 +424,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      username: '',
       navbarSearchAndPinList: this.$store.state.navbarSearchAndPinList,
       searchQuery: '',
       showFullSearch: false,
@@ -472,17 +477,17 @@ __webpack_require__.r(__webpack_exports__);
       if (this.showBookmarkPagesDropdown) this.showBookmarkPagesDropdown = false;
     }
   },
-  mounted: function mounted() {
-    this.username = this.$store.getters.username;
+  mounted: function mounted() {//   this.username = this.$store.getters.username;
   },
-  computed: {
+  computed: _objectSpread({
     // HELPER
     sidebarWidth: function sidebarWidth() {
       return this.$store.state.sidebarWidth;
     },
     breakpoint: function breakpoint() {
       return this.$store.state.breakpoint;
-    },
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(['username', 'photo']), {
     // NAVBAR STYLE
     classObj: function classObj() {
       if (this.sidebarWidth == "default") return "navbar-default";else if (this.sidebarWidth == "reduced") return "navbar-reduced";else if (this.sidebarWidth) return "navbar-full";
@@ -510,7 +515,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$store.dispatch('arrangeStarredPagesMore', list);
       }
     }
-  },
+  }),
   methods: {
     LoggingOut: function LoggingOut() {
       var _this = this;
@@ -1373,6 +1378,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1831,45 +1843,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "footer",
-    { staticClass: "the-footer flex-wrap justify-between", class: _vm.classes },
-    [
-      _c("span", [
-        _vm._v("COPYRIGHT @ " + _vm._s(new Date().getFullYear()) + " "),
-        _c(
-          "a",
-          {
-            attrs: {
-              href:
-                "https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent",
-              target: "_blank",
-              rel: "nofollow"
-            }
-          },
-          [_vm._v("Pixinvent")]
-        ),
-        _vm._v(", All rights Reserved")
-      ]),
-      _vm._v(" "),
-      _c(
-        "span",
-        { staticClass: "md:flex hidden items-center" },
-        [
-          _c("span", [_vm._v("Hand-crafted & Made with")]),
-          _vm._v(" "),
-          _c("feather-icon", {
-            staticClass: "ml-2",
-            attrs: {
-              icon: "HeartIcon",
-              svgClasses: "stroke-current text-danger w-6 h-6"
-            }
-          })
-        ],
-        1
-      )
-    ]
-  )
+  return _c("footer", {
+    staticClass: "the-footer flex-wrap justify-between",
+    class: _vm.classes
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2068,258 +2045,11 @@ var render = function() {
                         ],
                         1
                       )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "bookmark-container" },
-                    [
-                      _c("feather-icon", {
-                        staticClass: "cursor-pointer p-2",
-                        attrs: {
-                          icon: "StarIcon",
-                          svgClasses: [
-                            "stoke-current text-warning",
-                            { "text-white": _vm.navbarColor != "#fff" }
-                          ]
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.stopPropagation()
-                            _vm.showBookmarkPagesDropdown = !_vm.showBookmarkPagesDropdown
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.showBookmarkPagesDropdown
-                        ? _c(
-                            "div",
-                            {
-                              directives: [
-                                {
-                                  name: "click-outside",
-                                  rawName: "v-click-outside",
-                                  value: _vm.outside,
-                                  expression: "outside"
-                                }
-                              ],
-                              staticClass:
-                                "absolute bookmark-list w-1/3 xl:w-1/4 mt-4"
-                            },
-                            [
-                              _c("vx-auto-suggest", {
-                                attrs: {
-                                  autoFocus: true,
-                                  data: _vm.navbarSearchAndPinList,
-                                  inputClassses: "w-full",
-                                  "show-action": "",
-                                  "show-pinned": "",
-                                  "background-overlay": ""
-                                },
-                                on: {
-                                  selected: _vm.selected,
-                                  actionClicked: _vm.actionClicked
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    ],
-                    1
-                  )
+                    : _vm._e()
                 ]
               : _vm._e(),
             _vm._v(" "),
             _c("vs-spacer"),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.showFullSearch,
-                    expression: "showFullSearch"
-                  }
-                ],
-                staticClass:
-                  "search-full-container w-full h-full absolute left-0 rounded-lg",
-                class: { flex: _vm.showFullSearch }
-              },
-              [
-                _c("vx-auto-suggest", {
-                  ref: "navbarSearch",
-                  staticClass: "w-full",
-                  attrs: {
-                    autoFocus: _vm.showFullSearch,
-                    data: _vm.navbarSearchAndPinList,
-                    placeholder: "Search...",
-                    inputClassses:
-                      "w-full vs-input-no-border vs-input-no-shdow-focus no-icon-border",
-                    icon: "SearchIcon",
-                    "background-overlay": ""
-                  },
-                  on: {
-                    selected: _vm.selected,
-                    closeSearchbar: function($event) {
-                      _vm.showFullSearch = false
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "absolute right-0 h-full z-50" },
-                  [
-                    _c("feather-icon", {
-                      staticClass:
-                        "px-4 cursor-pointer h-full close-search-icon",
-                      attrs: { icon: "XIcon" },
-                      on: {
-                        click: function($event) {
-                          _vm.showFullSearch = false
-                        }
-                      }
-                    })
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("feather-icon", {
-              staticClass: "cursor-pointer navbar-fuzzy-search ml-4",
-              attrs: { icon: "SearchIcon" },
-              on: {
-                click: function($event) {
-                  _vm.showFullSearch = true
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "vs-dropdown",
-              {
-                staticClass: "cursor-pointer ml-4",
-                attrs: { "vs-custom-content": "", "vs-trigger-click": "" }
-              },
-              [
-                _c("feather-icon", {
-                  staticClass: "cursor-pointer mt-1 sm:mr-6 mr-2",
-                  attrs: {
-                    icon: "BellIcon",
-                    badge: _vm.unreadNotifications.length
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "vs-dropdown-menu",
-                  {
-                    staticClass:
-                      "notification-dropdown dropdown-custom vx-navbar-dropdown"
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "notification-top text-center p-5 bg-primary text-white"
-                      },
-                      [
-                        _c("h3", { staticClass: "text-white" }, [
-                          _vm._v(
-                            _vm._s(_vm.unreadNotifications.length) + " New"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "opacity-75" }, [
-                          _vm._v("App Notifications")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "VuePerfectScrollbar",
-                      {
-                        ref: "mainSidebarPs",
-                        staticClass:
-                          "scroll-area--nofications-dropdown p-0 mb-10",
-                        attrs: { settings: _vm.settings }
-                      },
-                      [
-                        _c(
-                          "ul",
-                          { staticClass: "bordered-items" },
-                          _vm._l(_vm.unreadNotifications, function(ntf) {
-                            return _c(
-                              "li",
-                              {
-                                key: ntf.index,
-                                staticClass:
-                                  "flex justify-between px-4 py-4 notification cursor-pointer"
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "flex items-start" },
-                                  [
-                                    _c("feather-icon", {
-                                      attrs: {
-                                        icon: ntf.icon,
-                                        svgClasses: [
-                                          "text-" + ntf.category,
-                                          "stroke-current mr-1 h-6 w-6"
-                                        ]
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "mx-2" }, [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "font-medium block notification-title",
-                                          class: ["text-" + ntf.category]
-                                        },
-                                        [_vm._v(_vm._s(ntf.title))]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("small", [_vm._v(_vm._s(ntf.msg))])
-                                    ])
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "small",
-                                  { staticClass: "mt-1 whitespace-no-wrap" },
-                                  [_vm._v(_vm._s(_vm.elapsedTime(ntf.time)))]
-                                )
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "\r\n                        checkout-footer\r\n                        fixed\r\n                        bottom-0\r\n                        rounded-b-lg\r\n                        text-primary\r\n                        w-full\r\n                        p-2\r\n                        font-semibold\r\n                        text-center\r\n                        border\r\n                        border-b-0\r\n                        border-l-0\r\n                        border-r-0\r\n                        border-solid\r\n                        d-theme-border-grey-light\r\n                        cursor-pointer"
-                      },
-                      [_c("span", [_vm._v("View All Notifications")])]
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
             _vm._v(" "),
             _c(
               "div",
@@ -2345,16 +2075,27 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "con-img ml-3" }, [
-                      _c("img", {
-                        staticClass:
-                          "rounded-full shadow-md cursor-pointer block",
-                        attrs: {
-                          src: __webpack_require__(/*! ../../../../assets/images/portrait/small/avatar-s-11.png */ "./resources/assets/images/portrait/small/avatar-s-11.png"),
-                          alt: "",
-                          width: "40",
-                          height: "40"
-                        }
-                      })
+                      _vm.photo != null
+                        ? _c("img", {
+                            staticClass:
+                              "rounded-full shadow-md cursor-pointer block",
+                            attrs: {
+                              src: _vm.photo,
+                              alt: "",
+                              width: "40",
+                              height: "40"
+                            }
+                          })
+                        : _c("img", {
+                            staticClass:
+                              "rounded-full shadow-md cursor-pointer block",
+                            attrs: {
+                              src: __webpack_require__(/*! ../../../../../public/uploads/Nophoto.jpg */ "./public/uploads/Nophoto.jpg"),
+                              alt: "",
+                              width: "40",
+                              height: "40"
+                            }
+                          })
                     ]),
                     _vm._v(" "),
                     _c(
@@ -3164,118 +2905,50 @@ var render = function() {
                                     })
                                   : _vm._e(),
                                 _vm._v(" "),
-                                _c(
-                                  "vs-dropdown",
-                                  {
-                                    staticClass:
-                                      "ml-auto md:block hidden cursor-pointer",
-                                    attrs: { "vs-trigger-click": "" }
-                                  },
-                                  [
-                                    _c("vs-button", {
-                                      attrs: {
-                                        radius: "",
-                                        icon: "icon-settings",
-                                        "icon-pack": "feather"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "vs-dropdown-menu",
-                                      { staticClass: "w-32" },
+                                _vm.$route.meta.Adding
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "ml-auto md:block hidden cursor-pointer"
+                                      },
                                       [
-                                        _c("vs-dropdown-item", [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "flex items-center",
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.$router.push(
-                                                    "/pages/profile"
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("feather-icon", {
-                                                staticClass:
-                                                  "inline-block mr-2",
-                                                attrs: {
-                                                  icon: "UserIcon",
-                                                  svgClasses: "w-4 h-4"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("span", [_vm._v("Profile")])
-                                            ],
-                                            1
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("vs-dropdown-item", [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "flex items-center",
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.$router.push(
-                                                    "/apps/todo"
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("feather-icon", {
-                                                staticClass:
-                                                  "inline-block mr-2",
-                                                attrs: {
-                                                  icon: "CheckSquareIcon",
-                                                  svgClasses: "w-4 h-4"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("span", [_vm._v("Tasks")])
-                                            ],
-                                            1
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("vs-dropdown-item", [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "flex items-center",
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.$router.push(
-                                                    "/apps/email"
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("feather-icon", {
-                                                staticClass:
-                                                  "inline-block mr-2",
-                                                attrs: {
-                                                  icon: "MailIcon",
-                                                  svgClasses: "w-4 h-4"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("span", [_vm._v("Inbox")])
-                                            ],
-                                            1
-                                          )
-                                        ])
+                                        _c(
+                                          "router-link",
+                                          {
+                                            attrs: {
+                                              to: _vm.$route.meta.Adding.url
+                                            }
+                                          },
+                                          [
+                                            _vm.$route.meta.Adding
+                                              ? _c(
+                                                  "vs-button",
+                                                  {
+                                                    attrs: {
+                                                      color: "primary",
+                                                      size: "middle",
+                                                      "icon-pack": "feather",
+                                                      icon: "icon-plus"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.$route.meta.Adding
+                                                          .title
+                                                      )
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e()
+                                          ],
+                                          1
+                                        )
                                       ],
                                       1
                                     )
-                                  ],
-                                  1
-                                )
+                                  : _vm._e()
                               ],
                               1
                             )
@@ -3345,6 +3018,17 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./public/uploads/Nophoto.jpg":
+/*!************************************!*\
+  !*** ./public/uploads/Nophoto.jpg ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/Nophoto.jpg?384bc4cf0c52c2e2aa726169afced8ff";
+
+/***/ }),
+
 /***/ "./resources/assets/images/logo/logo.png":
 /*!***********************************************!*\
   !*** ./resources/assets/images/logo/logo.png ***!
@@ -3353,17 +3037,6 @@ render._withStripped = true
 /***/ (function(module, exports) {
 
 module.exports = "/images/logo.png?a5d6fa57427643c6ebe37859086c9a63";
-
-/***/ }),
-
-/***/ "./resources/assets/images/portrait/small/avatar-s-11.png":
-/*!****************************************************************!*\
-  !*** ./resources/assets/images/portrait/small/avatar-s-11.png ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/avatar-s-11.png?51a23c074bd7469a69e220c62dce541a";
 
 /***/ }),
 
@@ -3905,6 +3578,11 @@ __webpack_require__.r(__webpack_exports__);
     name: 'Okrug',
     slug: 'Okrug'
   }]
+}, {
+  url: '/knowledge',
+  name: 'Knowledge',
+  slug: 'Knowledge',
+  icon: 'InfoIcon'
 }]);
 
 /***/ }),

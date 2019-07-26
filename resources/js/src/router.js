@@ -171,7 +171,145 @@ const router = new Router({
                     }]
                     },
                     component: () => import('./views/pages/okruk/index.vue')
-                }
+                },
+                {
+                    path: '/knowledge',
+                    name: 'Knowledge',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Knowledge',
+                        active: true
+                    }],
+                    Adding:{
+                        title:'Add KB',
+                        url:'/add-knowledge'
+                    }
+                    },
+
+                    component: () => import('./views/pages/knowledge/index.vue')
+                },
+                {
+                    path: '/add-knowledge',
+                    name: 'AddKnowledge',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                    {
+                        title: 'Add Knowledge',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/knowledge/add-kb.vue')
+                },
+                {
+                    path: '/knowledge/category/:id',
+                    name: 'KnowledgeCategory',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                        {
+                            title: 'Knowledge',
+                            url: '/knowledge'
+                        },
+                    {
+                        title: 'Category',
+                        active: true
+                    }],
+                    
+                    
+                    },
+                    
+                    component: () => import('./views/pages/knowledge/category.vue')
+                },
+                {
+                    path: '/knowledge/category/item/:id',
+                    name: 'KnowledgeCategoryItem',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                        {
+                            title: 'Knowledge',
+                            url: '/knowledge'
+                        },
+                    {
+                        title: 'CategoryItem',
+                        active: true
+                    }],                    
+                    },                    
+                    component: () => import('./views/pages/knowledge/category-item.vue')
+                },
+                {
+                    path: '/knowledge/items/:cat_id/:id',
+                    name: 'catItems',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                        {
+                            title: 'Knowledge',
+                            url: '/knowledge'
+                        },
+                    {
+                        title: 'Items',
+                        active: true
+                    }],                    
+                    },                    
+                    component: () => import('./views/pages/knowledge/items.vue')
+                },
+                {
+                    path: '/knowledge/item/edit/:id',
+                    name: 'editItem',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                        {
+                            title: 'Knowledge',
+                            url: '/knowledge'
+                        },
+                    {
+                        title: 'EditItems',
+                        active: true
+                    }],                    
+                    },                    
+                    component: () => import('./views/pages/knowledge/edit-item.vue')
+                },
+                {
+                    path: '/add-kb-category/:id',
+                    name: 'AddKbCategory',
+                    meta: {
+                        breadcrumb: [{
+                            title: 'Home',
+                            url: '/'
+                        },
+                        {
+                            title: 'Knowledge',
+                            url: '/knowledge'
+                        },
+                        {
+                            title: 'category',
+                            url: '/knowledge/category/:id'
+                        },
+                        
+                    {
+                        title: 'Add Category',
+                        active: true
+                    }]
+                    },
+                    component: () => import('./views/pages/knowledge/add-kb-category.vue')
+                },
 
             ],
         },

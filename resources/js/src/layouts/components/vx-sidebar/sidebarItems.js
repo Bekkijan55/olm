@@ -69,7 +69,14 @@ export default [{
                 url: '/okrug',
                 name: 'Okrug',
                 slug: 'Okrug'
-            }
+            },
+
         ]
-    }
+    },
+    {
+        url : '/knowledge',
+        name: 'Knowledge',
+        slug: 'Knowledge',
+        icon : 'InfoIcon'
+    },
 ]

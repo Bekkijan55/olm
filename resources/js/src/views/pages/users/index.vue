@@ -15,31 +15,7 @@
               />
               <span class="text-danger text-sm">{{errors.first('Name')}}</span>
             </div>
-            <div class="vx-col sm:w-1/2 w-full mb-2">
-              <vs-input
-                class="w-full"
-                v-validate="'required'"
-                label="Lastname"
-                placeholder="Lastname"
-                name="Lastname"
-                v-model="user.lastname"
-              />
-              <span class="text-danger text-sm">{{errors.first('Lastname')}}</span>
-            </div>
-          </div>    
-             <div class="vx-row">
-            <div class="vx-col sm:w-1/2 w-full mb-2">
-              <vs-input
-                class="w-full"
-                v-validate="'required'"
-                label="Surname"
-                placeholder="Surname"
-                name="Surname"
-                v-model="user.surname"
-              />
-              <span class="text-danger text-sm">{{errors.first('Surname')}}</span>
-            </div>
-             <div class="vx-col sm:w-1/2 w-full mb-2">
+               <div class="vx-col sm:w-1/2 w-full mb-2">
               <vs-input
                 class="w-full"
                 v-validate="'required|email'"
@@ -50,7 +26,9 @@
               />
               <span class="text-danger text-sm">{{errors.first('email')}}</span>
             </div>
-          </div>
+           
+          </div>    
+             
           
           <div class="vx-row">
             <div class="vx-col sm:w-1/2 w-full mb-2">
@@ -168,8 +146,7 @@ export default {
       user: {
         id: "",
         name: "",
-        lastname:'',
-        surname:'',
+       
         email: "",
         password: "",
         role: "",

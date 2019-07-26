@@ -20,7 +20,7 @@
         
         </div>
                 </vs-tab>
-                <vs-tab label="Ru">
+                <vs-tab label="Рус">
                    <div class="vx-row">
                        <div class="vx-col sm:w-1/2 w-full mb-2">
             <vs-input class="w-full" label="Имя" placeholder="Имя" v-model="userCreds.firstname_ru" ></vs-input>
@@ -34,7 +34,7 @@
         </div>
         </div> 
                 </vs-tab>
-         <vs-tab label="kiril">
+         <vs-tab label="Уз">
                <div class="vx-row">
                        <div class="vx-col sm:w-1/2 w-full mb-2">
             <vs-input class="w-full" label="Исм" placeholder="Исм" v-model="userCreds.firstname_uz2" ></vs-input>
@@ -56,23 +56,32 @@
             <div class="vx-col sm:w-1/2 w-full mb-2">
             <vs-input class="w-full" label="Email" placeholder="Email" v-model="userCreds.email" ></vs-input>
         </div>
-        </div>
-        <div class="vx-row">
-              <div class="vx-col sm:w-1/2 w-full mb-2 mt-5">
-        <label for="education">Education</label>
-            <v-select v-model="eduo" :options="edus" label="edu_uz"></v-select>
-        </div>
-         <div class="vx-col sm:w-1/2 w-full mb-2 mt-5">
-         <label for="party">Party</label>
-            <v-select v-model="partyo" :options="parties" label="party_uz"></v-select>
+        <div class="vx-col sm:w-1/3 w-full mb-2">
+         <label for="birthdate">Birthdate</label>
+           <datepicker placeholder="Select Date" v-model="userCreds.birthdate"></datepicker>
         </div>
         </div>
+      
 
         </div>
         <div class="vx-col sm:w-1/3 w-full mb-2 mt-4">
                 <img v-if="userCreds.photo" :src="userCreds.photo" width="150" height="150" >
                 <input type="file" @change="getPhoto" class="mt-4" >
             </div>
+        </div>
+          <div class="vx-row">
+              <div class="vx-col sm:w-1/3 w-full mb-2 mt-5">
+        <label for="education">Education</label>
+            <v-select v-model="eduo" :options="edus" label="edu_uz"></v-select>
+        </div>
+         <div class="vx-col sm:w-1/3 w-full mb-2 mt-5">
+         <label for="party">Party</label>
+            <v-select v-model="partyo" :options="parties" label="party_uz"></v-select>
+        </div>
+         <div class="vx-col sm:w-1/3 w-full mb-2 mt-5">
+         <label for="roles">Roles</label>
+            <v-select multiple v-model="userCreds.roles" :options="role" label="role_name"></v-select>
+        </div>
         </div>
    
     
@@ -115,15 +124,9 @@
         </div>
     </div>
     <div class="vx-row">
-      <div class="vx-col sm:w-1/3 w-full mb-2">
-         <label for="roles">Roles</label>
-            <v-select multiple v-model="userCreds.roles" :options="role" label="role_name"></v-select>
-        </div>
-        <div class="vx-col sm:w-1/3 w-full mb-2">
-         <label for="birthdate">Birthdate</label>
-           <datepicker placeholder="Select Date" v-model="userCreds.birthdate"></datepicker>
-        </div>
-    <div class="vx-col sm:w-1/3 w-full mb-2 mt-6">
+     
+        
+    <div class="vx-col sm:w-1/1 w-full mb-2 mt-6">
         <vs-row vs-type="flex" vs-justify="flex-end">
                 <div class="bx-row mb-10">
                   <vs-button class="mr-3 mb-2" size="medium" color="success">Edit</vs-button>
@@ -218,7 +221,7 @@ methods: {
                  let prof = this.userCreds.profile;
                  this.userCreds.prof_id = prof.id;
                  this.eduo = prof.edu;
-                 this.partyo = prof.party;
+                 this.partyo = prof.party; 
                  this.okrugo = prof.okrug;
                  this.nationo = prof.nation;
                  this.instsa = prof.insts;
@@ -248,7 +251,7 @@ methods: {
           filereader.readAsDataURL(e.target.files[0]);
 
           filereader.onload = e => {
-              this.setphoto = e.target.result;
+              this.setPhoto = e.target.result;
           }
       },
 
@@ -263,7 +266,7 @@ methods: {
                  this.userCreds.insts.push(val.id);
              });
              this.userCreds.photo = this.setPhoto;
-             console.log(this.userCreds.insts)
+             console.log(this.userCreds.photo)
           addUserCreds(this.userCreds)
             .then(res => {
                 this.$vs.notify({ title: 'Success', 

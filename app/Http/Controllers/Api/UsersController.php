@@ -110,7 +110,7 @@ class UsersController extends Controller
     }
 
     public function addUserCreds(Request $request) {
-        return $request->all();  
+        // return $request->all();  
         
         $u = User::findOrFail($request->input('id'));
         if($request->input('photo') != null) {
